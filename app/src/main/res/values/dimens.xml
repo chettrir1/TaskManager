@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="view_height">0.5dp</dimen>
+
+    <!--spacing size-->
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_normal">14dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+    <dimen name="spacing_tiny">5dp</dimen>
+    <dimen name="spacing_tiny_small">2dp</dimen>
+    <!---->
+
+    <!--font size google recommended-->
+    <!--headline-->
+    <dimen name="h1_headline_light">96sp</dimen>
+    <dimen name="h2_headline_regular">60sp</dimen>
+    <dimen name="h3_headline_semi_bold">48sp</dimen>
+    <dimen name="h4_headline_semi_bold">34sp</dimen>
+    <dimen name="h5_headline_semi_bold">24sp</dimen>
+    <dimen name="h6_headline_medium">20sp</dimen>
+    <!--subtitle-->
+    <dimen name="s1_subtitle_medium">16sp</dimen>
+    <dimen name="s2_subtitle_semi_bold">14sp</dimen>
+    <!--body-->
+    <dimen name="b1_body_semi_bold">16sp</dimen>
+    <dimen name="b2_body_regular">14sp</dimen>
+    <!--button-->
+    <dimen name="btn_medium_caps">14sp</dimen>
+    <!--captions-->
+    <dimen name="caption_medium">12sp</dimen>
+    <!--over_line-->
+    <dimen name="over_line_semi_bold_caps">12sp</dimen>
+    <!---->
+</resources>

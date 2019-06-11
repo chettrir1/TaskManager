@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/notification_src"
+        android:icon="@drawable/notify_src"
+        android:title="Notification"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/profile_src"
+        android:icon="@drawable/profile_src"
+        android:title="Profile"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/phone_src"
+        android:icon="@drawable/phonebook_src"
+        android:title="Contacts"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/note_src"
+        android:icon="@drawable/notes_src"
+        android:title="Note"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/logout_src"
+        android:icon="@drawable/logout_src"
+        android:title="Logout"
+        app:showAsAction="never" />
+</menu>

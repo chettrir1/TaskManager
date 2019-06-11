@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">TaskManager</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="error_login">Login Error</string>
+    <string name="text_new_task">New Task</string>
+    <string name="text_opened_task">Opened Task</string>
+    <string name="text_pending_task">Pending Task</string>
+    <string name="text_completed_task">Completed Task</string>
+    <string name="verifying_login">Verifying username and password…</string>
+    <string name="network_not_available_error">Make sure you are connected to internet</string>
+    <string name="text_assigned_by">Assigned by: %s</string>
+    <string name="text_status">Status: %s</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="task_new">New</string>
+    <string name="task_open">Opened</string>
+    <string name="task_pending">Pending</string>
+    <string name="task_completed">Completed</string>
+    <string name="task_tracker">Task Tracker</string>
+    <string name="text_notification">Notifications</string>
+    <string name="text_phone_directory">Phone Directory</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hint_add_description">Add Description</string>
+    <string name="hint_add_title">Add Title</string>
+    <string name="empty_note_message">Note cannot be empty</string>
+    <string name="message_saved_success">Successfully saved</string>
+    <string name="text_add_new_note">Add new note</string>
+    <string name="text_edit_note">Edit note</string>
+    <string name="text_added_notes">Added Notes</string>
+    <string name="no_tasks_available">No Task Available</string>
+    <string name="text_remember_me">Remember me</string>
+    <string name="server_error">Server Error</string>
+    <string name="empty_field_message">Field can\'t be empty</string>
+    <string name="message_loading">Loading</string>
+    <string name="veryfing_login">Verifying username and password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_toolbar_image">toolbar image</string>
+    <string name="text_task_status">Task Status</string>
+    <string name="text_assigned_task">Assigned Task</string>
+    <string name="content_dashbord_top_recycler_icon">dashbordTopRecyclerIcon</string>
+</resources>

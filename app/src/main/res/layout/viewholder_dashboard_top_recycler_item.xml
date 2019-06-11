@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dashboardTop"
+            type="com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/task_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/spacing_tiny_small"
+        app:cardElevation="@dimen/spacing_tiny">
+
+        <LinearLayout
+            android:id="@+id/llTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{dashboardTop.taskColor}"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_tiny">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/task_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/content_dashbord_top_recycler_icon"
+                    android:padding="@dimen/spacing_normal"
+                    android:src="@{dashboardTop.taskIcon}" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/task_count"
+                    style="@style/TextStyleWhite"
+                    android:text="@{dashboardTop.taskCount}"
+                    android:textSize="@dimen/b2_body_regular"
+                    android:textStyle="bold"
+                    tools:text="2" />
+
+                <TextView
+                    android:id="@+id/task_name"
+                    style="@style/TextStyleWhite"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/spacing_tiny_small"
+                    android:text="@{dashboardTop.taskName"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/b1_body_semi_bold"
+                    tools:text="New Task" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
