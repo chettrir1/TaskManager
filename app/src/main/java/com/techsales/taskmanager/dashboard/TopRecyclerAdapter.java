@@ -8,64 +8,56 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.data.model.TopItems;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.databinding.ViewholderDashboardTopRecyclerItemBinding;
-import com.techsales.taskmanager.views.LoadMoreAdapter;
 
 import java.util.List;
 
-class TopRecyclerAdapter extends LoadMoreAdapter<TopRecyclerAdapter.TaggedQuestionsHolder> {
+public class TopRecyclerAdapter extends RecyclerView.Adapter<TopRecyclerAdapter.TopRecyclerViewHolder> {
 
-    private final List<DashboardTopRecyclerViewModel> dashboardItems;
-    private final RecyclerItemClickListener listener;
+    private List<DashboardTopRecyclerViewModel> topItem;
+    private LayoutInflater layoutInflater;
+    private RecyclerItemClickListener listener;
 
-    public TopRecyclerAdapter(@NonNull RecyclerView recyclerView,
-                              List<DashboardTopRecyclerViewModel> dashboardItems,
-                              RecyclerItemClickListener listener) {
-        super(recyclerView);
-        this.dashboardItems = dashboardItems;
-        this.listener = listener;
-    }
+    public class TopRecyclerViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public int getItemCount_() {
-        return dashboardItems.size();
-    }
-
-    @Override
-    public TaggedQuestionsHolder onCreateViewHolder_(LayoutInflater inflater, ViewGroup parent, int viewType) {
-        return new TaggedQuestionsHolder(DataBindingUtil.inflate(inflater, R.layout.viewholder_dashboard_top_recycler_item, parent, false));
-    }
-
-    @Override
-    public void onBindViewHolder_(TaggedQuestionsHolder holder, int position) {
-        if (dashboardItems != null) {
-            holder.binding.setDashboardTop(dashboardItems.get(position));
-        }
-
-        holder.binding.getRoot().setOnClickListener(v -> {
-            if (dashboardItems != null)
-                listener.onRecyclerItemClicked(dashboardItems.get(position), position);
-        });
-        holder.binding.executePendingBindings();
-    }
-
-    void addMoreItems(List<DashboardTopRecyclerViewModel> items, boolean hasMoreItems) {
-        final int count = this.dashboardItems.size();
-        this.dashboardItems.addAll(items);
-        onItemsAdded(count, items.size(), hasMoreItems);
-    }
-
-    interface RecyclerItemClickListener {
-        void onRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position);
-    }
-
-    static class TaggedQuestionsHolder extends RecyclerView.ViewHolder {
         private final ViewholderDashboardTopRecyclerItemBinding binding;
 
-        TaggedQuestionsHolder(ViewholderDashboardTopRecyclerItemBinding binding) {
+        public TopRecyclerViewHolder(final ViewholderDashboardTopRecyclerItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+
+    public TopRecyclerAdapter(List<DashboardTopRecyclerViewModel> topItem, RecyclerItemClickListener listener) {
+        this.topItem = topItem;
+        this.listener = listener;
+    }
+
+    @NonNull
+    @Override
+    public TopRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (layoutInflater == null) {
+            layoutInflater = LayoutInflater.from(parent.getContext());
+        }
+        ViewholderDashboardTopRecyclerItemBinding binding =
+                DataBindingUtil.inflate(layoutInflater, R.layout.viewholder_dashboard_top_recycler_item, parent, false);
+        return new TopRecyclerViewHolder(binding);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TopRecyclerViewHolder holder, final int position) {
+        holder.binding.setDashboardTop(topItem.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return topItem.size();
+    }
+
+    public interface RecyclerItemClickListener {
+        void onRecyclerItemClicked(TopItems topItems);
     }
 }

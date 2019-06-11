@@ -23,7 +23,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void start() {
-
+        prepareDashBoardStatus("1", "2","3", "4");
     }
 
     @Override
@@ -34,7 +34,6 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void onTopRecyclerLoad(String newCount, String openCount, String pendingCount, String completedCount) {
-        view.showProgress();
         prepareDashBoardStatus(newCount, openCount, pendingCount, completedCount);
     }
 
@@ -86,13 +85,6 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
         List<DashboardTopRecyclerViewModel> viewModel = TopItems.mapToViewModel(items);
         view.showTopRecyclerLoadSuccess(viewModel);
-        view.onLoadComplete();
-    }
-
-    @Override
-    public void onRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
-        view.onTopRecyclerItemClicked(items, position);
-
     }
 
     @Override

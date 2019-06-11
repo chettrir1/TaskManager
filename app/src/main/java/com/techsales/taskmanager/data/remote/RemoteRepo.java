@@ -14,4 +14,10 @@ public interface RemoteRepo {
     @POST("login")
     Single<BaseResponse<UserInfo>> requestLogin(
             @Body Map<String, Object> params);
+
+    @POST("task")
+    Single<BaseResponse<UserInfo>> getNewTasks(
+            @Body Map<String, Object> params);
+
+
 }

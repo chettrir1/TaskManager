@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import androidx.databinding.DataBindingUtil;
 
+import com.techsales.taskmanager.BR;
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;

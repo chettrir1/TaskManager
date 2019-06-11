@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.data;
 
-import android.text.TextUtils;
-
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.model.UserInfo;
 import com.techsales.taskmanager.data.remote.RemoteRepo;

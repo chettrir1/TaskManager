@@ -15,9 +15,10 @@ import javax.inject.Inject;
 public class LocalRepo {
 
     private static final String USER_INFO = "_user_info";
+    private static final String TASK_INFO = "_task_info";
     private static final String USERNAME = "_username";
-    private static final String PASSWORD = "_password";
     private static final String REMEMBER_ME = "_remember_me";
+    private static final String PASSWORD = "_password";
 
     private final SharedPreferences sharedPreferences;
     private final Gson gson;
@@ -46,6 +47,8 @@ public class LocalRepo {
         }
         return cachedUserInfo;
     }
+
+
 
     public void saveUsernamePassowrd(String username, String password, boolean isChecked) {
         sharedPreferences.edit().putString(USERNAME, username)

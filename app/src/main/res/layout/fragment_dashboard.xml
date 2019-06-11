@@ -7,11 +7,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.techsales.taskmanager.views.ContentStateView
+    <!--    <com.techsales.taskmanager.views.ContentStateView
             android:id="@+id/contentState"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
+-->
         <LinearLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:overScrollMode="never"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager">
+                           >
 
                         </androidx.recyclerview.widget.RecyclerView>
 
@@ -80,8 +80,13 @@
                             android:layout_marginLeft="@dimen/spacing_tiny"
                             android:layout_marginRight="@dimen/spacing_tiny" />
 
-                        <include layout="@layout/dashboard_bottom_recycler" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/dashboardBottomRv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never">
 
+                        </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
                 </ScrollView>
 
