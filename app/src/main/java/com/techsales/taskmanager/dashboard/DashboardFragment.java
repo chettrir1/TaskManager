@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.auth.login.LoginActivity;
+import com.techsales.taskmanager.data.model.TopItems;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.databinding.FragmentDashboardBinding;
 import com.techsales.taskmanager.utils.GridSpacingItemDecoration;
@@ -28,7 +30,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class DashboardFragment extends BaseFragment implements DashboardContract.View {
+public class DashboardFragment extends BaseFragment implements DashboardContract.View, TopRecyclerAdapter.RecyclerItemClickListener {
 
 
     public static DashboardFragment getInstance() {
@@ -41,7 +43,6 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     DashboardContract.Presenter presenter;
 
     private FragmentDashboardBinding binding;
-    private RecyclerView recyclerView;
     private TopRecyclerAdapter adapter;
 
     @Override
@@ -51,15 +52,13 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, null, false);
-
-        initRecyclerView();
-/*
         checkAlreadyLogin();
-*/
+        initRecyclerView();
+
 
 /*
         binding.contentState.setContent(binding.content);
@@ -67,12 +66,24 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         return binding.getRoot();
     }
 
+    @Override
+    public void onResume() {
+        presenter.start();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        presenter.stop();
+        super.onPause();
+    }
+
+
     private void initRecyclerView() {
-        recyclerView = binding.dashboardTopRv;
-        recyclerView.setLayoutManager(new GridLayoutManager(component.context(), 3));
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setNestedScrollingEnabled(false);
+        binding.dashboardTopRv.setLayoutManager(new GridLayoutManager(component.context(), 3));
+        binding.dashboardTopRv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
+        binding.dashboardTopRv.setItemAnimator(new DefaultItemAnimator());
+        binding.dashboardTopRv.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -84,6 +95,9 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void showTopRecyclerLoadSuccess(List<DashboardTopRecyclerViewModel> items) {
+
+       TopRecyclerAdapter adapter = new TopRecyclerAdapter(items, this);
+        binding.dashboardTopRv.setAdapter(adapter);
     }
 
     @Override
@@ -104,20 +118,13 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
 
     @Override
-    public void onResume() {
-        presenter.start();
-        super.onResume();
-    }
+    public void onRecyclerItemClicked(TopItems topItems) {
 
-    @Override
-    public void onPause() {
-        presenter.stop();
-        super.onPause();
     }
 
     private void checkAlreadyLogin() {
         boolean isLoggedIn = data.isLoggedIn();
-        if (isLoggedIn) {
+        if (!isLoggedIn) {
             Activity activity = getActivity();
             if (activity != null) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -130,5 +137,4 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
 }

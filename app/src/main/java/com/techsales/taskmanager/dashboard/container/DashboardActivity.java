@@ -14,7 +14,7 @@ import com.techsales.taskmanager.dashboard.DashboardFragment;
 import com.techsales.taskmanager.databinding.ActivityDashboardBinding;
 
 public class DashboardActivity extends BaseActivity {
-    ActivityDashboardBinding binding;
+   private ActivityDashboardBinding binding;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, DashboardActivity.class);
@@ -25,15 +25,13 @@ public class DashboardActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        setSupportActionBar(binding.customToolbar);
+        binding.ivToolbarImage.setImageResource(R.mipmap.ic_launcher_round);
+        binding.tvToolbarText.setText(R.string.app_name);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, DashboardFragment.getInstance())
                 .commit();
-        binding.ivToolbarImage.setImageResource(R.mipmap.ic_launcher_round);
-        binding.tvToolbarText.setText(R.string.app_name);
-        setSupportActionBar(binding.customToolbar);
-
-
     }
 
     @Override

@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import androidx.databinding.DataBindingUtil;
 
-import com.techsales.taskmanager.BR;
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;
@@ -96,8 +95,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     private void setRememberStatus() {
-        if (data.savedUsename() != null && data.savedPassword() != null && data.savedRememberStatus()) {
-            binding.etUsername.setText(data.savedUsename());
+        if (data.savedUsername() != null && data.savedPassword() != null && data.savedRememberStatus()) {
+            binding.etUsername.setText(data.savedUsername());
             binding.etPassword.setText(data.savedPassword());
             binding.cbRememberMe.setChecked(true);
         }

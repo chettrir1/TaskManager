@@ -10,8 +10,10 @@ import java.util.HashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public class Data {
@@ -32,7 +34,7 @@ public class Data {
         localRepo.logout();
     }
 
-    public String savedUsename() {
+    public String savedUsername() {
         return localRepo.getCachedUsername();
     }
 
@@ -62,6 +64,8 @@ public class Data {
                 .doOnSuccess(userInfo -> {
                     if (userInfo != null)
                         localRepo.setUserInfo(userInfo);
-                }).observeOn(AndroidSchedulers.mainThread());
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
     }
 }
