@@ -22,8 +22,6 @@ public interface DashboardContract {
 
     interface Presenter extends BasePresenter {
 
-        void onTopRecyclerLoad(String newCount, String openCount, String pendingCount, String completedCount);
-
         void onBottomRecyclerLoad(String userId);
     }
 }

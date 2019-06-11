@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.dashboard;
 
-import android.content.Context;
-
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.TopItems;
 import com.techsales.taskmanager.data.model.TopRecyclerItems;
@@ -23,7 +21,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void start() {
-        prepareDashBoardStatus("1", "2","3", "4");
+        prepareDashBoardStatus();
     }
 
     @Override
@@ -33,16 +31,11 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
 
     @Override
-    public void onTopRecyclerLoad(String newCount, String openCount, String pendingCount, String completedCount) {
-        prepareDashBoardStatus(newCount, openCount, pendingCount, completedCount);
-    }
-
-    @Override
     public void onBottomRecyclerLoad(String userId) {
 
     }
 
-    private void prepareDashBoardStatus(String newCount, String openCount, String pendingCount, String completeCount) {
+    private void prepareDashBoardStatus() {
         List<TopRecyclerItems> items = new ArrayList<>();
         int[] icons = new int[]{
                 R.drawable.new_task_src,
@@ -59,25 +52,25 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         };
 
         TopRecyclerItems topRecyclerItems = new TopRecyclerItems();
-        topRecyclerItems.setTaskCount(newCount);
+        topRecyclerItems.setTaskCount("1");
         topRecyclerItems.setTaskName(component.context().getString(R.string.task_new));
         topRecyclerItems.setTaskIcon(icons[0]);
         topRecyclerItems.setTaskColor(color[0]);
         items.add(topRecyclerItems);
 
-        topRecyclerItems.setTaskCount(openCount);
+        topRecyclerItems.setTaskCount("2");
         topRecyclerItems.setTaskName(component.context().getString(R.string.task_open));
         topRecyclerItems.setTaskIcon(icons[1]);
         topRecyclerItems.setTaskColor(color[1]);
         items.add(topRecyclerItems);
 
-        topRecyclerItems.setTaskCount(pendingCount);
+        topRecyclerItems.setTaskCount("3");
         topRecyclerItems.setTaskName(component.context().getString(R.string.task_pending));
         topRecyclerItems.setTaskIcon(icons[2]);
         topRecyclerItems.setTaskColor(color[2]);
         items.add(topRecyclerItems);
 
-        topRecyclerItems.setTaskCount(completeCount);
+        topRecyclerItems.setTaskCount("4");
         topRecyclerItems.setTaskName(component.context().getString(R.string.task_completed));
         topRecyclerItems.setTaskIcon(icons[3]);
         topRecyclerItems.setTaskColor(color[3]);
