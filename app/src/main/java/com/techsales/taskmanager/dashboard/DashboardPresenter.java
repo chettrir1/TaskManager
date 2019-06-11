@@ -79,9 +79,4 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         List<DashboardTopRecyclerViewModel> viewModel = TopItems.mapToViewModel(items);
         view.showTopRecyclerLoadSuccess(viewModel);
     }
-
-    @Override
-    public void onLoadMore() {
-
-    }
 }
