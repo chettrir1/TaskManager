@@ -1,4 +1,6 @@
-package com.techsales.taskmanager.data.model;
+package com.techsales.taskmanager.data.model.dashboard.top;
+
+import android.content.Context;
 
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 
@@ -16,11 +18,11 @@ public class TopItems {
         this.items = items;
     }
 
-    public static List<DashboardTopRecyclerViewModel> mapToViewModel(List<TopRecyclerItems> items) {
+    public static List<DashboardTopRecyclerViewModel> mapToViewModel(Context context, List<TopRecyclerItems> items) {
         final int count = items.size();
         ArrayList<DashboardTopRecyclerViewModel> viewModels = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
-            viewModels.add(new DashboardTopRecyclerViewModel(items.get(i)));
+            viewModels.add(new DashboardTopRecyclerViewModel(context, items.get(i)));
         }
         return viewModels;
     }

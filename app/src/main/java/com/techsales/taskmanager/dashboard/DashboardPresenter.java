@@ -1,8 +1,9 @@
 package com.techsales.taskmanager.dashboard;
 
 import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.data.model.TopItems;
-import com.techsales.taskmanager.data.model.TopRecyclerItems;
+import com.techsales.taskmanager.data.model.dashboard.top.TopItems;
+import com.techsales.taskmanager.data.model.dashboard.top.TopRecyclerItems;
+import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 
@@ -51,32 +52,39 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                 R.color.colorGreen
         };
 
-        TopRecyclerItems topRecyclerItems = new TopRecyclerItems();
-        topRecyclerItems.setTaskCount("1");
-        topRecyclerItems.setTaskName(component.context().getString(R.string.task_new));
-        topRecyclerItems.setTaskIcon(icons[0]);
-        topRecyclerItems.setTaskColor(color[0]);
-        items.add(topRecyclerItems);
+        TopRecyclerItems newTask = new TopRecyclerItems("1", component.context().getString(R.string.task_new),
+                icons[0], color[0]);
+        items.add(newTask);
 
-        topRecyclerItems.setTaskCount("2");
-        topRecyclerItems.setTaskName(component.context().getString(R.string.task_open));
-        topRecyclerItems.setTaskIcon(icons[1]);
-        topRecyclerItems.setTaskColor(color[1]);
-        items.add(topRecyclerItems);
+        TopRecyclerItems openTask = new TopRecyclerItems("2", component.context().getString(R.string.task_open),
+                icons[1], color[1]);
+        items.add(openTask);
 
-        topRecyclerItems.setTaskCount("3");
-        topRecyclerItems.setTaskName(component.context().getString(R.string.task_pending));
-        topRecyclerItems.setTaskIcon(icons[2]);
-        topRecyclerItems.setTaskColor(color[2]);
-        items.add(topRecyclerItems);
+        TopRecyclerItems pendingTask = new TopRecyclerItems("3", component.context().getString(R.string.task_pending),
+                icons[2], color[2]);
+        items.add(pendingTask);
 
-        topRecyclerItems.setTaskCount("4");
-        topRecyclerItems.setTaskName(component.context().getString(R.string.task_completed));
-        topRecyclerItems.setTaskIcon(icons[3]);
-        topRecyclerItems.setTaskColor(color[3]);
-        items.add(topRecyclerItems);
+        TopRecyclerItems completedTask = new TopRecyclerItems("4", component.context().getString(R.string.task_completed),
+                icons[3], color[3]);
+        items.add(completedTask);
 
-        List<DashboardTopRecyclerViewModel> viewModel = TopItems.mapToViewModel(items);
+        List<DashboardTopRecyclerViewModel> viewModel = TopItems.mapToViewModel(component.context(), items);
         view.showTopRecyclerLoadSuccess(viewModel);
+    }
+
+    @Override
+    public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
+        view.onBottomRecyclerItemClicked(items, position);
+    }
+
+    @Override
+    public void onLoadMore() {
+
+    }
+
+
+    @Override
+    public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
+
     }
 }

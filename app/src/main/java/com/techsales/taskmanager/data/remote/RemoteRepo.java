@@ -2,6 +2,7 @@ package com.techsales.taskmanager.data.remote;
 
 import com.techsales.taskmanager.data.model.UserInfo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
+import com.techsales.taskmanager.data.model.dashboard.bottom.BottomRecyclerItemsData;
 
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public interface RemoteRepo {
             @Body Map<String, Object> params);
 
     @POST("task")
-    Single<BaseResponse<UserInfo>> getNewTasks(
+    Single<BaseResponse<BottomRecyclerItemsData>> getNewTasks(
             @Body Map<String, Object> params);
 
 

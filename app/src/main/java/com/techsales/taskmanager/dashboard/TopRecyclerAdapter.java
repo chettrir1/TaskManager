@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.data.model.TopItems;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.databinding.ViewholderDashboardTopRecyclerItemBinding;
 
@@ -16,9 +15,9 @@ import java.util.List;
 
 public class TopRecyclerAdapter extends RecyclerView.Adapter<TopRecyclerAdapter.TopRecyclerViewHolder> {
 
-    private List<DashboardTopRecyclerViewModel> topItem;
+    private List<DashboardTopRecyclerViewModel> items;
     private LayoutInflater layoutInflater;
-    private RecyclerItemClickListener listener;
+    private TopRecyclerItemClickListener listener;
 
     public class TopRecyclerViewHolder extends RecyclerView.ViewHolder {
 
@@ -31,8 +30,8 @@ public class TopRecyclerAdapter extends RecyclerView.Adapter<TopRecyclerAdapter.
     }
 
 
-    public TopRecyclerAdapter(List<DashboardTopRecyclerViewModel> topItem, RecyclerItemClickListener listener) {
-        this.topItem = topItem;
+    public TopRecyclerAdapter(List<DashboardTopRecyclerViewModel> items, TopRecyclerItemClickListener listener) {
+        this.items = items;
         this.listener = listener;
     }
 
@@ -49,15 +48,20 @@ public class TopRecyclerAdapter extends RecyclerView.Adapter<TopRecyclerAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TopRecyclerViewHolder holder, final int position) {
-        holder.binding.setDashboardTop(topItem.get(position));
+        holder.binding.setDashboardTop(items.get(position));
+        holder.binding.getRoot().setOnClickListener(view -> {
+            if (items != null)
+                listener.onTopRecyclerItemClicked(items.get(position), position);
+        });
+        holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-        return topItem.size();
+        return items.size();
     }
 
-    public interface RecyclerItemClickListener {
-        void onRecyclerItemClicked(TopItems topItems);
+    public interface TopRecyclerItemClickListener {
+        void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position);
     }
 }

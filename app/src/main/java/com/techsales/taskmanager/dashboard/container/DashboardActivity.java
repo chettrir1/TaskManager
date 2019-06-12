@@ -6,15 +6,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.auth.login.LoginActivity;
 import com.techsales.taskmanager.dashboard.DashboardFragment;
 import com.techsales.taskmanager.databinding.ActivityDashboardBinding;
 
 public class DashboardActivity extends BaseActivity {
-   private ActivityDashboardBinding binding;
+    private ActivityDashboardBinding binding;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, DashboardActivity.class);
@@ -41,10 +43,33 @@ public class DashboardActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.profile_src:
 
+                break;
+
+            case R.id.phone_src:
+
+                break;
+
+            case R.id.note_src:
+
+                break;
+
+            case R.id.logout_src:
+                data.logout();
+                onLogoutSelection();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void onLogoutSelection() {
+        Activity activity = this;
+        startActivity(new Intent(activity, LoginActivity.class));
+        activity.finish();
+    }
+
+
 }

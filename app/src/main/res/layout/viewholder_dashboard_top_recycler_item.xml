@@ -62,7 +62,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:padding="@dimen/spacing_tiny_small"
-                    android:text="@{dashboardTop.taskName"
+                    android:text="@{dashboardTop.taskName}"
                     android:textAllCaps="true"
                     android:textSize="@dimen/b1_body_semi_bold"
                     tools:text="New Task" />
