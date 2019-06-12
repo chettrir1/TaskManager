@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AllTasks {
     private String last_login_at;
-    private List<WhereTask> where_task;
+    private List<WhereTask> where_task = null;
     private String join_date;
     private String user_name;
     private String created_at;

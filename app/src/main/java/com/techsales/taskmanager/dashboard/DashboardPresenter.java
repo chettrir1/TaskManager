@@ -5,6 +5,7 @@ import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
 import com.techsales.taskmanager.data.model.dashboard.bottom.AllTasks;
 import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
+import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
 import com.techsales.taskmanager.data.model.dashboard.top.Status;
 import com.techsales.taskmanager.data.model.dashboard.top.TaskStatus;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
@@ -90,7 +91,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         disposable = component.data().getAllTasks(user_id)
                 .subscribe((Tasks tasks) -> {
                     int itemCount = tasks.getItemCount();
-                    List<AllTasks>items = tasks.getItems();
+                    List<AllTasks> items = tasks.getItems();
                     if (itemCount > 0 && !Commons.isEmpty(items)) {
                         List<DashboardBottomRecyclerViewModel> viewModels = Tasks.mapToViewModel(items);
                         view.showBottomRecyclerLoadSuccess(viewModels);

@@ -8,53 +8,29 @@ import com.techsales.taskmanager.data.model.dashboard.bottom.AllTasks;
 public class DashboardBottomRecyclerViewModel extends BaseObservable {
 
     private AllTasks taskInfo;
-/*
-    private WhereTask whereTask;
-*/
+
     public DashboardBottomRecyclerViewModel(AllTasks taskInfo) {
         this.taskInfo = taskInfo;
-/*
-        this.whereTask = getWhereTask();
-*/
     }
 
     @Bindable
     public String getDay() {
-        return taskInfo.getCreated_at();
+        return taskInfo.getWhere_task().get(0).getCreated_at();
     }
 
     @Bindable
     public String getName() {
-        return taskInfo.getFull_name();
+        return taskInfo.getWhere_task().get(0).getName();
     }
 
     @Bindable
     public String getCreatedBy() {
-        return taskInfo.getFull_name();
+        return String.valueOf(taskInfo.getWhere_task().get(0).getCreated_by());
     }
 
     @Bindable
     public String getStatus() {
-        return taskInfo.getFull_name();
+        return String.valueOf(taskInfo.getWhere_task().get(0).getStatus());
     }
 
-
-   /* private WhereTask getWhereTask() {
-        for (int i = 0; i < taskInfo.getWhere_task().size(); i++) {
-            whereTask = new WhereTask();
-            whereTask.setAuthor(taskInfo.getWhere_task().get(i).getAuthor());
-            whereTask.setClient_latitude(taskInfo.getWhere_task().get(i).getClient_latitude());
-            whereTask.setClient_longitude(taskInfo.getWhere_task().get(i).getClient_latitude());
-            whereTask.setClient_name(taskInfo.getWhere_task().get(i).getClient_name());
-            whereTask.setClient_number(taskInfo.getWhere_task().get(i).getClient_number());
-            whereTask.setCreated_at(taskInfo.getWhere_task().get(i).getCreated_at());
-            whereTask.setCreated_by(taskInfo.getWhere_task().get(i).getCreated_by());
-            whereTask.setDeadline(taskInfo.getWhere_task().get(i).getDeadline());
-            whereTask.setDescription(taskInfo.getWhere_task().get(i).getDescription());
-            whereTask.setName(taskInfo.getWhere_task().get(i).getName());
-            whereTask.setStatus(taskInfo.getWhere_task().get(i).getStatus());
-        }
-
-        return whereTask;
-    }*/
 }
