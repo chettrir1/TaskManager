@@ -79,6 +79,7 @@ public class Data {
     public Single<Tasks> getAllTasks(String user_id) {
         return remoteRepo.getNewTasks(user_id)
                 .map(BaseResponse::getData)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

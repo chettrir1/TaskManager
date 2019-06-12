@@ -49,11 +49,9 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         checkAlreadyLogin();
         initTopRecyclerView();
         binding.contentState.setContent(binding.content);
-        if (data.savedUserInfo() != null) {
-            String user_id = data.savedUserInfo().getId();
-            Toast.makeText(component.context(), user_id, Toast.LENGTH_SHORT).show();
-            presenter.onBottomRecyclerLoad(user_id);
-        }
+        getBottomRecyclerData();
+        binding.swipeContainer.setColorScheme(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
+        binding.swipeContainer.setOnRefreshListener(this::getBottomRecyclerData);
         return binding.getRoot();
     }
 
@@ -69,7 +67,6 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         super.onPause();
     }
 
-
     private void initTopRecyclerView() {
         binding.dashboardTopRv.setLayoutManager(new GridLayoutManager(component.context(), 2));
         binding.dashboardTopRv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
@@ -84,12 +81,15 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void showTopRecyclerLoadSuccess(List<DashboardTopRecyclerViewModel> items) {
+        hideSwipeContainer();
         TopRecyclerAdapter adapter = new TopRecyclerAdapter(items, presenter);
         binding.dashboardTopRv.setAdapter(adapter);
     }
 
     @Override
     public void showBottomRecyclerLoadSuccess(List<DashboardBottomRecyclerViewModel> items) {
+        hideSwipeContainer();
+        Toast.makeText(component.context(), items.get(0).getName(), Toast.LENGTH_SHORT).show();
         BottomRecyclerAdapter adapter = new BottomRecyclerAdapter(items, presenter);
         binding.dashboardBottomRv.setAdapter(adapter);
         binding.contentState.showContent();
@@ -97,17 +97,21 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void showTasksLoadError(String message) {
-        binding.contentState.showError(R.drawable.ic_loading_error, message);
+        hideSwipeContainer();
+        binding.contentState.showError(R.drawable.server_error, message);
+
     }
 
     @Override
     public void showEmptyTasks(String message) {
+        hideSwipeContainer();
         binding.contentState.showError(R.drawable.empty_src, message);
 
     }
 
     @Override
     public void showNetworkNotAvailableError() {
+        hideSwipeContainer();
         binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
     }
 
@@ -137,4 +141,16 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    private void getBottomRecyclerData() {
+        if (data.savedUserInfo() != null) {
+            String user_id = data.savedUserInfo().getId();
+            presenter.onBottomRecyclerLoad(user_id);
+        }
+    }
+
+    private void hideSwipeContainer() {
+        if (binding.swipeContainer.isRefreshing() && binding.swipeContainer != null) {
+            binding.swipeContainer.setRefreshing(false);
+        }
+    }
 }

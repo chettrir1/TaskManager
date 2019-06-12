@@ -23,6 +23,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     private DashboardContract.View view;
     private Disposable disposable;
 
+
     DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
         this.component = component;
         this.view = view;
@@ -89,7 +90,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         disposable = component.data().getAllTasks(user_id)
                 .subscribe((Tasks tasks) -> {
                     int itemCount = tasks.getItemCount();
-                    List<AllTasks> items = tasks.getItems();
+                    List<AllTasks>items = tasks.getItems();
                     if (itemCount > 0 && !Commons.isEmpty(items)) {
                         List<DashboardBottomRecyclerViewModel> viewModels = Tasks.mapToViewModel(items);
                         view.showBottomRecyclerLoadSuccess(viewModels);
@@ -113,8 +114,4 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     }
 
-    @Override
-    public void onLoadMore() {
-
-    }
 }

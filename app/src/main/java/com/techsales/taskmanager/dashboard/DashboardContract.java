@@ -30,7 +30,6 @@ public interface DashboardContract {
     }
 
     interface Presenter extends BasePresenter,
-            LoadMoreAdapter.LoadMoreListener,
             TopRecyclerAdapter.TopRecyclerItemClickListener,
             BottomRecyclerAdapter.BottomRecyclerItemClickListener {
 
