@@ -1,6 +1,6 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
-public class BottomRecyclerItemsDataWhere_taskAuthor {
+public class Author {
     private String last_login_at;
     private String temporary_address;
     private String join_date;

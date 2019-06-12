@@ -15,7 +15,6 @@ import javax.inject.Inject;
 public class LocalRepo {
 
     private static final String USER_INFO = "_user_info";
-    private static final String TASK_INFO = "_task_info";
     private static final String USERNAME = "_username";
     private static final String REMEMBER_ME = "_remember_me";
     private static final String PASSWORD = "_password";
@@ -38,6 +37,14 @@ public class LocalRepo {
         cachedUserInfo = userInfo;
     }
 
+    public void setUsernamePassowrd(String username, String password, boolean isChecked) {
+        sharedPreferences.edit().putString(USERNAME, username)
+                .putString(PASSWORD, password).putBoolean(REMEMBER_ME, isChecked).apply();
+        cachedUsername = username;
+        cachedPassword = password;
+        cachedRememberStatus = isChecked;
+    }
+
     public UserInfo getCachedUserInfo() {
         if (cachedUserInfo == null) {
             String userInfoS = sharedPreferences.getString(USER_INFO, null);
@@ -46,16 +53,6 @@ public class LocalRepo {
             }
         }
         return cachedUserInfo;
-    }
-
-
-
-    public void saveUsernamePassowrd(String username, String password, boolean isChecked) {
-        sharedPreferences.edit().putString(USERNAME, username)
-                .putString(PASSWORD, password).putBoolean(REMEMBER_ME, isChecked).apply();
-        cachedUsername = username;
-        cachedPassword = password;
-        cachedRememberStatus = isChecked;
     }
 
     public String getCachedUsername() {

@@ -29,6 +29,7 @@
                 android:background="@drawable/bg_circle_view"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
+                android:text="@{dashboardBottom.day}"
                 android:textAllCaps="true"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 tools:text="SUN" />
@@ -45,6 +46,7 @@
             <TextView
                 android:id="@+id/task_title"
                 style="@style/TextStyleBlack"
+                android:text="@{dashboardBottom.name}"
                 android:textSize="@dimen/b2_body_regular"
                 android:textStyle="bold"
                 tools:text="Kantipur temple house" />
@@ -52,12 +54,13 @@
             <TextView
                 android:id="@+id/task_assigned_by"
                 style="@style/TextStyleBlack"
-                android:text="@string/text_assigned_by"
+                android:text="@{dashboardBottom.createdBy}"
                 android:textSize="@dimen/caption_medium" />
 
             <TextView
                 android:id="@+id/task_status"
                 style="@style/TextStyleBlack"
+                android:text="@{dashboardBottom.status}"
                 android:textSize="@dimen/over_line_semi_bold_caps"
                 tools:text="New" />
 

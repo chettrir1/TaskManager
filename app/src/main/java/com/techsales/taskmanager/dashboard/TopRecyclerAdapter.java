@@ -19,18 +19,18 @@ public class TopRecyclerAdapter extends RecyclerView.Adapter<TopRecyclerAdapter.
     private LayoutInflater layoutInflater;
     private TopRecyclerItemClickListener listener;
 
-    public class TopRecyclerViewHolder extends RecyclerView.ViewHolder {
+    class TopRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         private final ViewholderDashboardTopRecyclerItemBinding binding;
 
-        public TopRecyclerViewHolder(final ViewholderDashboardTopRecyclerItemBinding binding) {
+        TopRecyclerViewHolder(final ViewholderDashboardTopRecyclerItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
     }
 
 
-    public TopRecyclerAdapter(List<DashboardTopRecyclerViewModel> items, TopRecyclerItemClickListener listener) {
+    TopRecyclerAdapter(List<DashboardTopRecyclerViewModel> items, TopRecyclerItemClickListener listener) {
         this.items = items;
         this.listener = listener;
     }
@@ -48,7 +48,10 @@ public class TopRecyclerAdapter extends RecyclerView.Adapter<TopRecyclerAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TopRecyclerViewHolder holder, final int position) {
-        holder.binding.setDashboardTop(items.get(position));
+
+        if (items != null) {
+            holder.binding.setDashboardTop(items.get(position));
+        }
         holder.binding.getRoot().setOnClickListener(view -> {
             if (items != null)
                 listener.onTopRecyclerItemClicked(items.get(position), position);

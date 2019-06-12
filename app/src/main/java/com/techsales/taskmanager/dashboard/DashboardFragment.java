@@ -9,9 +9,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.auth.login.LoginActivity;
-import com.techsales.taskmanager.data.model.dashboard.top.TopItems;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.databinding.FragmentDashboardBinding;
@@ -29,7 +28,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class DashboardFragment extends BaseFragment implements DashboardContract.View, TopRecyclerAdapter.TopRecyclerItemClickListener {
+public class DashboardFragment extends BaseFragment implements DashboardContract.View {
 
 
     public static DashboardFragment getInstance() {
@@ -43,19 +42,18 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     private FragmentDashboardBinding binding;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, null, false);
         checkAlreadyLogin();
-        initRecyclerView();
-
+        initTopRecyclerView();
+        binding.contentState.setContent(binding.content);
+        if (data.savedUserInfo() != null) {
+            String user_id = data.savedUserInfo().getId();
+            Toast.makeText(component.context(), user_id, Toast.LENGTH_SHORT).show();
+            presenter.onBottomRecyclerLoad(user_id);
+        }
         return binding.getRoot();
     }
 
@@ -72,7 +70,7 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     }
 
 
-    private void initRecyclerView() {
+    private void initTopRecyclerView() {
         binding.dashboardTopRv.setLayoutManager(new GridLayoutManager(component.context(), 2));
         binding.dashboardTopRv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         binding.dashboardTopRv.setItemAnimator(new DefaultItemAnimator());
@@ -81,54 +79,44 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void showProgress() {
-
+        binding.contentState.showProgress();
     }
 
     @Override
     public void showTopRecyclerLoadSuccess(List<DashboardTopRecyclerViewModel> items) {
-
-        TopRecyclerAdapter adapter = new TopRecyclerAdapter(items, this);
+        TopRecyclerAdapter adapter = new TopRecyclerAdapter(items, presenter);
         binding.dashboardTopRv.setAdapter(adapter);
     }
 
     @Override
-    public void showTasksLoadError(String message) {
+    public void showBottomRecyclerLoadSuccess(List<DashboardBottomRecyclerViewModel> items) {
+        BottomRecyclerAdapter adapter = new BottomRecyclerAdapter(items, presenter);
+        binding.dashboardBottomRv.setAdapter(adapter);
+        binding.contentState.showContent();
+    }
 
+    @Override
+    public void showTasksLoadError(String message) {
+        binding.contentState.showError(R.drawable.ic_loading_error, message);
     }
 
     @Override
     public void showEmptyTasks(String message) {
-
-    }
-
-    @Override
-    public void showMoreTasks(List<DashboardBottomRecyclerViewModel> items, boolean hasMoreItems) {
-
-    }
-
-    @Override
-    public void showLoadMoreError() {
+        binding.contentState.showError(R.drawable.empty_src, message);
 
     }
 
     @Override
     public void showNetworkNotAvailableError() {
-
-
+        binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
     }
 
     @Override
-    public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel dashboardTopRecyclerViewModel, int position) {
-
+    public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
     }
 
     @Override
-    public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel dashboardBottomRecyclerViewModel, int position) {
-
-    }
-
-    @Override
-    public void onLoadComplete() {
+    public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel bottomRecyclerViewModel, int position) {
 
     }
 
@@ -148,4 +136,5 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
 }

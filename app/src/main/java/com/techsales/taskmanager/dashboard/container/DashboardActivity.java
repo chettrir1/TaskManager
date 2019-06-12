@@ -18,7 +18,7 @@ import com.techsales.taskmanager.databinding.ActivityDashboardBinding;
 public class DashboardActivity extends BaseActivity {
     private ActivityDashboardBinding binding;
 
-    public static void start(Activity activity) {
+    public static void start(Activity activity, String userId) {
         Intent intent = new Intent(activity, DashboardActivity.class);
         activity.startActivity(intent);
     }
@@ -70,6 +70,5 @@ public class DashboardActivity extends BaseActivity {
         startActivity(new Intent(activity, LoginActivity.class));
         activity.finish();
     }
-
 
 }

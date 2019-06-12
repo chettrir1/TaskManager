@@ -1,19 +1,27 @@
 package com.techsales.taskmanager.dashboard;
 
 import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.data.model.dashboard.top.TopItems;
-import com.techsales.taskmanager.data.model.dashboard.top.TopRecyclerItems;
+import com.techsales.taskmanager.data.error.FailedResponseException;
+import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
+import com.techsales.taskmanager.data.model.dashboard.bottom.AllTasks;
+import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
+import com.techsales.taskmanager.data.model.dashboard.top.Status;
+import com.techsales.taskmanager.data.model.dashboard.top.TaskStatus;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
+import com.techsales.taskmanager.utils.Commons;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
+
 public class DashboardPresenter implements DashboardContract.Presenter {
+
     private final TaskManagerComponent component;
     private DashboardContract.View view;
-
+    private Disposable disposable;
 
     DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
         this.component = component;
@@ -27,17 +35,21 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void stop() {
-
+        Commons.dispose(disposable);
     }
-
 
     @Override
     public void onBottomRecyclerLoad(String userId) {
+        loadAllTask(userId);
+    }
+
+    @Override
+    public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
 
     }
 
     private void prepareDashBoardStatus() {
-        List<TopRecyclerItems> items = new ArrayList<>();
+        List<TaskStatus> items = new ArrayList<>();
         int[] icons = new int[]{
                 R.drawable.new_task_src,
                 R.drawable.opened_task_src,
@@ -52,39 +64,57 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                 R.color.colorGreen
         };
 
-        TopRecyclerItems newTask = new TopRecyclerItems("1", component.context().getString(R.string.task_new),
+        TaskStatus newTask = new TaskStatus("1", component.context().getString(R.string.task_new),
                 icons[0], color[0]);
         items.add(newTask);
 
-        TopRecyclerItems openTask = new TopRecyclerItems("2", component.context().getString(R.string.task_open),
+        TaskStatus openTask = new TaskStatus("2", component.context().getString(R.string.task_open),
                 icons[1], color[1]);
         items.add(openTask);
 
-        TopRecyclerItems pendingTask = new TopRecyclerItems("3", component.context().getString(R.string.task_pending),
+        TaskStatus pendingTask = new TaskStatus("3", component.context().getString(R.string.task_pending),
                 icons[2], color[2]);
         items.add(pendingTask);
 
-        TopRecyclerItems completedTask = new TopRecyclerItems("4", component.context().getString(R.string.task_completed),
+        TaskStatus completedTask = new TaskStatus("4", component.context().getString(R.string.task_completed),
                 icons[3], color[3]);
         items.add(completedTask);
 
-        List<DashboardTopRecyclerViewModel> viewModel = TopItems.mapToViewModel(component.context(), items);
+        List<DashboardTopRecyclerViewModel> viewModel = Status.mapToViewModel(component.context(), items);
         view.showTopRecyclerLoadSuccess(viewModel);
     }
 
+    private void loadAllTask(String user_id) {
+        view.showProgress();
+        disposable = component.data().getAllTasks(user_id)
+                .subscribe((Tasks tasks) -> {
+                    int itemCount = tasks.getItemCount();
+                    List<AllTasks> items = tasks.getItems();
+                    if (itemCount > 0 && !Commons.isEmpty(items)) {
+                        List<DashboardBottomRecyclerViewModel> viewModels = Tasks.mapToViewModel(items);
+                        view.showBottomRecyclerLoadSuccess(viewModels);
+                    } else {
+                        view.showEmptyTasks(component.context().getString(R.string.data_not_available));
+                    }
+                }, throwable -> {
+                    if (throwable instanceof FailedResponseException) {
+                        view.showTasksLoadError(throwable.getMessage());
+                    } else if (throwable instanceof NetworkNotAvailableException) {
+                        view.showNetworkNotAvailableError();
+                    } else {
+                        view.showTasksLoadError(component.context().getString(R.string.server_error));
+                    }
+                });
+
+    }
+
     @Override
-    public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
-        view.onBottomRecyclerItemClicked(items, position);
+    public void onTopRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
+
     }
 
     @Override
     public void onLoadMore() {
-
-    }
-
-
-    @Override
-    public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
 
     }
 }

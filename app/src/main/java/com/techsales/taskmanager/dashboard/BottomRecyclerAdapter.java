@@ -10,61 +10,58 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.databinding.ViewholderDashboardBottomRecyclerItemBinding;
-import com.techsales.taskmanager.views.LoadMoreAdapter;
 
 import java.util.List;
 
-class BottomRecyclerAdapter extends LoadMoreAdapter<BottomRecyclerAdapter.BottomRecyclerHolder> {
+public class BottomRecyclerAdapter extends RecyclerView.Adapter<BottomRecyclerAdapter.BottomRecyclerViewHolder> {
 
-    private final List<DashboardBottomRecyclerViewModel> items;
-    private final BottomRecyclerItemClickListener listener;
+    private List<DashboardBottomRecyclerViewModel> items;
+    private LayoutInflater layoutInflater;
+    private BottomRecyclerItemClickListener listener;
 
-    public BottomRecyclerAdapter(@NonNull RecyclerView recyclerView,
-                                 List<DashboardBottomRecyclerViewModel> bottomRecyclerViewModels,
-                                 BottomRecyclerItemClickListener listener) {
-        super(recyclerView);
-        this.items = bottomRecyclerViewModels;
+    class BottomRecyclerViewHolder extends RecyclerView.ViewHolder {
+
+        private final ViewholderDashboardBottomRecyclerItemBinding binding;
+
+        BottomRecyclerViewHolder(final ViewholderDashboardBottomRecyclerItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+    }
+
+    BottomRecyclerAdapter(List<DashboardBottomRecyclerViewModel> items, BottomRecyclerItemClickListener listener) {
+        this.items = items;
         this.listener = listener;
     }
 
+    @NonNull
     @Override
-    public int getItemCount_() {
-        return items.size();
-    }
-
-    @Override
-    public BottomRecyclerAdapter.BottomRecyclerHolder onCreateViewHolder_(LayoutInflater inflater, ViewGroup parent, int viewType) {
-        return new BottomRecyclerHolder(DataBindingUtil.inflate(inflater, R.layout.viewholder_dashboard_bottom_recycler_item, parent, false));
-    }
-
-    @Override
-    public void onBindViewHolder_(BottomRecyclerAdapter.BottomRecyclerHolder holder, int position) {
-        if (items != null) {
-            holder.binding.setDashboardBottom(items.get(position));
+    public BottomRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (layoutInflater == null) {
+            layoutInflater = LayoutInflater.from(parent.getContext());
         }
+        ViewholderDashboardBottomRecyclerItemBinding binding =
+                DataBindingUtil.inflate(layoutInflater, R.layout.viewholder_dashboard_bottom_recycler_item, parent, false);
+        return new BottomRecyclerViewHolder(binding);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull BottomRecyclerViewHolder holder, final int position) {
+        holder.binding.setDashboardBottom(items.get(position));
         holder.binding.getRoot().setOnClickListener(view -> {
             if (items != null)
-                listener.onBottomRecyclerItemClicked(items.get(position), position);
+                listener.onTopRecyclerItemClicked(items.get(position), position);
         });
         holder.binding.executePendingBindings();
     }
 
-    void addMoreItems(List<DashboardBottomRecyclerViewModel> items, boolean hasMoreItems) {
-        final int count = this.items.size();
-        this.items.addAll(items);
-        onItemsAdded(count, items.size(), hasMoreItems);
+    @Override
+    public int getItemCount() {
+        return items.size();
     }
 
-    interface BottomRecyclerItemClickListener {
-        void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position);
-    }
 
-    static class BottomRecyclerHolder extends RecyclerView.ViewHolder {
-        private final ViewholderDashboardBottomRecyclerItemBinding binding;
-
-        BottomRecyclerHolder(ViewholderDashboardBottomRecyclerItemBinding bottomRecyclerItemBinding) {
-            super(bottomRecyclerItemBinding.getRoot());
-            this.binding = bottomRecyclerItemBinding;
-        }
+    public interface BottomRecyclerItemClickListener {
+        void onTopRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position);
     }
 }

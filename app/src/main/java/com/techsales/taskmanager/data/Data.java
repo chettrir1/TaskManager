@@ -1,7 +1,11 @@
 package com.techsales.taskmanager.data;
 
+import android.util.Log;
+
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.api.BaseResponse;
+import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
 
@@ -10,7 +14,6 @@ import java.util.HashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -34,6 +37,10 @@ public class Data {
         localRepo.logout();
     }
 
+    public UserInfo savedUserInfo() {
+        return localRepo.getCachedUserInfo();
+    }
+
     public String savedUsername() {
         return localRepo.getCachedUsername();
     }
@@ -47,7 +54,7 @@ public class Data {
     }
 
     public void rememberChecked(String username, String password, boolean isChecked) {
-        localRepo.saveUsernamePassowrd(username, password, isChecked);
+        localRepo.setUsernamePassowrd(username, password, isChecked);
     }
 
     public void rememberUnchecked() {
@@ -67,5 +74,11 @@ public class Data {
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
+    }
+
+    public Single<Tasks> getAllTasks(String user_id) {
+        return remoteRepo.getNewTasks(user_id)
+                .map(BaseResponse::getData)
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

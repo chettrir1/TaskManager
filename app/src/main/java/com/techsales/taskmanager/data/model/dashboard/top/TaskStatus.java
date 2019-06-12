@@ -1,10 +1,10 @@
 package com.techsales.taskmanager.data.model.dashboard.top;
 
-public class TopRecyclerItems {
+public class TaskStatus {
     private String taskCount, taskName;
     private int taskIcon, taskColor;
 
-    public TopRecyclerItems(String taskCount, String taskName, int taskIcon, int taskColor) {
+    public TaskStatus(String taskCount, String taskName, int taskIcon, int taskColor) {
         this.taskCount = taskCount;
         this.taskName = taskName;
         this.taskIcon = taskIcon;

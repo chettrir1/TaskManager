@@ -1,8 +1,8 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
-public class BottomRecyclerItemsDataWhere_task {
+public class WhereTask {
     private String client_number;
-    private BottomRecyclerItemsDataWhere_taskAuthor author;
+    private Author author;
     private String description;
     private String created_at;
     private int priority;
@@ -11,7 +11,7 @@ public class BottomRecyclerItemsDataWhere_task {
     private String file;
     private String updated_at;
     private String name;
-    private BottomRecyclerItemsDataWhere_taskPivot pivot;
+    private Pivot pivot;
     private int id;
     private String client_latitude;
     private String deadline;
@@ -27,11 +27,11 @@ public class BottomRecyclerItemsDataWhere_task {
         this.client_number = client_number;
     }
 
-    public BottomRecyclerItemsDataWhere_taskAuthor getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(BottomRecyclerItemsDataWhere_taskAuthor author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -99,11 +99,11 @@ public class BottomRecyclerItemsDataWhere_task {
         this.name = name;
     }
 
-    public BottomRecyclerItemsDataWhere_taskPivot getPivot() {
+    public Pivot getPivot() {
         return pivot;
     }
 
-    public void setPivot(BottomRecyclerItemsDataWhere_taskPivot pivot) {
+    public void setPivot(Pivot pivot) {
         this.pivot = pivot;
     }
 

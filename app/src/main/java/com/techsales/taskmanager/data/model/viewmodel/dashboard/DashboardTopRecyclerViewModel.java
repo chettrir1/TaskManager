@@ -6,15 +6,15 @@ import android.graphics.drawable.Drawable;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
-import com.techsales.taskmanager.data.model.dashboard.top.TopRecyclerItems;
+import com.techsales.taskmanager.data.model.dashboard.top.TaskStatus;
 
 
 public class DashboardTopRecyclerViewModel extends BaseObservable {
 
-    private TopRecyclerItems topRecyclerItems;
+    private TaskStatus topRecyclerItems;
     private Context context;
 
-    public DashboardTopRecyclerViewModel(Context context, TopRecyclerItems topRecyclerItems) {
+    public DashboardTopRecyclerViewModel(Context context, TaskStatus topRecyclerItems) {
         this.topRecyclerItems = topRecyclerItems;
         this.context = context;
     }

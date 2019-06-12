@@ -15,21 +15,17 @@ public interface DashboardContract {
 
         void showTopRecyclerLoadSuccess(List<DashboardTopRecyclerViewModel> items);
 
+        void showBottomRecyclerLoadSuccess(List<DashboardBottomRecyclerViewModel> items);
+
         void showTasksLoadError(String message);
 
         void showEmptyTasks(String message);
 
-        void showMoreTasks(List<DashboardBottomRecyclerViewModel> items, boolean hasMoreItems);
-
-        void showLoadMoreError();
-
-        void onLoadComplete();
-
         void showNetworkNotAvailableError();
 
-        void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel dashboardTopRecyclerViewModel, int position);
+        void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel topRecyclerViewModel, int position);
 
-        void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel dashboardBottomRecyclerViewModel, int position);
+        void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel bottomRecyclerViewModel, int position);
 
     }
 

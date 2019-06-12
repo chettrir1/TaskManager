@@ -73,7 +73,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void showLoginSuccess(LoginViewModel loginViewModel) {
         dismissProgress();
-        DashboardActivity.start(LoginActivity.this);
+        DashboardActivity.start(LoginActivity.this, loginViewModel.getUserId());
         finish();
     }
 

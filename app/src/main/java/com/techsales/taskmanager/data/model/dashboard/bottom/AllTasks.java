@@ -1,8 +1,10 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
-public class BottomRecyclerItemsData {
+import java.util.List;
+
+public class AllTasks {
     private String last_login_at;
-    private BottomRecyclerItemsDataWhere_task[] where_task;
+    private List<WhereTask> where_task;
     private String join_date;
     private String user_name;
     private String created_at;
@@ -24,11 +26,11 @@ public class BottomRecyclerItemsData {
         this.last_login_at = last_login_at;
     }
 
-    public BottomRecyclerItemsDataWhere_task[] getWhere_task() {
+    public List<WhereTask> getWhere_task() {
         return where_task;
     }
 
-    public void setWhere_task(BottomRecyclerItemsDataWhere_task[] where_task) {
+    public void setWhere_task(List<WhereTask> where_task) {
         this.where_task = where_task;
     }
 

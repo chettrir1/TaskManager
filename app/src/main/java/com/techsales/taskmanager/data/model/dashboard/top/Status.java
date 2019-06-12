@@ -7,18 +7,18 @@ import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecy
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopItems {
-    private List<TopRecyclerItems> items;
+public class Status {
+    private List<TaskStatus> items;
 
-    public List<TopRecyclerItems> getItems() {
+    public List<TaskStatus> getItems() {
         return items;
     }
 
-    public void setItems(List<TopRecyclerItems> items) {
+    public void setItems(List<TaskStatus> items) {
         this.items = items;
     }
 
-    public static List<DashboardTopRecyclerViewModel> mapToViewModel(Context context, List<TopRecyclerItems> items) {
+    public static List<DashboardTopRecyclerViewModel> mapToViewModel(Context context, List<TaskStatus> items) {
         final int count = items.size();
         ArrayList<DashboardTopRecyclerViewModel> viewModels = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {

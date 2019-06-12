@@ -1,6 +1,6 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
-public class BottomRecyclerItemsDataWhere_taskPivot {
+public class Pivot {
     private int user_id;
     private int task_id;
 
