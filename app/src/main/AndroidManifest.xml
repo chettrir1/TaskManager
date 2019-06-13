@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".contacts.container.ContactsActivity"></activity>
+        <activity android:name=".notes.container.NoteListActivity"></activity>
+        <activity android:name=".notes.container.AddNotesActivity" />
+        <activity android:name=".contacts.container.ContactsActivity" />
         <activity android:name=".profile.container.ProfileActivity" />
         <activity android:name=".dashboard.container.DashboardActivity">
             <intent-filter>
