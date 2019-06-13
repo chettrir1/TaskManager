@@ -9,7 +9,9 @@ public interface ProfileContract {
 
         void showProgress();
 
+        void showDataLoadSuccess();
 
+        void hideProgress();
 
     }
 

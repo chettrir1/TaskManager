@@ -43,6 +43,7 @@ ext {
     rxAndroidVersion = "2.1.0"
     rxJavaVersion = '2.1.0'
     glideVersion = '4.9.0'
+    circlarImageView = '3.0.0'
 
     mockitoVersion = '1.10.19'
 }

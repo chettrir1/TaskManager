@@ -30,7 +30,6 @@ import javax.inject.Inject;
 
 public class DashboardFragment extends BaseFragment implements DashboardContract.View {
 
-
     public static DashboardFragment getInstance() {
         DashboardFragment dashboardFragment = new DashboardFragment();
         return dashboardFragment;

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bod_edittext"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProfileInfoTextView"
+                    android:text="Name" />
+
+                <View
+                    android:layout_width="@dimen/view_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorView" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/ProfileDetailsTextView"
+                    android:paddingRight="@dimen/spacing_tiny" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/colorView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProfileInfoTextView"
+                    android:text="Username" />
+
+                <View
+                    android:layout_width="@dimen/view_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorView" />
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    style="@style/ProfileDetailsTextView"
+                    android:paddingRight="@dimen/spacing_tiny" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/colorView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProfileInfoTextView"
+                    android:text="Email" />
+
+                <View
+                    android:layout_width="@dimen/view_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorView" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    style="@style/ProfileDetailsTextView"
+                    android:autoLink="email"
+                    android:paddingRight="@dimen/spacing_tiny"
+                    android:textColor="@color/colorBlue" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:padding="@dimen/spacing_small"
+            android:text="Address"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorRed" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bod_edittext"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProfileInfoTextView"
+                    android:text="Permanent" />
+
+                <View
+                    android:layout_width="@dimen/view_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorView" />
+
+                <TextView
+                    android:id="@+id/tv_permanent"
+                    style="@style/ProfileDetailsTextView"
+                    android:paddingRight="@dimen/spacing_tiny" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/colorView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProfileInfoTextView"
+                    android:text="Temporory" />
+
+                <View
+                    android:layout_width="@dimen/view_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorView" />
+
+                <TextView
+                    android:id="@+id/tv_temporary"
+                    style="@style/ProfileDetailsTextView"
+                    android:paddingRight="@dimen/spacing_tiny" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/colorView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProfileInfoTextView"
+                    android:text="Contact" />
+
+                <View
+                    android:layout_width="@dimen/view_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorView" />
+
+                <TextView
+                    android:id="@+id/tv_contact"
+                    style="@style/ProfileDetailsTextView"
+                    android:autoLink="phone"
+                    android:paddingRight="@dimen/spacing_tiny" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/colorView" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
