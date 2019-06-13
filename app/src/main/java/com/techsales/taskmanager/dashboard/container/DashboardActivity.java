@@ -15,6 +15,7 @@ import com.techsales.taskmanager.auth.login.LoginActivity;
 import com.techsales.taskmanager.contacts.container.ContactsActivity;
 import com.techsales.taskmanager.dashboard.DashboardFragment;
 import com.techsales.taskmanager.databinding.ActivityDashboardBinding;
+import com.techsales.taskmanager.notes.container.NoteListActivity;
 import com.techsales.taskmanager.profile.container.ProfileActivity;
 
 public class DashboardActivity extends BaseActivity {
@@ -56,7 +57,7 @@ public class DashboardActivity extends BaseActivity {
                 break;
 
             case R.id.note_src:
-
+                NoteListActivity.start(this);
                 break;
 
             case R.id.logout_src:

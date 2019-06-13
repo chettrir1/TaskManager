@@ -6,14 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.databinding.FragmentNoteListBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NoteListFragment extends Fragment implements NoteListContract.View {
+
+    private FragmentNoteListBinding binding;
 
     public static Fragment getInstance() {
         NoteListFragment fragment = new NoteListFragment();
@@ -21,9 +26,11 @@ public class NoteListFragment extends Fragment implements NoteListContract.View 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_note_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note_list, null, false);
+
+        return binding.getRoot();
     }
 
 }
