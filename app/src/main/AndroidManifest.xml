@@ -15,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".contacts.container.ContactsActivity"></activity>
+        <activity android:name=".profile.container.ProfileActivity" />
         <activity android:name=".dashboard.container.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.login.LoginActivity">
-
-        </activity>
+        <activity android:name=".auth.login.LoginActivity" />
     </application>
 
 </manifest>

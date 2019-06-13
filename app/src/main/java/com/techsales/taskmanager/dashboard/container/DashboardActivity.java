@@ -12,8 +12,10 @@ import androidx.databinding.DataBindingUtil;
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.auth.login.LoginActivity;
+import com.techsales.taskmanager.contacts.container.ContactsActivity;
 import com.techsales.taskmanager.dashboard.DashboardFragment;
 import com.techsales.taskmanager.databinding.ActivityDashboardBinding;
+import com.techsales.taskmanager.profile.container.ProfileActivity;
 
 public class DashboardActivity extends BaseActivity {
     private ActivityDashboardBinding binding;
@@ -32,7 +34,7 @@ public class DashboardActivity extends BaseActivity {
         binding.tvToolbarText.setText(R.string.app_name);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, DashboardFragment.getInstance())
+                .replace(R.id.dashboardContainer, DashboardFragment.getInstance())
                 .commit();
     }
 
@@ -46,11 +48,11 @@ public class DashboardActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.profile_src:
-
+                ProfileActivity.start(this);
                 break;
 
             case R.id.phone_src:
-
+                ContactsActivity.start(this);
                 break;
 
             case R.id.note_src:
@@ -70,5 +72,6 @@ public class DashboardActivity extends BaseActivity {
         startActivity(new Intent(activity, LoginActivity.class));
         activity.finish();
     }
+
 
 }

@@ -55,4 +55,6 @@
     <string name="text_assigned_task">Assigned Task</string>
     <string name="content_dashbord_top_recycler_icon">dashbordTopRecyclerIcon</string>
     <string name="data_not_available">No data available to fetch</string>
+    <string name="text_your_profile">Your Profile</string>
+    <string name="text_employee_contacts">Employee Contacts</string>
 </resources>
