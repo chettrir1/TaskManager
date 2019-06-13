@@ -72,6 +72,10 @@ dependencies {
 //    CircularImage
     implementation "de.hdodenhof:circleimageview:$rootProject.ext.circlarImageView"
 
+//    Room
+    implementation "androidx.room:room-runtime:$rootProject.ext.roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$rootProject.ext.roomVersion"
+
     debugImplementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
     debugImplementation "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"

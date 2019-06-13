@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.data;
 
-import android.util.Log;
-
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.model.UserInfo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;

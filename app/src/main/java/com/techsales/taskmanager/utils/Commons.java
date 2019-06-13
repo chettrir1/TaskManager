@@ -1,17 +1,25 @@
 package com.techsales.taskmanager.utils;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.techsales.taskmanager.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.disposables.Disposable;
 
@@ -62,7 +70,6 @@ public class Commons {
         snackbar.show();
     }
 
-
     public static boolean isEmpty(List list) {
         return list == null || list.isEmpty();
     }
@@ -72,6 +79,46 @@ public class Commons {
             throw new NullPointerException(message);
         }
         return value;
+    }
+
+    public static Date getCurrentDateTime() {
+        Date currentDate = Calendar.getInstance().getTime();
+        return currentDate;
+    }
+
+    public static String getFormattedDateString(Date date) {
+        String finalDate = "";
+        try {
+            SimpleDateFormat spf = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.getDefault());
+            String dateString = spf.format(date);
+
+            Date newDate = spf.parse(dateString);
+            spf = new SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.getDefault());
+            if (newDate != null) {
+                finalDate = spf.format(newDate);
+            }
+            return finalDate;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void openKeyboard(final Context context) {
+        new Handler().postDelayed(() -> {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+            }
+        }, 500);
+    }
+
+    public static void hideKeyboard(Activity activity, View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }

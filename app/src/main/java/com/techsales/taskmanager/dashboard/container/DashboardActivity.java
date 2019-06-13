@@ -19,6 +19,7 @@ import com.techsales.taskmanager.notes.container.NoteListActivity;
 import com.techsales.taskmanager.profile.container.ProfileActivity;
 
 public class DashboardActivity extends BaseActivity {
+
     private ActivityDashboardBinding binding;
 
     public static void start(Activity activity, String userId) {
