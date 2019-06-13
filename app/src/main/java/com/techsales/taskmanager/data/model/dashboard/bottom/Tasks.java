@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
-import android.content.Context;
-
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 
 import java.util.ArrayList;

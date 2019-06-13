@@ -5,7 +5,6 @@ import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
 import com.techsales.taskmanager.data.model.dashboard.bottom.AllTasks;
 import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
-import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
 import com.techsales.taskmanager.data.model.dashboard.top.Status;
 import com.techsales.taskmanager.data.model.dashboard.top.TaskStatus;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
