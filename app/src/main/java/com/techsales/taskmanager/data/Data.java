@@ -1,13 +1,17 @@
 package com.techsales.taskmanager.data;
 
+import androidx.lifecycle.LiveData;
+
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.model.UserInfo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
+import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -59,6 +63,26 @@ public class Data {
         localRepo.removeUsernamePassword();
     }
 
+    public void insertNotes(String title, String description) {
+        localRepo.insertTask(title, description);
+    }
+
+    public void updateNotes(Notes notes) {
+        LocalRepo.updateTask(notes);
+    }
+
+    public void deleteTask(int id) {
+        LocalRepo.deleteTask(id);
+    }
+
+    public void deleteAllTask(Notes notes) {
+        LocalRepo.deleteTask(notes);
+    }
+
+    public LiveData<List<Notes>> getAllNotes() {
+        return localRepo.getTasks();
+    }
+
     public Single<UserInfo> requestLogin(String username, String password, String token) {
         HashMap<String, Object> params = new HashMap<>(3);
         params.put("username", username);
@@ -80,4 +104,5 @@ public class Data {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 }

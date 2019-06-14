@@ -74,6 +74,7 @@ dependencies {
 
 //    Room
     implementation "androidx.room:room-runtime:$rootProject.ext.roomVersion"
+    implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
     annotationProcessor "androidx.room:room-compiler:$rootProject.ext.roomVersion"
 
     debugImplementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"

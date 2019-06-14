@@ -1,14 +1,24 @@
 package com.techsales.taskmanager.data.local;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.room.Room;
 
 import com.google.gson.Gson;
 import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.notes.Notes;
+import com.techsales.taskmanager.database.NotesDatabase;
+import com.techsales.taskmanager.utils.Commons;
+import com.techsales.taskmanager.utils.Config;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,10 +36,77 @@ public class LocalRepo {
     private String cachedPassword;
     private boolean cachedRememberStatus;
 
+    private static NotesDatabase noteDatabase;
+
     @Inject
     LocalRepo(Context context, Gson gson) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.gson = gson;
+        noteDatabase = Room.databaseBuilder(context, NotesDatabase.class, Config.DATABASE_NAME).build();
+    }
+
+    public void insertTask(String title,
+                           String description) {
+        Notes note = new Notes();
+        note.setTitle(title);
+        note.setDescription(description);
+        note.setCreatedAt(Commons.getCurrentDateTime());
+        note.setModifiedAt(Commons.getCurrentDateTime());
+
+        insertTask(note);
+    }
+
+    private static void insertTask(final Notes note) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                noteDatabase.notesDao().insertTask(note);
+                return null;
+            }
+        }.execute();
+    }
+
+    public static void updateTask(final Notes note) {
+        note.setModifiedAt(Commons.getCurrentDateTime());
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                noteDatabase.notesDao().updateTask(note);
+                return null;
+            }
+        }.execute();
+    }
+
+    public static void deleteTask(final int id) {
+        final LiveData<Notes> task = getTask(id);
+        if (task != null) {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    noteDatabase.notesDao().deleteTask(task.getValue());
+                    return null;
+                }
+            }.execute();
+        }
+    }
+
+    public static void deleteTask(final Notes note) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                noteDatabase.notesDao().deleteTask(note);
+                return null;
+            }
+        }.execute();
+    }
+
+    private static LiveData<Notes> getTask(int id) {
+        return noteDatabase.notesDao().getTask(id);
+    }
+
+    public LiveData<List<Notes>> getTasks() {
+        return noteDatabase.notesDao().fetchAllTasks();
     }
 
     public void setUserInfo(@NonNull UserInfo userInfo) {
@@ -95,5 +172,4 @@ public class LocalRepo {
         this.cachedUserInfo = null;
         sharedPreferences.edit().clear().apply();
     }
-
 }
