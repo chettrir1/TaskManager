@@ -33,6 +33,8 @@ public interface DashboardContract {
             TopRecyclerAdapter.TopRecyclerItemClickListener,
             BottomRecyclerAdapter.BottomRecyclerItemClickListener {
 
-        void onBottomRecyclerLoad(String userId);
+        void onBottomRecyclerLoad();
+
+        boolean isLoggedIn();
     }
 }

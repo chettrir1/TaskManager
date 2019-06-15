@@ -11,7 +11,6 @@ public class WhereTask {
     private String file;
     private String updated_at;
     private String name;
-    private Pivot pivot;
     private int id;
     private String client_latitude;
     private String deadline;
@@ -97,14 +96,6 @@ public class WhereTask {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Pivot getPivot() {
-        return pivot;
-    }
-
-    public void setPivot(Pivot pivot) {
-        this.pivot = pivot;
     }
 
     public int getId() {

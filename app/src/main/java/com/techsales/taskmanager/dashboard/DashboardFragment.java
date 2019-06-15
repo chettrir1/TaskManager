@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
@@ -31,8 +32,7 @@ import javax.inject.Inject;
 public class DashboardFragment extends BaseFragment implements DashboardContract.View {
 
     public static DashboardFragment getInstance() {
-        DashboardFragment dashboardFragment = new DashboardFragment();
-        return dashboardFragment;
+       return new DashboardFragment();
     }
 
     @Inject
@@ -45,19 +45,19 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, null, false);
+        binding.contentState.setContent(binding.content);
+        binding.swipeContainer.setColorScheme(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
         checkAlreadyLogin();
         initTopRecyclerView();
-        binding.contentState.setContent(binding.content);
-        getBottomRecyclerData();
-        binding.swipeContainer.setColorScheme(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
-        binding.swipeContainer.setOnRefreshListener(this::getBottomRecyclerData);
+        binding.swipeContainer.setOnRefreshListener(() -> presenter.onBottomRecyclerLoad());
         return binding.getRoot();
     }
 
     @Override
     public void onResume() {
-        presenter.start();
         super.onResume();
+        presenter.start();
+        presenter.onBottomRecyclerLoad();
     }
 
     @Override
@@ -88,7 +88,6 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     @Override
     public void showBottomRecyclerLoadSuccess(List<DashboardBottomRecyclerViewModel> items) {
         hideSwipeContainer();
-        Toast.makeText(component.context(), items.get(0).getName(), Toast.LENGTH_SHORT).show();
         BottomRecyclerAdapter adapter = new BottomRecyclerAdapter(items, presenter);
         binding.dashboardBottomRv.setAdapter(adapter);
         binding.contentState.showContent();
@@ -116,16 +115,19 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
+        //Todo handle click Item
+        Toast.makeText(component.context(), "TOp recycler clicked:"+ position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel bottomRecyclerViewModel, int position) {
-
+        //TODO handle click Item
+        Toast.makeText(component.context(), "Bottom recycler clicked:"+ position, Toast.LENGTH_SHORT).show();
     }
 
 
     private void checkAlreadyLogin() {
-        boolean isLoggedIn = data.isLoggedIn();
+        boolean isLoggedIn = presenter.isLoggedIn();
         if (!isLoggedIn) {
             Activity activity = getActivity();
             if (activity != null) {
@@ -140,12 +142,6 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    private void getBottomRecyclerData() {
-        if (data.savedUserInfo() != null) {
-            String user_id = data.savedUserInfo().getId();
-            presenter.onBottomRecyclerLoad(user_id);
-        }
-    }
 
     private void hideSwipeContainer() {
         if (binding.swipeContainer.isRefreshing() && binding.swipeContainer != null) {

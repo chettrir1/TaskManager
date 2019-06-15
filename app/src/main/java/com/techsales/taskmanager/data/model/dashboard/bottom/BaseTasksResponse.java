@@ -1,21 +1,23 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
+import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tasks {
+public class BaseTasksResponse {
 
     private int itemCount;
-    private List<AllTasks> items;
+    @SerializedName("where_task")
+    private List<WhereTask> whereTasks;
 
-    public List<AllTasks> getItems() {
-        return items;
+    public List<WhereTask> getwhereTasks() {
+        return whereTasks;
     }
 
-    public void setItems(List<AllTasks> items) {
-        this.items = items;
+    public void setwhereTasks(List<WhereTask> whereTasks) {
+        this.whereTasks = whereTasks;
     }
 
     public int getItemCount() {
@@ -27,7 +29,7 @@ public class Tasks {
     }
 
 
-    public static List<DashboardBottomRecyclerViewModel> mapToViewModel(List<AllTasks> items) {
+    public static List<DashboardBottomRecyclerViewModel> mapToViewModel(List<WhereTask> items) {
         final int count = items.size();
         ArrayList<DashboardBottomRecyclerViewModel> viewModels = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {

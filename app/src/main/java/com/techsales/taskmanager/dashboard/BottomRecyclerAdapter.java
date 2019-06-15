@@ -50,7 +50,7 @@ public class BottomRecyclerAdapter extends RecyclerView.Adapter<BottomRecyclerAd
         holder.binding.setDashboardBottom(items.get(position));
         holder.binding.getRoot().setOnClickListener(view -> {
             if (items != null)
-                listener.onTopRecyclerItemClicked(items.get(position), position);
+                listener.onBottomRecyclerItemClicked(items.get(position), position);
         });
         holder.binding.executePendingBindings();
     }
@@ -62,6 +62,6 @@ public class BottomRecyclerAdapter extends RecyclerView.Adapter<BottomRecyclerAd
 
 
     public interface BottomRecyclerItemClickListener {
-        void onTopRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position);
+        void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position);
     }
 }

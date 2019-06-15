@@ -3,8 +3,8 @@ package com.techsales.taskmanager.dashboard;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
-import com.techsales.taskmanager.data.model.dashboard.bottom.AllTasks;
-import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
+import com.techsales.taskmanager.data.model.dashboard.bottom.BaseTasksResponse;
+import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
 import com.techsales.taskmanager.data.model.dashboard.top.Status;
 import com.techsales.taskmanager.data.model.dashboard.top.TaskStatus;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
@@ -40,13 +40,18 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     }
 
     @Override
-    public void onBottomRecyclerLoad(String userId) {
-        loadAllTask(userId);
+    public void onBottomRecyclerLoad() {
+        loadAllTask();
+    }
+
+    @Override
+    public boolean isLoggedIn() {
+        return component.data().isLoggedIn();
     }
 
     @Override
     public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
-
+        view.onTopRecyclerItemClicked(items,position);
     }
 
     private void prepareDashBoardStatus() {
@@ -85,14 +90,13 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         view.showTopRecyclerLoadSuccess(viewModel);
     }
 
-    private void loadAllTask(String user_id) {
+    private void loadAllTask() {
         view.showProgress();
-        disposable = component.data().getAllTasks(user_id)
-                .subscribe((Tasks tasks) -> {
-                    int itemCount = tasks.getItemCount();
-                    List<AllTasks> items = tasks.getItems();
-                    if (itemCount > 0 && !Commons.isEmpty(items)) {
-                        List<DashboardBottomRecyclerViewModel> viewModels = Tasks.mapToViewModel(items);
+        disposable = component.data().getAllTasks(component.data().savedUserInfo().getId())
+                .subscribe((List<WhereTask> whereTasksList) -> {
+//                    int itemCount = tasks.getItemCount();
+                    if (!Commons.isEmpty(whereTasksList)) {
+                        List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(whereTasksList);
                         view.showBottomRecyclerLoadSuccess(viewModels);
                     } else {
                         view.showEmptyTasks(component.context().getString(R.string.data_not_available));
@@ -110,7 +114,8 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     }
 
     @Override
-    public void onTopRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
+    public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
+        view.onBottomRecyclerItemClicked(items,position);
 
     }
 

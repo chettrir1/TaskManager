@@ -5,7 +5,8 @@ import androidx.lifecycle.LiveData;
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.model.UserInfo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
-import com.techsales.taskmanager.data.model.dashboard.bottom.Tasks;
+import com.techsales.taskmanager.data.model.dashboard.bottom.BaseTasksResponse;
+import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
@@ -98,11 +99,13 @@ public class Data {
 
     }
 
-    public Single<Tasks> getAllTasks(String user_id) {
+    public Single<List<WhereTask>> getAllTasks(String user_id) {
         return remoteRepo.getNewTasks(user_id)
-                .map(BaseResponse::getData)
+                .flatMap(new NonNullMapper<>())
+                .flatMap(baseTasksResponse -> Single.just(baseTasksResponse.getwhereTasks()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+
     }
 
 }
