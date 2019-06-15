@@ -17,13 +17,11 @@ public interface NotesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(NotesEntity notesEntity);
 
-
-
-    @Query("Select id," +
+    @Query("SELECT id," +
             " title," +
             " description," +
-            " created_at as createdAt," +
-            " updated_at as updatedAt from notes")
+            " created_at AS createdAt," +
+            " updated_at AS updatedAt FROM notes")
     Single<List<Notes>> getNotes();
 
 //    @Query("Select * from notes where user_id=:userId")
