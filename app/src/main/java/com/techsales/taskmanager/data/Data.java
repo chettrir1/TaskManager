@@ -64,26 +64,6 @@ public class Data {
         localRepo.removeUsernamePassword();
     }
 
-    public void insertNotes(String title, String description) {
-        localRepo.insertTask(title, description);
-    }
-
-    public void updateNotes(Notes notes) {
-        LocalRepo.updateTask(notes);
-    }
-
-    public void deleteTask(int id) {
-        LocalRepo.deleteTask(id);
-    }
-
-    public void deleteAllTask(Notes notes) {
-        LocalRepo.deleteTask(notes);
-    }
-
-    public LiveData<List<Notes>> getAllNotes() {
-        return localRepo.getTasks();
-    }
-
     public Single<UserInfo> requestLogin(String username, String password, String token) {
         HashMap<String, Object> params = new HashMap<>(3);
         params.put("username", username);

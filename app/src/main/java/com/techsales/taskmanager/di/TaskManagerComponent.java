@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.techsales.taskmanager.BuildTypeComponent;
+import com.techsales.taskmanager.DatabaseManager;
 import com.techsales.taskmanager.TaskManagerApp;
 import com.techsales.taskmanager.data.Data;
 import com.techsales.taskmanager.data.remote.DataModule;
