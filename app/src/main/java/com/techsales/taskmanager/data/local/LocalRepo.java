@@ -25,14 +25,13 @@ public class LocalRepo {
     private String cachedPassword;
     private boolean cachedRememberStatus;
 
-    @Inject
-    Gson gson;
+    private final Gson gson;
+    private final Context context;
 
     @Inject
-    Context context;
-
-    @Inject
-    LocalRepo() {
+    LocalRepo(Gson gson, Context context) {
+        this.gson = gson;
+        this.context = context;
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 

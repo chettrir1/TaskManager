@@ -9,9 +9,12 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DatabaseManager {
+    private final Context context;
 
     @Inject
-    Context context;
+    public DatabaseManager(Context context){
+        this.context = context;
+    }
 
     private TaskManagerDatabase getTaskManagerDatabase(){
         return TaskManagerDatabase.getInstance(context);

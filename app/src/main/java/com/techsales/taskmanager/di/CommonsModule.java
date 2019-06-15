@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.di;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.techsales.taskmanager.DatabaseManager;
 
@@ -19,7 +21,7 @@ public class CommonsModule {
 
     @Singleton
     @Provides
-    DatabaseManager provideDatabaseManager(){
-        return new DatabaseManager();
+    DatabaseManager provideDatabaseManager(Context context){
+        return new DatabaseManager(context);
     }
 }
