@@ -20,17 +20,20 @@ public class LocalRepo {
     private static final String PASSWORD = "_password";
 
     private final SharedPreferences sharedPreferences;
-    private final Gson gson;
     private UserInfo cachedUserInfo;
     private String cachedUsername;
     private String cachedPassword;
     private boolean cachedRememberStatus;
 
+    @Inject
+    Gson gson;
 
     @Inject
-    LocalRepo(Context context, Gson gson) {
+    Context context;
+
+    @Inject
+    LocalRepo() {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        this.gson = gson;
     }
 
     public void setUserInfo(@NonNull UserInfo userInfo) {

@@ -1,11 +1,8 @@
 package com.techsales.taskmanager.data;
 
-import androidx.lifecycle.LiveData;
-
 import com.techsales.taskmanager.data.local.LocalRepo;
+import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.UserInfo;
-import com.techsales.taskmanager.data.model.api.BaseResponse;
-import com.techsales.taskmanager.data.model.dashboard.bottom.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
@@ -25,11 +22,13 @@ import io.reactivex.schedulers.Schedulers;
 public class Data {
     private final LocalRepo localRepo;
     private final RemoteRepo remoteRepo;
+    private final DatabaseRepo databaseRepo;
 
     @Inject
-    public Data(LocalRepo localRepo, RemoteRepo remoteRepo) {
+    public Data(LocalRepo localRepo, RemoteRepo remoteRepo,DatabaseRepo databaseRepo) {
         this.localRepo = localRepo;
         this.remoteRepo = remoteRepo;
+        this.databaseRepo = databaseRepo;
     }
 
     public boolean isLoggedIn() {
@@ -88,4 +87,14 @@ public class Data {
 
     }
 
+    public  Single<Long> insertNotes(Notes notes){
+        return databaseRepo.insertToNotes(notes)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+    public Single<List<Notes>> getAllNotes(){
+        return databaseRepo.getAllNotes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

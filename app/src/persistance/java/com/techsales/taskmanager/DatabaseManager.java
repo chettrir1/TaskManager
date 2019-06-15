@@ -9,6 +9,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DatabaseManager {
+
     @Inject
     Context context;
 

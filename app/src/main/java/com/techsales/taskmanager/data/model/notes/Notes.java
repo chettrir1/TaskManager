@@ -1,31 +1,15 @@
 package com.techsales.taskmanager.data.model.notes;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
+import com.techsales.taskmanager.entity.NotesEntity;
+import com.techsales.taskmanager.utils.Commons;
 
-import com.techsales.taskmanager.utils.Config;
-import com.techsales.taskmanager.utils.TimeStampConverter;
-
-import java.util.Date;
-
-@Entity(tableName = Config.NOTES_TABLE_NAME)
 public class Notes {
 
-    @PrimaryKey(autoGenerate = true)
     private int id;
-
     private String title;
     private String description;
-
-    @ColumnInfo(name = "created_at")
-    @TypeConverters({TimeStampConverter.class})
-    private Date createdAt;
-
-    @ColumnInfo(name = "modified_at")
-    @TypeConverters({TimeStampConverter.class})
-    private Date modifiedAt;
+    private String createdAt;
+    private String updatedAt;
 
     public int getId() {
         return id;
@@ -51,19 +35,29 @@ public class Notes {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getModifiedAt() {
-        return modifiedAt;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setModifiedAt(Date modifiedAt) {
-        this.modifiedAt = modifiedAt;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+
+    public static NotesEntity mapToNotesEntity(Notes notes){
+        NotesEntity notesEntity = new NotesEntity();
+        notesEntity.noteTitle = notes.title;
+        notesEntity.noteDescription = notes.description;
+        notesEntity.createdAt = String.valueOf(Commons.getCurrentDateTime());
+        notesEntity.updatedAt = String.valueOf(Commons.getCurrentDateTime());
+        return notesEntity;
     }
 }
