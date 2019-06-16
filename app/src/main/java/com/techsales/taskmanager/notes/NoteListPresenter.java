@@ -4,7 +4,7 @@ import com.techsales.taskmanager.di.TaskManagerComponent;
 
 class NoteListPresenter implements NoteListContract.Presenter {
     private final TaskManagerComponent component;
-    private NoteListContract.View view;
+    private final NoteListContract.View view;
 
     NoteListPresenter(TaskManagerComponent component, NoteListContract.View view) {
         this.component = component;

@@ -17,16 +17,9 @@ import com.techsales.taskmanager.R;
  */
 public class ContactsFragment extends BaseFragment implements ContactsContract.View {
 
-
-    public ContactsFragment() {
-        // Required empty public constructor
+    public static ContactsFragment getInstance() {
+        return new ContactsFragment();
     }
-
-    public static Fragment getInstance() {
-        ContactsFragment fragment = new ContactsFragment();
-        return fragment;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

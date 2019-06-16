@@ -10,7 +10,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-
+//add other entities here
 @Database(entities = {
         NotesEntity.class
 }, version = 1, exportSchema = false)
@@ -31,6 +31,7 @@ abstract class TaskManagerDatabase extends RoomDatabase {
                 .build();
     }
 
+    //Add other Dao here
     abstract NotesDao getNotesDao();
 
 }
