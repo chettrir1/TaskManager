@@ -6,30 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.techsales.taskmanager.BaseFragment;
+import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel;
+import com.techsales.taskmanager.databinding.FragmentProfileBinding;
+
+import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
-import com.techsales.taskmanager.BaseFragment;
-import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.data.model.UserInfo;
-import com.techsales.taskmanager.databinding.FragmentProfileBinding;
-
 public class ProfileFragment extends BaseFragment implements ProfileContract.View {
 
-    private static final String IMAGE_URL = "http://117.121.237.226:83/task/public/storage/";
-
+    @Inject
+    ProfileContract.Presenter presenter;
     public static Fragment getInstance() {
-        ProfileFragment profileFragment = new ProfileFragment();
-        return profileFragment;
+        return new ProfileFragment();
     }
 
     private FragmentProfileBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, null, false);
         setProfileData();
         return binding.getRoot();
@@ -61,16 +61,25 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
     }
 
     private void setProfileData() {
-        if (data.savedUserInfo() != null) {
-            UserInfo info = data.savedUserInfo();
-            Glide.with(this).load(IMAGE_URL + info.getProfile_image()).into(binding.ivProfile);
 
-            binding.details.tvName.setText(info.getFull_name());
-            binding.details.tvUsername.setText(info.getUser_name());
-            binding.details.tvEmail.setText(info.getEmail());
-            binding.details.tvPermanent.setText(info.getPermanent_address());
-            binding.details.tvTemporary.setText(info.getTemporary_address());
-            binding.details.tvContact.setText(info.getContact());
+        ProfileViewModel profileViewModel = presenter.getProfileViewModel();
+        if (profileViewModel != null){
+            binding.setViewModel(profileViewModel);
         }
+
+//        set all the text from fragment_profile.xml and remove all the comments from here
+
+
+//        if (data.savedUserInfo() != null) {
+//            UserInfo info = data.savedUserInfo();
+//            Glide.with(this).load(IMAGE_URL + info.getProfile_image()).into(binding.ivProfile);
+
+//            binding.details.tvName.setText(info.getFull_name());
+//            binding.details.tvUsername.setText(info.getUser_name());
+//            binding.details.tvEmail.setText(info.getEmail());
+//            binding.details.tvPermanent.setText(info.getPermanent_address());
+//            binding.details.tvTemporary.setText(info.getTemporary_address());
+//            binding.details.tvContact.setText(info.getContact());
+//        }
     }
 }

@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +31,8 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/logo"
                     app:civ_border_color="@color/colorPrimary"
-                    app:civ_border_width="@dimen/spacing_tiny_small" />
+                    app:civ_border_width="@dimen/spacing_tiny_small"
+                    app:imagePath="@{viewModel.imagePath}"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

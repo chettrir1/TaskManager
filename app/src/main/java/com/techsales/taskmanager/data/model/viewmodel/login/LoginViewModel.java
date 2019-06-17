@@ -21,4 +21,12 @@ public class LoginViewModel extends BaseObservable {
     public String getUserId() {
         return userInfo.getId();
     }
+
+    public UserInfo getUserInfo(){
+        /* if your user model is changed then update
+         userModel here and return it. And you can use
+         this model to pass from intent or from bundle
+         but this userInfo model must implement serializable */
+        return this.userInfo;
+    }
 }

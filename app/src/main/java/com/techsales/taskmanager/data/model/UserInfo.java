@@ -1,6 +1,7 @@
 package com.techsales.taskmanager.data.model;
 
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;
+import com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel;
 
 public class UserInfo {
 
@@ -97,5 +98,9 @@ public class UserInfo {
 
     public static LoginViewModel mapToViewModel(UserInfo userInfo){
         return new LoginViewModel(userInfo);
+    }
+
+    public static ProfileViewModel mapToProfileViewModel(UserInfo userInfo){
+        return new ProfileViewModel(userInfo);
     }
 }

@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.profile;
 
+import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 import com.techsales.taskmanager.utils.Commons;
 
@@ -17,12 +19,20 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
     @Override
     public void start() {
-
     }
 
     @Override
     public void stop() {
         Commons.dispose(disposable);
+    }
 
+    @Override
+    public ProfileViewModel getProfileViewModel() {
+            UserInfo userInfo = component.data().savedUserInfo();
+            if (userInfo!= null){
+               return UserInfo.mapToProfileViewModel(userInfo);
+            }
+
+        return null;
     }
 }
