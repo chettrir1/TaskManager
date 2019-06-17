@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel" />
@@ -16,7 +18,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            bind:ignore="UselessParent">
 
             <RelativeLayout
                 android:id="@+id/content"
@@ -32,7 +35,7 @@
                     android:src="@drawable/logo"
                     app:civ_border_color="@color/colorPrimary"
                     app:civ_border_width="@dimen/spacing_tiny_small"
-                    app:imagePath="@{viewModel.imagePath}"/>
+                    app:imagePath="@{viewModel.imagePath}" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,7 +55,8 @@
 
                     <include
                         android:id="@+id/details"
-                        layout="@layout/profile_basic_details" />
+                        layout="@layout/profile_basic_details"
+                        bind:details="@{viewModel}" />
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>

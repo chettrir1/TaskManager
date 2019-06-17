@@ -9,12 +9,6 @@ public interface ProfileContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showProgress();
-
-        void showDataLoadSuccess();
-
-        void hideProgress();
-
     }
 
     interface Presenter extends BasePresenter {

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="details"
+            type="com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +38,9 @@
                 <TextView
                     android:id="@+id/tvName"
                     style="@style/ProfileDetailsTextView"
-                    android:paddingEnd="@dimen/spacing_tiny" />
+                    android:paddingEnd="@dimen/spacing_tiny"
+                    android:text="@{details.fullName}"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 
@@ -57,7 +67,9 @@
                 <TextView
                     android:id="@+id/tvUsername"
                     style="@style/ProfileDetailsTextView"
-                    android:paddingEnd="@dimen/spacing_tiny" />
+                    android:paddingEnd="@dimen/spacing_tiny"
+                    android:text="@{details.userName}"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 
@@ -86,7 +98,9 @@
                     style="@style/ProfileDetailsTextView"
                     android:autoLink="email"
                     android:paddingEnd="@dimen/spacing_tiny"
-                    android:textColor="@color/colorBlue" />
+                    android:text="@{details.email}"
+                    android:textColor="@color/colorBlue"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 
@@ -126,7 +140,9 @@
                 <TextView
                     android:id="@+id/tvPermanent"
                     style="@style/ProfileDetailsTextView"
-                    android:paddingEnd="@dimen/spacing_tiny" />
+                    android:paddingEnd="@dimen/spacing_tiny"
+                    android:text="@{details.primaryAddress}"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 
@@ -153,7 +169,9 @@
                 <TextView
                     android:id="@+id/tv_temporary"
                     style="@style/ProfileDetailsTextView"
-                    android:paddingEnd="@dimen/spacing_tiny" />
+                    android:paddingEnd="@dimen/spacing_tiny"
+                    android:text="@{details.temporaryAddress}"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 
@@ -181,7 +199,9 @@
                     android:id="@+id/tvContact"
                     style="@style/ProfileDetailsTextView"
                     android:autoLink="phone"
-                    android:paddingEnd="@dimen/spacing_tiny" />
+                    android:paddingEnd="@dimen/spacing_tiny"
+                    android:text="@{details.contact}"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 

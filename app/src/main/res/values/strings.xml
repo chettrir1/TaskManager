@@ -69,7 +69,6 @@
     <string name="text_description">Description</string>
     <string name="text_task_priority">Task Priority</string>
     <string name="text_not_available">N/A</string>
-    <string name="text_name">Name</string>
     <string name="text_username">Username</string>
     <string name="text_email">Email</string>
     <string name="text_address">Address</string>
