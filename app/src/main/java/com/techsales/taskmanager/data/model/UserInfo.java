@@ -1,20 +1,28 @@
 package com.techsales.taskmanager.data.model;
 
+import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel;
 
 public class UserInfo {
 
     private String id;
-    private String full_name;
+    @SerializedName("full_name")
+    private String fullName;
     private String contact;
     private String email;
-    private String permanent_address;
-    private String temporary_address;
-    private String profile_image;
-    private String citizenship_image;
-    private String user_name;
-    private String last_login_at;
+    @SerializedName("permanent_address")
+    private String permanentAddress;
+    @SerializedName("temporary_address")
+    private String temporaryAddress;
+    @SerializedName("profile_image")
+    private String profileImage;
+    @SerializedName("citizenship_image")
+    private String citizenshipImage;
+    @SerializedName("user_name")
+    private String userName;
+    @SerializedName("last_login_at")
+    private String lastLoginAt;
 
     public String getId() {
         return id;
@@ -24,12 +32,12 @@ public class UserInfo {
         this.id = id;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getContact() {
@@ -48,59 +56,59 @@ public class UserInfo {
         this.email = email;
     }
 
-    public String getPermanent_address() {
-        return permanent_address;
+    public String getPermanentAddress() {
+        return permanentAddress;
     }
 
-    public void setPermanent_address(String permanent_address) {
-        this.permanent_address = permanent_address;
+    public void setPermanentAddress(String permanentAddress) {
+        this.permanentAddress = permanentAddress;
     }
 
-    public String getTemporary_address() {
-        return temporary_address;
+    public String getTemporaryAddress() {
+        return temporaryAddress;
     }
 
-    public void setTemporary_address(String temporary_address) {
-        this.temporary_address = temporary_address;
+    public void setTemporaryAddress(String temporaryAddress) {
+        this.temporaryAddress = temporaryAddress;
     }
 
-    public String getProfile_image() {
-        return profile_image;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfile_image(String profile_image) {
-        this.profile_image = profile_image;
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
-    public String getCitizenship_image() {
-        return citizenship_image;
+    public String getCitizenshipImage() {
+        return citizenshipImage;
     }
 
-    public void setCitizenship_image(String citizenship_image) {
-        this.citizenship_image = citizenship_image;
+    public void setCitizenshipImage(String citizenshipImage) {
+        this.citizenshipImage = citizenshipImage;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getLast_login_at() {
-        return last_login_at;
+    public String getLastLoginAt() {
+        return lastLoginAt;
     }
 
-    public void setLast_login_at(String last_login_at) {
-        this.last_login_at = last_login_at;
+    public void setLastLoginAt(String lastLoginAt) {
+        this.lastLoginAt = lastLoginAt;
     }
 
-    public static LoginViewModel mapToViewModel(UserInfo userInfo){
+    public static LoginViewModel mapToViewModel(UserInfo userInfo) {
         return new LoginViewModel(userInfo);
     }
 
-    public static ProfileViewModel mapToProfileViewModel(UserInfo userInfo){
+    public static ProfileViewModel mapToProfileViewModel(UserInfo userInfo) {
         return new ProfileViewModel(userInfo);
     }
 }

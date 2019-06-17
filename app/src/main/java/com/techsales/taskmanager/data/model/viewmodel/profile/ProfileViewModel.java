@@ -14,6 +14,6 @@ public class ProfileViewModel extends BaseObservable {
 
     @Bindable
     public String getImagePath(){
-        return userInfo.getProfile_image();
+        return userInfo.getProfileImage();
     }
 }

@@ -14,7 +14,7 @@ public class LoginViewModel extends BaseObservable {
 
     @Bindable
     public String getUsername() {
-        return userInfo.getUser_name();
+        return userInfo.getUserName();
     }
 
     @Bindable

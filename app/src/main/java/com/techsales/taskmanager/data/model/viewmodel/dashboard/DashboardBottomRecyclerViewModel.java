@@ -38,7 +38,7 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
     @Bindable
     public String getDay() {
 
-        return Commons.getParsedDay(whereTask.getCreated_at());
+        return Commons.getParsedDay(whereTask.getCreatedAt());
     }
 
     @Bindable
@@ -48,7 +48,7 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
 
     @Bindable
     public String getCreatedBy() {
-        return String.valueOf(whereTask.getAuthor().getFull_name());
+        return String.valueOf(whereTask.getAuthor().getFullName());
     }
 
     @Bindable
@@ -100,7 +100,7 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
 
     @Bindable
     public String getTaskAssignedDate() {
-        return whereTask.getCreated_at();
+        return whereTask.getCreatedAt();
     }
 
     @Bindable
@@ -146,16 +146,16 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
 
     @Bindable
     public String getClientName() {
-        if (whereTask.getClient_name() != null) {
-            return whereTask.getClient_name();
+        if (whereTask.getClientName() != null) {
+            return whereTask.getClientName();
         }
         return context.getResources().getString(R.string.text_not_available);
     }
 
     @Bindable
     public String getClientPhone() {
-        if (whereTask.getClient_number() != null) {
-            return whereTask.getClient_number();
+        if (whereTask.getClientNumber() != null) {
+            return whereTask.getClientNumber();
         }
         return context.getResources().getString(R.string.text_not_available);
     }

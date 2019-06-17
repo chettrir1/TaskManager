@@ -1,14 +1,17 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
-public class Author {
-    private String full_name;
+import com.google.gson.annotations.SerializedName;
 
-    public String getFull_name() {
-        return full_name;
+public class Author {
+    @SerializedName("full_name")
+    private String fullName;
+
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
 }

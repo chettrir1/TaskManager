@@ -1,29 +1,40 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
+import com.google.gson.annotations.SerializedName;
+
 public class WhereTask {
-    private String client_number;
+
+    @SerializedName("client_number")
+    private String clientNumber;
     private Author author;
     private String description;
-    private String created_at;
+    @SerializedName("created_at")
+    private String createdAt;
     private int priority;
-    private int created_by;
-    private String client_longitude;
+    @SerializedName("created_by")
+    private int createdBy;
+    @SerializedName("client_longitude")
+    private String clientLongitude;
     private String file;
-    private String updated_at;
+    @SerializedName("updated_at")
+    private String updatedAt;
     private String name;
     private int id;
-    private String client_latitude;
+    @SerializedName("client_latitude")
+    private String clientLatitude;
     private String deadline;
-    private String task_type;
-    private String client_name;
+    @SerializedName("task_type")
+    private String taskType;
+    @SerializedName("client_name")
+    private String clientName;
     private int status;
 
-    public String getClient_number() {
-        return client_number;
+    public String getClientNumber() {
+        return clientNumber;
     }
 
-    public void setClient_number(String client_number) {
-        this.client_number = client_number;
+    public void setClientNumber(String clientNumber) {
+        this.clientNumber = clientNumber;
     }
 
     public Author getAuthor() {
@@ -42,12 +53,12 @@ public class WhereTask {
         this.description = description;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getPriority() {
@@ -58,20 +69,20 @@ public class WhereTask {
         this.priority = priority;
     }
 
-    public int getCreated_by() {
-        return created_by;
+    public int getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(int created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public String getClient_longitude() {
-        return client_longitude;
+    public String getClientLongitude() {
+        return clientLongitude;
     }
 
-    public void setClient_longitude(String client_longitude) {
-        this.client_longitude = client_longitude;
+    public void setClientLongitude(String clientLongitude) {
+        this.clientLongitude = clientLongitude;
     }
 
     public String getFile() {
@@ -82,12 +93,12 @@ public class WhereTask {
         this.file = file;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getName() {
@@ -106,12 +117,12 @@ public class WhereTask {
         this.id = id;
     }
 
-    public String getClient_latitude() {
-        return client_latitude;
+    public String getClientLatitude() {
+        return clientLatitude;
     }
 
-    public void setClient_latitude(String client_latitude) {
-        this.client_latitude = client_latitude;
+    public void setClientLatitude(String clientLatitude) {
+        this.clientLatitude = clientLatitude;
     }
 
     public String getDeadline() {
@@ -122,20 +133,20 @@ public class WhereTask {
         this.deadline = deadline;
     }
 
-    public String getTask_type() {
-        return task_type;
+    public String getTaskType() {
+        return taskType;
     }
 
-    public void setTask_type(String task_type) {
-        this.task_type = task_type;
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
     }
 
-    public String getClient_name() {
-        return client_name;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClient_name(String client_name) {
-        this.client_name = client_name;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public int getStatus() {

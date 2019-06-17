@@ -72,13 +72,13 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
 
 //        if (data.savedUserInfo() != null) {
 //            UserInfo info = data.savedUserInfo();
-//            Glide.with(this).load(IMAGE_URL + info.getProfile_image()).into(binding.ivProfile);
+//            Glide.with(this).load(IMAGE_URL + info.getProfileImage()).into(binding.ivProfile);
 
-//            binding.details.tvName.setText(info.getFull_name());
-//            binding.details.tvUsername.setText(info.getUser_name());
+//            binding.details.tvName.setText(info.getFullName());
+//            binding.details.tvUsername.setText(info.getUserName());
 //            binding.details.tvEmail.setText(info.getEmail());
-//            binding.details.tvPermanent.setText(info.getPermanent_address());
-//            binding.details.tvTemporary.setText(info.getTemporary_address());
+//            binding.details.tvPermanent.setText(info.getPermanentAddress());
+//            binding.details.tvTemporary.setText(info.getTemporaryAddress());
 //            binding.details.tvContact.setText(info.getContact());
 //        }
     }
