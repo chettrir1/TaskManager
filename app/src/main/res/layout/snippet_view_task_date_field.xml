@@ -22,7 +22,11 @@
             <TextView
                 android:id="@+id/tv_assigned_date"
                 style="@style/TextViewTaskDescription"
-                android:textColor="@color/colorGreen"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:background="@color/colorGreen"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_small"
+                android:textColor="@color/colorWhite"
                 tools:text="2019-05-07" />
 
         </LinearLayout>
@@ -41,7 +45,11 @@
             <TextView
                 android:id="@+id/tv_deadline_date"
                 style="@style/TextViewTaskDescription"
-                android:textColor="@color/colorRed"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:background="@color/colorRed"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_small"
+                android:textColor="@color/colorWhite"
                 tools:text="2019-05-07" />
         </LinearLayout>
     </LinearLayout>

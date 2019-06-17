@@ -15,9 +15,9 @@
 
             <TextView
                 android:id="@+id/tvTaskTitle"
+                style="@style/TextStyleBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextStyleBlack"
 
                 android:padding="@dimen/spacing_small"
                 android:textSize="@dimen/h6_headline_medium"
@@ -41,8 +41,9 @@
                 android:textColor="@color/colorLightBlack"
                 tools:text="9V ko Battery Alkaline Maxcell 50 pcs lagne smoke sensor ko lagi. Thamel Ma" />
 
-            <include layout="@layout/snippet_view_task_date_field"
-                android:id="@+id/includeDate"/>
+            <include
+                android:id="@+id/includeDate"
+                layout="@layout/snippet_view_task_date_field" />
 
             <TextView
                 style="@style/TextViewTaskTitle"
@@ -53,8 +54,12 @@
             <TextView
                 android:id="@+id/tvTaskStatus"
                 style="@style/TextViewTaskDetail"
-                android:paddingBottom="@dimen/spacing_tiny_small"
-                android:textColor="@color/colorLightBlack"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_tiny_small"
+                android:background="@color/colorBlue"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_small"
+                android:textColor="@color/colorWhite"
                 tools:text="New" />
 
             <TextView
@@ -66,8 +71,11 @@
             <TextView
                 android:id="@+id/tvTaskPriority"
                 style="@style/TextViewTaskDetail"
-                android:paddingBottom="@dimen/spacing_small"
-                android:textColor="@color/colorLightBlack"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_small"
+                android:textColor="@color/colorWhite"
                 tools:text="Urgent" />
 
             <View
@@ -75,7 +83,9 @@
                 android:layout_height="@dimen/view_height"
                 android:background="@color/colorView" />
 
-            <include layout="@layout/snippet_view_task_client_info" />
+            <include
+                android:id="@+id/includeClient"
+                layout="@layout/snippet_view_task_client_info" />
 
             <View
                 android:layout_width="match_parent"

@@ -41,7 +41,9 @@
         <TextView
             android:id="@+id/tvClientPhone"
             style="@style/TextViewTaskDetail"
-            android:paddingBottom="@dimen/spacing_small"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:autoLink="phone"
             android:textColor="@color/colorLightBlack"
             tools:text="9808340360" />
 

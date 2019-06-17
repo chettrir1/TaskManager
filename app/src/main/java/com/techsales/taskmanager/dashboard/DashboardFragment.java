@@ -154,7 +154,11 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
                                     viewModel.getTaskDescription(),
                                     viewModel.getStatus(), viewModel.getTextColor(),
                                     viewModel.getTaskAssignedDate(),
-                                    viewModel.getDeadline()))
+                                    viewModel.getDeadline(),
+                                    viewModel.getTaskPriority(),
+                                    viewModel.getPriorityColor(),
+                                    viewModel.getClientName(),
+                                    viewModel.getClientPhone()))
                     .addToBackStack(null)
                     .commit();
         }
