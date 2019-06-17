@@ -22,7 +22,7 @@ public class DashboardActivity extends BaseActivity {
 
     private ActivityDashboardBinding binding;
 
-    public static void start(Activity activity, String userId) {
+    public static void start(Activity activity) {
         Intent intent = new Intent(activity, DashboardActivity.class);
         activity.startActivity(intent);
     }
@@ -74,6 +74,5 @@ public class DashboardActivity extends BaseActivity {
         startActivity(new Intent(activity, LoginActivity.class));
         activity.finish();
     }
-
 
 }

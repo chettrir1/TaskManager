@@ -2,7 +2,6 @@ package com.techsales.taskmanager;
 
 
 import android.content.Context;
-
 import com.techsales.taskmanager.dao.NotesDao;
 import com.techsales.taskmanager.entity.NotesEntity;
 

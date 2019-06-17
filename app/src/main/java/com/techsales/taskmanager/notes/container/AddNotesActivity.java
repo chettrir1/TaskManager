@@ -14,7 +14,7 @@ import com.techsales.taskmanager.notes.AddNotesFragment;
 public class AddNotesActivity extends BaseActivity {
 
     public static void start(Activity activity) {
-        Intent intent = new Intent(activity, NoteListActivity.class);
+        Intent intent = new Intent(activity, AddNotesActivity.class);
         activity.startActivity(intent);
     }
 

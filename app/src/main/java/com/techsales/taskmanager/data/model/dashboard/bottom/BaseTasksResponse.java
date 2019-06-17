@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.data.model.dashboard.bottom;
 
+import android.content.Context;
+
 import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 
@@ -29,11 +31,11 @@ public class BaseTasksResponse {
     }
 
 
-    public static List<DashboardBottomRecyclerViewModel> mapToViewModel(List<WhereTask> items) {
+    public static List<DashboardBottomRecyclerViewModel> mapToViewModel(Context context, List<WhereTask> items) {
         final int count = items.size();
         ArrayList<DashboardBottomRecyclerViewModel> viewModels = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
-            viewModels.add(new DashboardBottomRecyclerViewModel(items.get(i)));
+            viewModels.add(new DashboardBottomRecyclerViewModel(context, items.get(i)));
         }
         return viewModels;
     }

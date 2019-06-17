@@ -20,4 +20,9 @@ class NoteListPresenter implements NoteListContract.Presenter {
     public void stop() {
 
     }
+
+    @Override
+    public void getSavedNotes() {
+        component.data().getAllNotes();
+    }
 }

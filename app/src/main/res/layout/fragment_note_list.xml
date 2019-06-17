@@ -7,12 +7,6 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
-        <include
-            layout="@layout/custom_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="top" />
-
         <com.techsales.taskmanager.views.ContentStateView
             android:id="@+id/contentState"
             android:layout_width="match_parent"
@@ -31,17 +25,19 @@
             tools:ignore="PrivateResource">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/task_list"
+                android:id="@+id/noteList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addNotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginRight="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_normal" />
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:src="@drawable/ic_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

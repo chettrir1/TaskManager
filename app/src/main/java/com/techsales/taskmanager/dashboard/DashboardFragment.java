@@ -17,9 +17,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.gson.Gson;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.auth.login.LoginActivity;
+import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragment;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.databinding.FragmentDashboardBinding;
@@ -32,7 +34,7 @@ import javax.inject.Inject;
 public class DashboardFragment extends BaseFragment implements DashboardContract.View {
 
     public static DashboardFragment getInstance() {
-       return new DashboardFragment();
+        return new DashboardFragment();
     }
 
     @Inject
@@ -46,7 +48,7 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, null, false);
         binding.contentState.setContent(binding.content);
-        binding.swipeContainer.setColorScheme(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
+        binding.swipeContainer.setColorSchemeResources(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
         checkAlreadyLogin();
         initTopRecyclerView();
         binding.swipeContainer.setOnRefreshListener(() -> presenter.onBottomRecyclerLoad());
@@ -97,14 +99,12 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     public void showTasksLoadError(String message) {
         hideSwipeContainer();
         binding.contentState.showError(R.drawable.server_error, message);
-
     }
 
     @Override
     public void showEmptyTasks(String message) {
         hideSwipeContainer();
         binding.contentState.showError(R.drawable.empty_src, message);
-
     }
 
     @Override
@@ -116,15 +116,13 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     @Override
     public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
         //Todo handle click Item
-        Toast.makeText(component.context(), "TOp recycler clicked:"+ position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(component.context(), "TOp recycler clicked:" + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel bottomRecyclerViewModel, int position) {
-        //TODO handle click Item
-        Toast.makeText(component.context(), "Bottom recycler clicked:"+ position, Toast.LENGTH_SHORT).show();
+        viewTaskDetails(bottomRecyclerViewModel);
     }
-
 
     private void checkAlreadyLogin() {
         boolean isLoggedIn = presenter.isLoggedIn();
@@ -142,10 +140,23 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-
     private void hideSwipeContainer() {
         if (binding.swipeContainer.isRefreshing() && binding.swipeContainer != null) {
             binding.swipeContainer.setRefreshing(false);
+        }
+    }
+
+    private void viewTaskDetails(DashboardBottomRecyclerViewModel viewModel) {
+        if (getActivity() != null) {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.dashboardContainer,
+                            ViewTaskFragment.getInstance(viewModel.getName(),
+                                    viewModel.getTaskDescription(),
+                                    viewModel.getStatus(), viewModel.getTextColor(),
+                                    viewModel.getTaskAssignedDate(),
+                                    viewModel.getDeadline()))
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }

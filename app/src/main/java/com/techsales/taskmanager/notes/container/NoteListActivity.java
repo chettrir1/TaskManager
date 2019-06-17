@@ -7,11 +7,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.databinding.ActivityNoteListBinding;
 import com.techsales.taskmanager.notes.NoteListFragment;
 
-public class NoteListActivity extends AppCompatActivity {
+public class NoteListActivity extends BaseActivity {
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, NoteListActivity.class);
@@ -22,6 +23,10 @@ public class NoteListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityNoteListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_note_list);
+
+        setSupportActionBar(binding.includeToolbar.customToolbar);
+        binding.includeToolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
+        binding.includeToolbar.tvToolbarText.setText(getResources().getString(R.string.title_all_notes));
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.noteListContainer, NoteListFragment.getInstance())

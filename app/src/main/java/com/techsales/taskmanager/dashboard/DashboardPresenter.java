@@ -51,7 +51,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
-        view.onTopRecyclerItemClicked(items,position);
+        view.onTopRecyclerItemClicked(items, position);
     }
 
     private void prepareDashBoardStatus() {
@@ -96,7 +96,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                 .subscribe((List<WhereTask> whereTasksList) -> {
 //                    int itemCount = tasks.getItemCount();
                     if (!Commons.isEmpty(whereTasksList)) {
-                        List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(whereTasksList);
+                        List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(component.context(), whereTasksList);
                         view.showBottomRecyclerLoadSuccess(viewModels);
                     } else {
                         view.showEmptyTasks(component.context().getString(R.string.data_not_available));
@@ -115,7 +115,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
-        view.onBottomRecyclerItemClicked(items,position);
+        view.onBottomRecyclerItemClicked(items, position);
 
     }
 

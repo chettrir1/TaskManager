@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTaskTitle"
+                android:paddingBottom="@dimen/spacing_tiny_small"
+                android:text="@string/text_assigned_date" />
+
+            <TextView
+                android:id="@+id/tv_assigned_date"
+                style="@style/TextViewTaskDescription"
+                android:textColor="@color/colorGreen"
+                tools:text="2019-05-07" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTaskTitle"
+                android:paddingBottom="@dimen/spacing_tiny_small"
+                android:text="@string/text_deadline" />
+
+            <TextView
+                android:id="@+id/tv_deadline_date"
+                style="@style/TextViewTaskDescription"
+                android:textColor="@color/colorRed"
+                tools:text="2019-05-07" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

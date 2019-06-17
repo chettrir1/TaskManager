@@ -57,4 +57,15 @@
     <string name="data_not_available">No data available to fetch</string>
     <string name="text_your_profile">Your Profile</string>
     <string name="text_employee_contacts">Employee Contacts</string>
+    <string name="title_all_notes">All Notes</string>
+    <string name="text_client_information">Client Information</string>
+    <string name="text_phone_no">Phone No</string>
+    <string name="text_name">Name</string>
+    <string name="text_change_status">Change Status</string>
+    <string name="text_open">Open</string>
+    <string name="text_append">Append</string>
+    <string name="text_deadline">Deadline</string>
+    <string name="text_assigned_date">Assigned Date</string>
+    <string name="text_description">Description</string>
+    <string name="text_task_priority">Task Priority</string>
 </resources>

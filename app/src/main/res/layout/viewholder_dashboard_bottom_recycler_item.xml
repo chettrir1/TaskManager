@@ -41,14 +41,14 @@
             android:layout_weight="3"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/spacing_tiny">
+            android:paddingStart="@dimen/spacing_tiny"
+            tools:ignore="RtlSymmetry">
 
             <TextView
                 android:id="@+id/task_title"
                 style="@style/TextStyleBlack"
                 android:text="@{dashboardBottom.name}"
-                android:textSize="@dimen/b2_body_regular"
-                android:textStyle="bold"
+                android:textSize="@dimen/h6_headline_medium"
                 tools:text="Kantipur temple house" />
 
             <TextView
@@ -61,7 +61,9 @@
                 android:id="@+id/task_status"
                 style="@style/TextStyleBlack"
                 android:text="@{dashboardBottom.status}"
+                android:textColor="@{dashboardBottom.textColor}"
                 android:textSize="@dimen/over_line_semi_bold_caps"
+                android:textStyle="bold"
                 tools:text="New" />
 
         </LinearLayout>

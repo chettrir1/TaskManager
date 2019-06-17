@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextStyleBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/text_client_information"
+            android:textSize="@dimen/h6_headline_medium" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_height"
+            android:background="@color/colorView" />
+
+        <TextView
+            style="@style/TextViewTaskTitle"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingBottom="@dimen/spacing_tiny_small"
+            android:text="@string/text_name" />
+
+        <TextView
+            android:id="@+id/tvClientName"
+            style="@style/TextViewTaskDetail"
+            android:textColor="@color/colorLightBlack"
+            tools:text="Kantipur temple house" />
+
+        <TextView
+            style="@style/TextViewTaskTitle"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingBottom="@dimen/spacing_tiny_small"
+            android:text="@string/text_phone_no" />
+
+        <TextView
+            android:id="@+id/tvClientPhone"
+            style="@style/TextViewTaskDetail"
+            android:paddingBottom="@dimen/spacing_small"
+            android:textColor="@color/colorLightBlack"
+            tools:text="9808340360" />
+
+    </LinearLayout>
+
+</layout>

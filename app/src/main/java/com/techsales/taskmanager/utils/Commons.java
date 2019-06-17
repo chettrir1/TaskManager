@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.techsales.taskmanager.R;
 
 import java.text.ParseException;
@@ -20,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import io.reactivex.disposables.Disposable;
 
@@ -119,6 +122,21 @@ public class Commons {
         if (inputMethodManager != null) {
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    public static String getParsedDay(String date) {
+        String parsed_date = "";
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            formatter.setTimeZone(TimeZone.getTimeZone("GMT+5:45"));
+            Date value = formatter.parse(date);
+
+            String[] splited = value.toString().split("\\s+");
+            parsed_date = String.valueOf(splited[0]);
+
+        } catch (Exception e) {
+        }
+        return parsed_date;
     }
 
 }

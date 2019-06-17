@@ -3,20 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
-        <include layout="@layout/note_toolbar" />
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/note_toolbar" />
 
         <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="PrivateResource">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,7 +33,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@android:color/black" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

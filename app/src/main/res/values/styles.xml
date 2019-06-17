@@ -50,7 +50,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/spacing_small</item>
         <item name="android:fontFamily">@font/open_sans</item>
-        <item name="android:textSize">@dimen/h6_headline_medium</item>
+        <item name="android:textSize">@dimen/b1_body_semi_bold</item>
     </style>
 
     <style name="TextViewTaskDetail" parent="TextAppearance.AppCompat">
@@ -58,7 +58,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/spacing_small</item>
         <item name="android:fontFamily">@font/open_sans</item>
-        <item name="android:textSize">@dimen/h6_headline_medium</item>
+        <item name="android:textSize">@dimen/b1_body_semi_bold</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
     </style>
