@@ -6,6 +6,8 @@ import com.techsales.taskmanager.dashboard.DashboardFragment;
 import com.techsales.taskmanager.dashboard.DashboardFragmentModule;
 import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragment;
 import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragmentModule;
+import com.techsales.taskmanager.dashboard.viewtask.changestatus.ChangeStatusFragment;
+import com.techsales.taskmanager.dashboard.viewtask.changestatus.ChangeStatusFragmentModule;
 import com.techsales.taskmanager.di.scope.FragmentScope;
 import com.techsales.taskmanager.notes.AddNotesFragment;
 import com.techsales.taskmanager.notes.AddNotesFragmentModule;
@@ -41,7 +43,11 @@ abstract class FragmentBindingModule {
     abstract NoteListFragment noteListFragment();
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = {ViewTaskFragmentModule.class, DialogBindingModule.class})
+    @ContributesAndroidInjector(modules = {ViewTaskFragmentModule.class})
     abstract ViewTaskFragment viewTaskFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {ChangeStatusFragmentModule.class})
+    abstract ChangeStatusFragment changeStatusFragment();
 
 }

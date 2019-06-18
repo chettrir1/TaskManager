@@ -1,7 +1,7 @@
 package com.techsales.taskmanager.dashboard.viewtask.changestatus;
 
 
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
-import com.techsales.taskmanager.BaseDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.techsales.taskmanager.BaseDialogFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.databinding.FragmentChangeStatusBinding;
 import com.techsales.taskmanager.utils.Commons;
@@ -19,7 +24,11 @@ import com.techsales.taskmanager.utils.Commons;
 import javax.inject.Inject;
 
 
-public class ChangeStatusFragment extends BaseDialog implements ChangeStatusContract.View {
+public class ChangeStatusFragment extends BaseDialogFragment implements ChangeStatusContract.View, HasSupportFragmentInjector {
+    @Inject
+    ChangeStatusContract.Presenter presenter;
+    private FragmentChangeStatusBinding binding;
+
     private static final String STATUS_NAME = "statusName";
     private static final String TASK_ID = "taskId";
     private static final String STATUS_NEW = "NEW TASK";
@@ -36,16 +45,13 @@ public class ChangeStatusFragment extends BaseDialog implements ChangeStatusCont
         fragment.setArguments(bundle);
         return fragment;
     }
-
-    @Inject
-    ChangeStatusContract.Presenter presenter;
-
-    private FragmentChangeStatusBinding binding;
-
+    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_change_status, null, false);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.fragment_change_status, null, false);
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             task_id = bundle.getString(TASK_ID);
@@ -56,7 +62,9 @@ public class ChangeStatusFragment extends BaseDialog implements ChangeStatusCont
             String remarks = binding.etRemarks.getText().toString();
             presenter.changeStatus(task_id, String.valueOf(statusName), remarks);
         });
-        return binding.getRoot();
+
+        dialog.setContentView(binding.getRoot());
+        return dialog;
     }
 
     @Override
@@ -90,4 +98,5 @@ public class ChangeStatusFragment extends BaseDialog implements ChangeStatusCont
         }
         return STATUS_NEW;
     }
+
 }
