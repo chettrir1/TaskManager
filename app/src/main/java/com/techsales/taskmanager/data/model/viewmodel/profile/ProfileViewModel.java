@@ -1,6 +1,6 @@
 package com.techsales.taskmanager.data.model.viewmodel.profile;
 
-import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.login.UserInfo;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;

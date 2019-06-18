@@ -3,7 +3,7 @@ package com.techsales.taskmanager.data.model.viewmodel.login;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
-import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.login.UserInfo;
 
 public class LoginViewModel extends BaseObservable {
     private UserInfo userInfo;

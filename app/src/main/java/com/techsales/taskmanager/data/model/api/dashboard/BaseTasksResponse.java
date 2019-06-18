@@ -1,4 +1,4 @@
-package com.techsales.taskmanager.data.model.dashboard.bottom;
+package com.techsales.taskmanager.data.model.api.dashboard;
 
 import android.content.Context;
 

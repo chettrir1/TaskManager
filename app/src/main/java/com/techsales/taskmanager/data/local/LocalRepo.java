@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.login.UserInfo;
 
 import javax.inject.Inject;
 

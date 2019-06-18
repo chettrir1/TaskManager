@@ -2,8 +2,8 @@ package com.techsales.taskmanager.data;
 
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
-import com.techsales.taskmanager.data.model.UserInfo;
-import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
+import com.techsales.taskmanager.data.model.login.UserInfo;
+import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;

@@ -6,7 +6,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.data.model.dashboard.bottom.WhereTask;
+import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.utils.Commons;
 
 public class DashboardBottomRecyclerViewModel extends BaseObservable {

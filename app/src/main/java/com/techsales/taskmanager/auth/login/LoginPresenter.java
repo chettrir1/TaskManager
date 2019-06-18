@@ -3,7 +3,7 @@ package com.techsales.taskmanager.auth.login;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
-import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 import com.techsales.taskmanager.utils.Commons;

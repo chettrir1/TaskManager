@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:padding="@dimen/spacing_small"
-                        android:text="Personal Information"
+                        android:text="@string/text_personal_information"
                         android:textAllCaps="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGreen" />

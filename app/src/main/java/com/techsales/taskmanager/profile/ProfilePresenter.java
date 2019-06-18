@@ -1,6 +1,6 @@
 package com.techsales.taskmanager.profile;
 
-import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.viewmodel.profile.ProfileViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 

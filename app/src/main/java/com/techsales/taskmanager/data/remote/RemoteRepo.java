@@ -1,8 +1,8 @@
 package com.techsales.taskmanager.data.remote;
 
-import com.techsales.taskmanager.data.model.UserInfo;
+import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
-import com.techsales.taskmanager.data.model.dashboard.bottom.BaseTasksResponse;
+import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 
 import java.util.Map;
 

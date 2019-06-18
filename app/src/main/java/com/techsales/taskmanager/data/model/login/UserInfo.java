@@ -1,4 +1,4 @@
-package com.techsales.taskmanager.data.model;
+package com.techsales.taskmanager.data.model.login;
 
 import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;
