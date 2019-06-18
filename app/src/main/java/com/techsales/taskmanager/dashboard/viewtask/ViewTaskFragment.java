@@ -42,6 +42,10 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_task, null, false);
         getDataWithBundle();
 
+        binding.includeStatus.tvStatusOpen.setOnClickListener(view -> {
+
+        });
+
         return binding.getRoot();
     }
 
@@ -57,6 +61,5 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
             }
         }
     }
-
 
 }

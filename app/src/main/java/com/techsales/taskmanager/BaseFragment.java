@@ -26,4 +26,5 @@ public class BaseFragment extends DaggerFragment {
             this.component = TaskManagerApp.component(activity);
         }
     }
+
 }

@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,16 +107,17 @@
                 android:layout_height="@dimen/view_height"
                 android:background="@color/colorView" />
 
-            <!-- <include
-                 android:id="@+id/includeStatus"
-                 layout="@layout/snippet_view_task_change_status"
-                 bind:changeStatus="@{taskDetails}" />-->
+            <include
+                android:id="@+id/includeStatus"
+                layout="@layout/snippet_view_task_change_status" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/view_height"
                 android:background="@color/colorView" />
 
+            <include layout="@layout/snippet_view_task_file_upload"
+                android:id="@+id/includeCompleteTask"/>
         </LinearLayout>
 
 

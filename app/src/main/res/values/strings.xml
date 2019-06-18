@@ -76,4 +76,7 @@
     <string name="text_temporory">Temporory</string>
     <string name="text_contact">Contact</string>
     <string name="text_personal_information">Personal Information</string>
+    <string name="text_complete_task">Complete Task</string>
+    <string name="text_upload_file_and_complete">Upload file and complete</string>
+    <string name="text_enter_remarks_optional">Enter remarks (Optional)</string>
 </resources>

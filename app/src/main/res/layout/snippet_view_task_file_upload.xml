@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextStyleBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/text_complete_task"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/h6_headline_medium" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_height"
+            android:background="@color/colorView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etUsernameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small">
+
+            <EditText
+                android:id="@+id/etRemarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_enter_remarks_optional"
+                android:imeActionId="6"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:singleLine="false"
+                android:lines="4"
+                android:maxLines="4"
+                android:minLines="4" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/tv_status_open"
+            style="@style/TextViewFileUpload"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_tiny"
+            android:background="@drawable/bg_button_view"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/text_upload_file_and_complete"
+            android:textAllCaps="true"
+            android:textColor="@color/colorGreen"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</layout>
