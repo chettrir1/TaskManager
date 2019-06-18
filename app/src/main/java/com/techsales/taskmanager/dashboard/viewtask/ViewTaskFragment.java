@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.dashboard.viewtask.changestatus.ChangeStatusFragment;
 import com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.databinding.FragmentViewTaskBinding;
@@ -42,9 +44,9 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_task, null, false);
         getDataWithBundle();
 
-        binding.includeStatus.tvStatusOpen.setOnClickListener(view -> {
+        binding.includeStatus.tvStatusOpen.setOnClickListener(view -> openBottomDialog("Open Task"));
 
-        });
+        binding.includeStatus.tvStatusAppend.setOnClickListener(view -> openBottomDialog("Append Task"));
 
         return binding.getRoot();
     }
@@ -60,6 +62,12 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                 }
             }
         }
+    }
+
+    private void openBottomDialog(String name) {
+        ChangeStatusFragment fragment = ChangeStatusFragment.getInstance(name);
+        if (getActivity() != null)
+            fragment.show(getActivity().getSupportFragmentManager(), "dialog");
     }
 
 }
