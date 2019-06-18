@@ -2,6 +2,7 @@ package com.techsales.taskmanager.data;
 
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
+import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
@@ -25,7 +26,7 @@ public class Data {
     private final DatabaseRepo databaseRepo;
 
     @Inject
-    public Data(LocalRepo localRepo, RemoteRepo remoteRepo,DatabaseRepo databaseRepo) {
+    public Data(LocalRepo localRepo, RemoteRepo remoteRepo, DatabaseRepo databaseRepo) {
         this.localRepo = localRepo;
         this.remoteRepo = remoteRepo;
         this.databaseRepo = databaseRepo;
@@ -78,6 +79,18 @@ public class Data {
 
     }
 
+    public Single<BaseResponse> requestChangeStatus(String taskId, String taskStatus, String remarks) {
+        HashMap<String, Object> params = new HashMap<>(3);
+        params.put("task_id", taskId);
+        params.put("status", taskStatus);
+        params.put("remarks", remarks);
+
+        return remoteRepo.requestChangeStatus(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+
     public Single<List<WhereTask>> getAllTasks(String user_id) {
         return remoteRepo.getNewTasks(user_id)
                 .flatMap(new NonNullMapper<>())
@@ -87,12 +100,13 @@ public class Data {
 
     }
 
-    public  Single<Long> insertNotes(Notes notes){
+    public Single<Long> insertNotes(Notes notes) {
         return databaseRepo.insertToNotes(notes)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-    public Single<List<Notes>> getAllNotes(){
+
+    public Single<List<Notes>> getAllNotes() {
         return databaseRepo.getAllNotes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

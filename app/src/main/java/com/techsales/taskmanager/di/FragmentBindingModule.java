@@ -41,7 +41,7 @@ abstract class FragmentBindingModule {
     abstract NoteListFragment noteListFragment();
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = ViewTaskFragmentModule.class)
+    @ContributesAndroidInjector(modules = {ViewTaskFragmentModule.class, DialogBindingModule.class})
     abstract ViewTaskFragment viewTaskFragment();
 
 }

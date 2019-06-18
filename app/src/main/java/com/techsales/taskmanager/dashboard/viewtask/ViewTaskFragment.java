@@ -24,6 +24,7 @@ import javax.inject.Inject;
 public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.View {
 
     private static final String TASK_DETAILS = "taskDetails";
+    private String task_id;
 
     public static Fragment getInstance(TaskDetails details) {
         ViewTaskFragment fragment = new ViewTaskFragment();
@@ -44,9 +45,9 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_task, null, false);
         getDataWithBundle();
 
-        binding.includeStatus.tvStatusOpen.setOnClickListener(view -> openBottomDialog("Open Task"));
+        binding.includeStatus.tvStatusOpen.setOnClickListener(view -> openBottomDialog(task_id, 1));
 
-        binding.includeStatus.tvStatusAppend.setOnClickListener(view -> openBottomDialog("Append Task"));
+        binding.includeStatus.tvStatusAppend.setOnClickListener(view -> openBottomDialog(task_id, 2));
 
         return binding.getRoot();
     }
@@ -56,6 +57,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         if (bundle != null) {
             TaskDetails taskDetails = (TaskDetails) bundle.getSerializable(TASK_DETAILS);
             if (taskDetails != null) {
+                task_id = String.valueOf(taskDetails.getTaskId());
                 TaskDetailsViewModel taskDetailsViewModel = presenter.getTaskDetailsViewModel(taskDetails);
                 if (taskDetailsViewModel != null) {
                     binding.setTaskDetails(taskDetailsViewModel);
@@ -64,10 +66,11 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         }
     }
 
-    private void openBottomDialog(String name) {
-        ChangeStatusFragment fragment = ChangeStatusFragment.getInstance(name);
+    private void openBottomDialog(String id, int statusCount) {
+        ChangeStatusFragment fragment = ChangeStatusFragment.getInstance(id, statusCount);
         if (getActivity() != null)
             fragment.show(getActivity().getSupportFragmentManager(), "dialog");
+            fragment.setCancelable(false);
     }
 
 }

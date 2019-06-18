@@ -5,7 +5,7 @@ import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 
 class ViewTaskPresenter implements ViewTaskContract.Presenter {
-    private TaskManagerComponent component;
+    private final TaskManagerComponent component;
     private ViewTaskContract.View view;
 
     ViewTaskPresenter(TaskManagerComponent component, ViewTaskContract.View view) {

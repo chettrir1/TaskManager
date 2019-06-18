@@ -15,8 +15,8 @@ public class ViewTaskFragmentModule {
         return fragment;
     }
 
-    @FragmentScope
     @Provides
+    @FragmentScope
     ViewTaskContract.Presenter providePresenter(TaskManagerComponent component, ViewTaskContract.View view) {
         return new ViewTaskPresenter(component, view);
     }

@@ -96,6 +96,7 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
 
     public TaskDetails getTaskDetails() {
         TaskDetails taskDetails = new TaskDetails();
+        taskDetails.setTaskId(whereTask.getId());
         taskDetails.setTaskName(whereTask.getName());
         taskDetails.setTaskDescription(whereTask.getDescription());
         taskDetails.setAssignedDate(whereTask.getCreatedAt());

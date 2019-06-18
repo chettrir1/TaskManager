@@ -7,6 +7,7 @@ import com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsVie
 import java.io.Serializable;
 
 public class TaskDetails implements Serializable {
+    private int taskId;
     private String taskName;
     private String taskDescription;
     private String assignedDate;
@@ -15,6 +16,14 @@ public class TaskDetails implements Serializable {
     private int taskPriority;
     private String clientName;
     private String clientPhone;
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
 
     public String getTaskName() {
         return taskName;
