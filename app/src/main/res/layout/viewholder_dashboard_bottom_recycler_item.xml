@@ -54,16 +54,17 @@
             <TextView
                 android:id="@+id/task_assigned_by"
                 style="@style/TextStyleBlack"
+                android:layout_marginBottom="@dimen/spacing_tiny"
                 android:text="@{dashboardBottom.createdBy}"
                 android:textSize="@dimen/caption_medium" />
 
             <TextView
                 android:id="@+id/task_status"
                 style="@style/TextStyleBlack"
-                android:background="@{dashboardBottom.textColor}"
-                android:text="@{dashboardBottom.status}"
-                android:paddingRight="@dimen/spacing_small"
+                android:background="@{dashboardBottom.backgroundColor}"
                 android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_small"
+                android:text="@{dashboardBottom.status}"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/over_line_semi_bold_caps"
                 android:textStyle="bold"

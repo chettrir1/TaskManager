@@ -24,6 +24,7 @@ import com.techsales.taskmanager.auth.login.LoginActivity;
 import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragment;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
+import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.databinding.FragmentDashboardBinding;
 import com.techsales.taskmanager.utils.GridSpacingItemDecoration;
 
@@ -147,18 +148,11 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     }
 
     private void viewTaskDetails(DashboardBottomRecyclerViewModel viewModel) {
+
         if (getActivity() != null) {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.dashboardContainer,
-                            ViewTaskFragment.getInstance(viewModel.getName(),
-                                    viewModel.getTaskDescription(),
-                                    viewModel.getStatus(), viewModel.getTextColor(),
-                                    viewModel.getTaskAssignedDate(),
-                                    viewModel.getDeadline(),
-                                    viewModel.getTaskPriority(),
-                                    viewModel.getPriorityColor(),
-                                    viewModel.getClientName(),
-                                    viewModel.getClientPhone()))
+                            ViewTaskFragment.getInstance(viewModel.getTaskDetails()))
                     .addToBackStack(null)
                     .commit();
         }

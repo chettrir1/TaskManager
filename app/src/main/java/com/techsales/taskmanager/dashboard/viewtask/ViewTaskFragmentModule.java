@@ -1,7 +1,6 @@
 package com.techsales.taskmanager.dashboard.viewtask;
 
-import com.techsales.taskmanager.dashboard.DashboardContract;
-import com.techsales.taskmanager.dashboard.DashboardFragment;
+import com.techsales.taskmanager.di.TaskManagerComponent;
 import com.techsales.taskmanager.di.scope.FragmentScope;
 
 import dagger.Module;
@@ -12,7 +11,13 @@ public class ViewTaskFragmentModule {
 
     @FragmentScope
     @Provides
-    DashboardContract.View provideFragment(DashboardFragment fragment) {
+    ViewTaskContract.View provideFragment(ViewTaskFragment fragment) {
         return fragment;
+    }
+
+    @FragmentScope
+    @Provides
+    ViewTaskContract.Presenter providePresenter(TaskManagerComponent component, ViewTaskContract.View view) {
+        return new ViewTaskPresenter(component, view);
     }
 }

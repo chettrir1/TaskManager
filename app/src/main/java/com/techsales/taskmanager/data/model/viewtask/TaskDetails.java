@@ -1,5 +1,9 @@
 package com.techsales.taskmanager.data.model.viewtask;
 
+import android.content.Context;
+
+import com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel;
+
 import java.io.Serializable;
 
 public class TaskDetails implements Serializable {
@@ -7,8 +11,8 @@ public class TaskDetails implements Serializable {
     private String taskDescription;
     private String assignedDate;
     private String deadline;
-    private String taskStatus;
-    private String taskPriority;
+    private int taskStatus;
+    private int taskPriority;
     private String clientName;
     private String clientPhone;
 
@@ -44,19 +48,19 @@ public class TaskDetails implements Serializable {
         this.deadline = deadline;
     }
 
-    public String getTaskStatus() {
+    public int getTaskStatus() {
         return taskStatus;
     }
 
-    public void setTaskStatus(String taskStatus) {
+    public void setTaskStatus(int taskStatus) {
         this.taskStatus = taskStatus;
     }
 
-    public String getTaskPriority() {
+    public int getTaskPriority() {
         return taskPriority;
     }
 
-    public void setTaskPriority(String taskPriority) {
+    public void setTaskPriority(int taskPriority) {
         this.taskPriority = taskPriority;
     }
 
@@ -74,5 +78,9 @@ public class TaskDetails implements Serializable {
 
     public void setClientPhone(String clientPhone) {
         this.clientPhone = clientPhone;
+    }
+
+    public static TaskDetailsViewModel mapToTaskDetailsViewModel(Context context, TaskDetails taskDetails) {
+        return new TaskDetailsViewModel(context, taskDetails);
     }
 }

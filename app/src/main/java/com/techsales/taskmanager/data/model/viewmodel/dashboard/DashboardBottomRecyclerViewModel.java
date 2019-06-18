@@ -7,6 +7,7 @@ import androidx.databinding.Bindable;
 
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
+import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.utils.Commons;
 
 public class DashboardBottomRecyclerViewModel extends BaseObservable {
@@ -73,7 +74,7 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
     }
 
     @Bindable
-    public int getTextColor() {
+    public int getBackgroundColor() {
         int count = whereTask.getStatus();
         if (count == COUNT_ONE) {
             return context.getResources().getColor(R.color.colorBlue);
@@ -93,70 +94,17 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
         return context.getResources().getColor(R.color.colorBlue);
     }
 
-    @Bindable
-    public String getTaskDescription() {
-        return whereTask.getDescription();
+    public TaskDetails getTaskDetails() {
+        TaskDetails taskDetails = new TaskDetails();
+        taskDetails.setTaskName(whereTask.getName());
+        taskDetails.setTaskDescription(whereTask.getDescription());
+        taskDetails.setAssignedDate(whereTask.getCreatedAt());
+        taskDetails.setDeadline(whereTask.getDeadline());
+        taskDetails.setTaskStatus(whereTask.getStatus());
+        taskDetails.setTaskPriority(whereTask.getPriority());
+        taskDetails.setClientName(whereTask.getClientName());
+        taskDetails.setClientPhone(whereTask.getClientNumber());
+        return taskDetails;
     }
 
-    @Bindable
-    public String getTaskAssignedDate() {
-        return whereTask.getCreatedAt();
-    }
-
-    @Bindable
-    public String getDeadline() {
-        return whereTask.getDeadline();
-    }
-
-    @Bindable
-    public String getTaskPriority() {
-        int priority = whereTask.getPriority();
-        if (priority == COUNT_ONE) {
-            return PRIORITY_TYPE_ONE;
-        }
-
-        if (priority == COUNT_TWO) {
-            return PRIORITY_TYPE_TWO;
-        }
-
-        if (priority == COUNT_THREE) {
-            return PRIORITY_TYPE_THREE;
-        }
-
-        return "N/A";
-    }
-
-    @Bindable
-    public int getPriorityColor() {
-        int count = whereTask.getPriority();
-        if (count == COUNT_ONE) {
-            return context.getResources().getColor(R.color.colorBlue);
-        }
-
-        if (count == COUNT_TWO) {
-            return context.getResources().getColor(R.color.colorGreen);
-        }
-
-        if (count == COUNT_THREE) {
-            return context.getResources().getColor(R.color.colorRed);
-        }
-
-        return context.getResources().getColor(R.color.colorBlue);
-    }
-
-    @Bindable
-    public String getClientName() {
-        if (whereTask.getClientName() != null) {
-            return whereTask.getClientName();
-        }
-        return context.getResources().getString(R.string.text_not_available);
-    }
-
-    @Bindable
-    public String getClientPhone() {
-        if (whereTask.getClientNumber() != null) {
-            return whereTask.getClientNumber();
-        }
-        return context.getResources().getString(R.string.text_not_available);
-    }
 }

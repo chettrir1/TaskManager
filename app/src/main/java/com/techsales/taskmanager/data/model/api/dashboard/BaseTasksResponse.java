@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
+import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 
 import java.util.ArrayList;
 import java.util.List;

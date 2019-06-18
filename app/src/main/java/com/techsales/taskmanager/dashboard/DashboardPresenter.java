@@ -24,7 +24,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     private Disposable disposable;
 
 
-    DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
+    public DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
         this.component = component;
         this.view = view;
     }

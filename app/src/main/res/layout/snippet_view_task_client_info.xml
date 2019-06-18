@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="setClient"
+            type="com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +36,7 @@
         <TextView
             android:id="@+id/tvClientName"
             style="@style/TextViewTaskDetail"
+            android:text="@{setClient.clientName}"
             android:textColor="@color/colorLightBlack"
             tools:text="Kantipur temple house" />
 
@@ -44,6 +52,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="@dimen/spacing_small"
             android:autoLink="phone"
+            android:text="@{setClient.clientPhone}"
             android:textColor="@color/colorLightBlack"
             tools:text="9808340360" />
 

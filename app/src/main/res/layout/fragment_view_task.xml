@@ -1,5 +1,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="taskDetails"
+            type="com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,8 +26,8 @@
                 style="@style/TextStyleBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:padding="@dimen/spacing_small"
+                android:text="@{taskDetails.taskName}"
                 android:textSize="@dimen/h6_headline_medium"
                 tools:text="Kantipur temple House" />
 
@@ -30,25 +38,27 @@
 
             <TextView
                 style="@style/TextViewTaskTitle"
+                android:layout_marginBottom="@dimen/spacing_tiny"
                 android:paddingTop="@dimen/spacing_small"
-                android:paddingBottom="@dimen/spacing_tiny_small"
                 android:text="@string/text_description" />
 
             <TextView
                 android:id="@+id/tvTaskDescription"
                 style="@style/TextViewTaskDescription"
-                android:paddingBottom="@dimen/spacing_tiny_small"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:text="@{taskDetails.taskDescription}"
                 android:textColor="@color/colorLightBlack"
                 tools:text="9V ko Battery Alkaline Maxcell 50 pcs lagne smoke sensor ko lagi. Thamel Ma" />
 
             <include
                 android:id="@+id/includeDate"
-                layout="@layout/snippet_view_task_date_field" />
+                layout="@layout/snippet_view_task_date_field"
+                bind:setDate="@{taskDetails}" />
 
             <TextView
                 style="@style/TextViewTaskTitle"
+                android:layout_marginBottom="@dimen/spacing_tiny"
                 android:paddingTop="@dimen/spacing_small"
-                android:paddingBottom="@dimen/spacing_tiny_small"
                 android:text="@string/text_task_status" />
 
             <TextView
@@ -56,16 +66,17 @@
                 style="@style/TextViewTaskDetail"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginBottom="@dimen/spacing_tiny_small"
-                android:background="@color/colorBlue"
+                android:background="@{taskDetails.taskStatusColor}"
                 android:paddingLeft="@dimen/spacing_small"
                 android:paddingRight="@dimen/spacing_small"
+                android:text="@{taskDetails.taskStatus}"
                 android:textColor="@color/colorWhite"
                 tools:text="New" />
 
             <TextView
                 style="@style/TextViewTaskTitle"
+                android:layout_marginBottom="@dimen/spacing_tiny"
                 android:paddingTop="@dimen/spacing_small"
-                android:paddingBottom="@dimen/spacing_tiny_small"
                 android:text="@string/text_task_priority" />
 
             <TextView
@@ -73,8 +84,10 @@
                 style="@style/TextViewTaskDetail"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginBottom="@dimen/spacing_small"
+                android:background="@{taskDetails.taskPriorityColor}"
                 android:paddingLeft="@dimen/spacing_small"
                 android:paddingRight="@dimen/spacing_small"
+                android:text="@{taskDetails.taskPriority}"
                 android:textColor="@color/colorWhite"
                 tools:text="Urgent" />
 
@@ -85,14 +98,18 @@
 
             <include
                 android:id="@+id/includeClient"
-                layout="@layout/snippet_view_task_client_info" />
+                layout="@layout/snippet_view_task_client_info"
+                bind:setClient="@{taskDetails}" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/view_height"
                 android:background="@color/colorView" />
 
-            <include layout="@layout/snippet_view_task_change_status" />
+            <!-- <include
+                 android:id="@+id/includeStatus"
+                 layout="@layout/snippet_view_task_change_status"
+                 bind:changeStatus="@{taskDetails}" />-->
 
             <View
                 android:layout_width="match_parent"
