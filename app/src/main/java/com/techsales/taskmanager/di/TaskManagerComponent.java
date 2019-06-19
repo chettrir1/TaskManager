@@ -7,6 +7,7 @@ import com.techsales.taskmanager.BuildTypeComponent;
 import com.techsales.taskmanager.TaskManagerApp;
 import com.techsales.taskmanager.data.Data;
 import com.techsales.taskmanager.data.remote.DataModule;
+import com.techsales.taskmanager.utils.Permission;
 
 import javax.inject.Singleton;
 
@@ -39,4 +40,5 @@ public interface TaskManagerComponent extends AndroidInjector<TaskManagerApp> {
     BuildTypeComponent buildType();
 
     Data data();
+
 }

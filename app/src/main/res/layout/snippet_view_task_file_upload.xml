@@ -37,19 +37,31 @@
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
-                android:singleLine="false"
                 android:lines="4"
                 android:maxLines="4"
-                android:minLines="4" />
+                android:minLines="4"
+                android:singleLine="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tvChooseFile"
+            style="@style/TextViewFileUpload"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:background="@drawable/bg_button_view"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/text_choose_file"
+            android:textAllCaps="true"
+            android:textColor="@color/colorRed"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvStatusOpen"
             style="@style/TextViewFileUpload"
             android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginEnd="@dimen/spacing_tiny"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
             android:background="@drawable/bg_button_view"
             android:padding="@dimen/spacing_small"
             android:text="@string/text_upload_file_and_complete"

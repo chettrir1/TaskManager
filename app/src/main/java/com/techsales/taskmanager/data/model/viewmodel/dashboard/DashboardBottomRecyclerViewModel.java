@@ -10,22 +10,16 @@ import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.utils.Commons;
 
+import static com.techsales.taskmanager.utils.Constants.COUNT_FOUR;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_FOUR;
+import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_ONE;
+import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_THREE;
+import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_TWO;
+
 public class DashboardBottomRecyclerViewModel extends BaseObservable {
-    private static final String STATUS_TYPE_ONE = "NEW";
-    private static final String STATUS_TYPE_TWO = "OPENED";
-    private static final String STATUS_TYPE_THREE = "PENDING";
-    private static final String STATUS_TYPE_FOUR = "COMPLETED";
-
-    private static final int COUNT_ONE = 0;
-    private static final int COUNT_TWO = 1;
-    private static final int COUNT_THREE = 2;
-    private static final int COUNT_FOUR = 3;
-
-
-    private static final String PRIORITY_TYPE_ONE = "NORMAL";
-    private static final String PRIORITY_TYPE_TWO = "IMPORTANT";
-    private static final String PRIORITY_TYPE_THREE = "URGENT";
-
     private WhereTask whereTask;
 
     private Context context;

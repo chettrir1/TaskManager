@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="taskDetails"
             type="com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel" />
@@ -19,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/llMainView"
             android:background="@android:color/white"
             android:orientation="vertical">
 
@@ -116,8 +119,9 @@
                 android:layout_height="@dimen/view_height"
                 android:background="@color/colorView" />
 
-            <include layout="@layout/snippet_view_task_file_upload"
-                android:id="@+id/includeCompleteTask"/>
+            <include
+                android:id="@+id/includeCompleteTask"
+                layout="@layout/snippet_view_task_file_upload" />
         </LinearLayout>
 
 

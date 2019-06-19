@@ -43,7 +43,7 @@
                 android:id="@+id/tv_status_append"
                 style="@style/TextViewChangeStatus"
                 android:layout_marginStart="@dimen/spacing_tiny"
-                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:layout_marginEnd="@dimen/spacing_small"
                 android:background="@drawable/bg_button_view"
                 android:padding="@dimen/spacing_small"
                 android:text="@string/text_append"

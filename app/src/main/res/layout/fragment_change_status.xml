@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/llChangeStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/llChangeStatus"
         android:background="@drawable/bg_round_dialog"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/spacing_small">
+        android:paddingBottom="@dimen/spacing_huge">
 
         <TextView
             style="@style/TextStyleBlack"
@@ -52,6 +52,7 @@
             android:id="@+id/tvStatusName"
             style="@style/TextViewFileUpload"
             android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_tiny"
             android:layout_marginEnd="@dimen/spacing_tiny"
             android:background="@drawable/bg_button_view"
             android:padding="@dimen/spacing_small"
@@ -59,6 +60,19 @@
             android:textColor="@color/colorGreen"
             android:textStyle="bold"
             tools:text="Open Task" />
+
+        <TextView
+            android:id="@+id/tvDaiologDismiss"
+            style="@style/TextViewFileUpload"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_tiny"
+            android:background="@drawable/bg_button_view"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/text_dialog_dismiss"
+            android:textAllCaps="true"
+            android:textColor="@color/colorRed"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

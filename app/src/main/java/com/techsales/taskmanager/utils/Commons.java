@@ -69,7 +69,7 @@ public class Commons {
         textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.error_snackbar_src, 0, 0, 0);
         textView.setCompoundDrawablePadding(context.getResources().getDimensionPixelOffset(R.dimen.spacing_small));
         textView.setGravity(Gravity.CENTER_VERTICAL);
-        textView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        textView.setTextColor(context.getResources().getColor(R.color.colorWhite));
         snackbar.show();
     }
 

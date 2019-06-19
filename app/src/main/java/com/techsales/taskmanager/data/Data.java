@@ -18,6 +18,7 @@ import javax.inject.Singleton;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MultipartBody;
 
 @Singleton
 public class Data {
@@ -88,7 +89,18 @@ public class Data {
         return remoteRepo.requestChangeStatus(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
 
+    public Single<BaseResponse> uploadCompletedTask(String taskId, String taskStatus,
+                                                    String remarks, MultipartBody.Part part) {
+        HashMap<String, Object> params = new HashMap<>(4);
+        params.put("task_id", taskId);
+        params.put("status", taskStatus);
+        params.put("remarks", remarks);
+
+        return remoteRepo.uploadCompletedTask(params, part)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Single<List<WhereTask>> getAllTasks(String user_id) {

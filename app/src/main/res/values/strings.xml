@@ -41,7 +41,7 @@
     <string name="text_add_new_note">Add new note</string>
     <string name="text_edit_note">Edit note</string>
     <string name="text_added_notes">Added Notes</string>
-    <string name="no_tasks_available">No Task Available</string>
+    <string name="no_tasks_available">No Available</string>
     <string name="text_remember_me">Remember me</string>
     <string name="server_error">Server Error</string>
     <string name="empty_field_message">Field can\'t be empty</string>
@@ -79,4 +79,7 @@
     <string name="text_complete_task">Complete Task</string>
     <string name="text_upload_file_and_complete">Upload file and complete</string>
     <string name="text_enter_remarks_optional">Enter remarks (Optional)</string>
+    <string name="text_dialog_dismiss">Dismiss</string>
+    <string name="error_task_status_changed">You can\'t change, please select other option</string>
+    <string name="text_choose_file">Choose File</string>
 </resources>
