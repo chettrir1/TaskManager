@@ -32,7 +32,7 @@
                         android:layout_height="@dimen/spacing_large"
                         android:layout_gravity="center"
                         android:background="?android:attr/actionBarItemBackground"
-                        android:contentDescription="@string/content_toolbar_image"
+                        android:contentDescription="@string/content_image"
                         android:src="@drawable/logo" />
 
                     <TextView

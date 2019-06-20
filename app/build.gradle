@@ -78,6 +78,8 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
     annotationProcessor "androidx.room:room-compiler:$rootProject.ext.roomVersion"
 
+//    Dexter
+    implementation "com.karumi:dexter:$rootProject.ext.dexterVersion"
     debugImplementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
     debugImplementation "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"

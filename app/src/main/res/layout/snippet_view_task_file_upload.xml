@@ -56,6 +56,18 @@
             android:textColor="@color/colorRed"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/ivChoosedImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/bg_bod_edittext"
+            android:contentDescription="@string/content_image"
+            android:padding="@dimen/spacing_tiny"
+            android:scaleType="fitXY"
+            android:src="@color/colorView" />
+
         <TextView
             android:id="@+id/tvStatusOpen"
             style="@style/TextViewFileUpload"

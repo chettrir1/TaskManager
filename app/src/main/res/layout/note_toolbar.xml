@@ -23,7 +23,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/content_toolbar_image"
+                    android:contentDescription="@string/content_image"
                     android:padding="@dimen/spacing_small"
                     android:src="@drawable/ic_back"
                     android:tint="@color/colorWhite" />
@@ -55,7 +55,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/content_toolbar_image"
+                    android:contentDescription="@string/content_image"
                     android:padding="@dimen/spacing_small"
                     android:src="@drawable/ic_done"
                     android:tint="@color/colorWhite" />
