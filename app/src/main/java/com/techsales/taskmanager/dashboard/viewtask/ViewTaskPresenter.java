@@ -52,10 +52,6 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
         view.chooseGallery();
     }
 
-    @Override
-    public void saveImage(Uri uri) {
-
-    }
 
     @Override
     public void permissionDenied() {
@@ -63,13 +59,13 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
     }
 
     @Override
-    public void showPreview(String mFilePath) {
-        view.displayImagePreview(mFilePath);
+    public void showPreview(Uri mFileUri) {
+        view.displayImagePreview(mFileUri);
     }
 
     @Override
-    public void showPreview(Uri mFileUri) {
-        view.displayImagePreview(mFileUri);
+    public void uploadAndComplete() {
+
     }
 
     @Override

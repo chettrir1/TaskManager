@@ -69,7 +69,7 @@
             android:src="@color/colorView" />
 
         <TextView
-            android:id="@+id/tvStatusOpen"
+            android:id="@+id/tvCompleteAndUpload"
             style="@style/TextViewFileUpload"
             android:layout_marginStart="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_small"

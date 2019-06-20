@@ -33,11 +33,13 @@ public interface ViewTaskContract {
 
         void showErrorDialog();
 
-        void displayImagePreview(String mFileFath);
-
         void displayImagePreview(Uri mFileUri);
 
-        String getRealPathFromUri(Uri contentUri);
+        void showProgress();
+
+        void showErrorUpload();
+
+        void showUploadSuccess();
     }
 
     interface Presenter extends BasePresenter {
@@ -47,13 +49,11 @@ public interface ViewTaskContract {
 
         void onGalleryClick();
 
-        void saveImage(Uri uri);
-
         void permissionDenied();
 
-        void showPreview(String mFilePath);
-
         void showPreview(Uri mFileUri);
+
+        void uploadAndComplete();
     }
 
 }

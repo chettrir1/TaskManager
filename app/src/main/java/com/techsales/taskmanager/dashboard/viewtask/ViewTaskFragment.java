@@ -111,6 +111,10 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
         binding.includeCompleteTask.tvChooseFile.setOnClickListener(view -> selectImage());
 
+        binding.includeCompleteTask.tvCompleteAndUpload.setOnClickListener(view -> {
+
+        });
+
         return binding.getRoot();
     }
 
@@ -122,9 +126,8 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                 presenter.showPreview(imageUri);
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
                 if (data != null) {
-                    Uri selectedImage = data.getData();
-                    String mPhotoPath = getRealPathFromUri(selectedImage);
-                    presenter.showPreview(mPhotoPath);
+                    imageUri = data.getData();
+                    presenter.showPreview(imageUri);
                 }
             }
         }
@@ -147,9 +150,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
-                        if (report.areAllPermissionsGranted()) {
-
-                        }
+                        report.areAllPermissionsGranted();
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
                             // show alert dialog navigating to Settings
@@ -243,11 +244,6 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         Toast.makeText(component.context(), getString(R.string.no_tasks_available), Toast.LENGTH_SHORT).show();
     }
 
-    @SuppressLint("CheckResult")
-    @Override
-    public void displayImagePreview(String fileName) {
-        Glide.with(this).load(fileName).apply(new RequestOptions().fitCenter()).into(binding.includeCompleteTask.ivChoosedImage);
-    }
 
     @SuppressLint("CheckResult")
     @Override
@@ -255,23 +251,19 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         Glide.with(this).load(mFileUri).apply(new RequestOptions().fitCenter()).into(binding.includeCompleteTask.ivChoosedImage);
     }
 
+    @Override
+    public void showProgress() {
+
+    }
 
     @Override
-    public String getRealPathFromUri(Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            if (getActivity() != null)
-                cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
-            assert cursor != null;
-            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(columnIndex);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
+    public void showErrorUpload() {
+
+    }
+
+    @Override
+    public void showUploadSuccess() {
+
     }
 
     private void selectImage() {
@@ -299,7 +291,6 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
             if (taskDetails != null) {
                 taskId = String.valueOf(taskDetails.getTaskId());
                 taskStatus = taskDetails.getTaskStatus();
-
                 TaskDetailsViewModel taskDetailsViewModel = presenter.getTaskDetailsViewModel(taskDetails);
                 if (taskDetailsViewModel != null) {
                     binding.setTaskDetails(taskDetailsViewModel);
@@ -317,13 +308,13 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     private void showSettingDailog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(component.context());
-        builder.setTitle("Need Permissions");
-        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
-        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
+        builder.setTitle(getResources().getString(R.string.text_need_permission));
+        builder.setMessage(getResources().getString(R.string.text_permission_message));
+        builder.setPositiveButton(getResources().getString(R.string.text_btn_go_settings), (dialog, which) -> {
             dialog.cancel();
             openSetting();
         });
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton(getResources().getString(R.string.no_tasks_available), (dialog, which) -> dialog.cancel());
         builder.show();
     }
 
