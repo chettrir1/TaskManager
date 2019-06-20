@@ -10,6 +10,8 @@ import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 
 import java.io.File;
 
+import okhttp3.MultipartBody;
+
 public interface ViewTaskContract {
     interface View extends BaseView<Presenter> {
 
@@ -37,7 +39,9 @@ public interface ViewTaskContract {
 
         void showProgress();
 
-        void showErrorUpload();
+        void showErrorUpload(String message);
+
+        void showNetworkNotAvailableError();
 
         void showUploadSuccess();
     }
@@ -53,7 +57,7 @@ public interface ViewTaskContract {
 
         void showPreview(Uri mFileUri);
 
-        void uploadAndComplete();
+        void uploadAndComplete(String taskId, String status, String remarks, MultipartBody.Part part);
     }
 
 }

@@ -2,15 +2,22 @@ package com.techsales.taskmanager.dashboard.viewtask;
 
 import android.net.Uri;
 
+import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.data.error.FailedResponseException;
+import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
 import com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 
 import java.io.File;
 
+import io.reactivex.disposables.Disposable;
+import okhttp3.MultipartBody;
+
 class ViewTaskPresenter implements ViewTaskContract.Presenter {
     private final TaskManagerComponent component;
     private ViewTaskContract.View view;
+    private Disposable disposable;
 
     ViewTaskPresenter(TaskManagerComponent component, ViewTaskContract.View view) {
         this.component = component;
@@ -52,7 +59,6 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
         view.chooseGallery();
     }
 
-
     @Override
     public void permissionDenied() {
         view.showPermissionDialog();
@@ -64,8 +70,19 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
     }
 
     @Override
-    public void uploadAndComplete() {
-
+    public void uploadAndComplete(String taskId, String status, String remarks, MultipartBody.Part part) {
+        view.showProgress();
+        disposable = component.data().uploadCompletedTask(taskId, status, remarks, part)
+                .subscribe(baseResponse -> {
+                    view.showUploadSuccess();
+                }, throwable -> {
+                    if (throwable instanceof FailedResponseException)
+                        view.showErrorUpload(throwable.getMessage());
+                    else if (throwable instanceof NetworkNotAvailableException)
+                        view.showNetworkNotAvailableError();
+                    else
+                        view.showErrorUpload(component.context().getString(R.string.server_error));
+                });
     }
 
     @Override

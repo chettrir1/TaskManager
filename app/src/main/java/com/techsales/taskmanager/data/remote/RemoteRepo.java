@@ -33,7 +33,9 @@ public interface RemoteRepo {
     @Multipart
     @POST("change/status")
     Single<BaseResponse> uploadCompletedTask(
-            @Body Map<String, Object> params,
+            @Query("task_id") String task_id,
+            @Query("status") String status,
+            @Query("remarks") String remarks,
             @Part MultipartBody.Part file);
 
 }

@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,15 +39,22 @@ import com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsVie
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.databinding.FragmentViewTaskBinding;
 import com.techsales.taskmanager.utils.Commons;
+import com.techsales.taskmanager.utils.fileupload.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 import static android.app.Activity.RESULT_OK;
+import static com.techsales.taskmanager.utils.Constants.COUNT_FOUR;
 import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
@@ -112,7 +118,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding.includeCompleteTask.tvChooseFile.setOnClickListener(view -> selectImage());
 
         binding.includeCompleteTask.tvCompleteAndUpload.setOnClickListener(view -> {
-
+            uploadAndComplete();
         });
 
         return binding.getRoot();
@@ -253,17 +259,25 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     @Override
     public void showProgress() {
-
     }
 
     @Override
-    public void showErrorUpload() {
+    public void showErrorUpload(String message) {
+        Commons.showSnackBar(component.context(), binding.llMainView, message);
+    }
+
+    @Override
+    public void showNetworkNotAvailableError() {
+        Commons.showSnackBar(component.context(), binding.llMainView,
+                getString(R.string.network_not_available_error));
 
     }
 
     @Override
     public void showUploadSuccess() {
-
+        Toast.makeText(context, "File upload successful", Toast.LENGTH_SHORT).show();
+        if (getActivity() != null)
+            getActivity().onBackPressed();
     }
 
     private void selectImage() {
@@ -318,4 +332,18 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         builder.show();
     }
 
+    private void uploadAndComplete() {
+        File file = FileUtils.getFile(component.context(), imageUri);
+
+        if (file != null && imageUri != null) {
+            if (getActivity() != null) {
+                RequestBody file_part = RequestBody.create(MediaType.parse(Objects.requireNonNull(getActivity().getContentResolver().getType(imageUri))),
+                        file);
+                MultipartBody.Part part = MultipartBody.Part.createFormData("file_upload", file.getName(), file_part);
+                String remarks = binding.includeCompleteTask.etRemarks.getText().toString();
+                presenter.uploadAndComplete(taskId, String.valueOf(COUNT_FOUR), remarks, part);
+            }
+        }
+
+    }
 }

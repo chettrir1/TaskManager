@@ -93,12 +93,8 @@ public class Data {
 
     public Single<BaseResponse> uploadCompletedTask(String taskId, String taskStatus,
                                                     String remarks, MultipartBody.Part part) {
-        HashMap<String, Object> params = new HashMap<>(4);
-        params.put("task_id", taskId);
-        params.put("status", taskStatus);
-        params.put("remarks", remarks);
 
-        return remoteRepo.uploadCompletedTask(params, part)
+        return remoteRepo.uploadCompletedTask(taskId, taskStatus, remarks, part)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
