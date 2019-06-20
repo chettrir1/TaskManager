@@ -25,7 +25,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -117,9 +119,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
         binding.includeCompleteTask.tvChooseFile.setOnClickListener(view -> selectImage());
 
-        binding.includeCompleteTask.tvCompleteAndUpload.setOnClickListener(view -> {
-            uploadAndComplete();
-        });
+        binding.includeCompleteTask.tvCompleteAndUpload.setOnClickListener(view -> uploadAndComplete());
 
         return binding.getRoot();
     }
@@ -254,20 +254,26 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     @SuppressLint("CheckResult")
     @Override
     public void displayImagePreview(Uri mFileUri) {
-        Glide.with(this).load(mFileUri).apply(new RequestOptions().fitCenter()).into(binding.includeCompleteTask.ivChoosedImage);
+        Glide.with(this).load(mFileUri).apply(new RequestOptions()
+                .fitCenter()).format(DecodeFormat.PREFER_ARGB_8888)
+                .override(Target.SIZE_ORIGINAL)
+                .into(binding.includeCompleteTask.ivChoosedImage);
     }
 
     @Override
     public void showProgress() {
+        binding.includeCompleteTask.progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showErrorUpload(String message) {
+        hideProgressBar();
         Commons.showSnackBar(component.context(), binding.llMainView, message);
     }
 
     @Override
     public void showNetworkNotAvailableError() {
+        hideProgressBar();
         Commons.showSnackBar(component.context(), binding.llMainView,
                 getString(R.string.network_not_available_error));
 
@@ -275,7 +281,8 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     @Override
     public void showUploadSuccess() {
-        Toast.makeText(context, "File upload successful", Toast.LENGTH_SHORT).show();
+        hideProgressBar();
+        Toast.makeText(context, R.string.success_message_file_upload, Toast.LENGTH_SHORT).show();
         if (getActivity() != null)
             getActivity().onBackPressed();
     }
@@ -344,6 +351,11 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                 presenter.uploadAndComplete(taskId, String.valueOf(COUNT_FOUR), remarks, part);
             }
         }
+    }
 
+    private void hideProgressBar() {
+        if (binding.includeCompleteTask.progressBar != null) {
+            binding.includeCompleteTask.progressBar.setVisibility(View.GONE);
+        }
     }
 }

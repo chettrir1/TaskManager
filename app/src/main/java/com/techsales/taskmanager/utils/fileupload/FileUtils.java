@@ -190,8 +190,8 @@ public class FileUtils {
      * @return The value of the _data column, which is typically a file path.
      * @author paulburke
      */
-    public static String getDataColumn(Context context, Uri uri, String selection,
-                                       String[] selectionArgs) {
+    private static String getDataColumn(Context context, Uri uri, String selection,
+                                        String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = "_data";
@@ -325,7 +325,7 @@ public class FileUtils {
     public static File getFile(Context context, Uri uri) {
         if (uri != null) {
             String path = getPath(context, uri);
-            if (path != null && isLocal(path)) {
+            if (isLocal(path)) {
                 return new File(path);
             }
         }

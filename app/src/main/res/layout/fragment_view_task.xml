@@ -19,20 +19,22 @@
         android:scrollbars="none">
 
         <LinearLayout
+            android:id="@+id/llMainView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/llMainView"
             android:background="@android:color/white"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvTaskTitle"
-                style="@style/TextStyleBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:padding="@dimen/spacing_small"
                 android:text="@{taskDetails.taskName}"
+                android:textColor="@android:color/black"
                 android:textSize="@dimen/h6_headline_medium"
+                android:textStyle="bold"
                 tools:text="Kantipur temple House" />
 
             <View

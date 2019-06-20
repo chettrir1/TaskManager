@@ -65,8 +65,17 @@
             android:background="@drawable/bg_bod_edittext"
             android:contentDescription="@string/content_image"
             android:padding="@dimen/spacing_tiny"
-            android:scaleType="fitXY"
             android:src="@color/colorView" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:progressBarStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvCompleteAndUpload"
