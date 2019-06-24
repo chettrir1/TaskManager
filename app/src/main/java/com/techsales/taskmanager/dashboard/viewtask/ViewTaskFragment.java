@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,9 +82,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     @Inject
     ViewTaskContract.Presenter presenter;
-
-    @Inject
-    Context context;
+    private File image_file;
 
     public static Fragment getInstance(TaskDetails details) {
         ViewTaskFragment fragment = new ViewTaskFragment();
@@ -130,8 +129,10 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_TAKE_PHOTO) {
                 presenter.showPreview(imageUri);
+
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
                 if (data != null) {
+                    Log.v("getImageUri", imageUri + "");
                     imageUri = data.getData();
                     presenter.showPreview(imageUri);
                 }
@@ -197,6 +198,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         if (getActivity() != null)
             if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
                 if (file != null) {
+                    image_file = file;
                     imageUri = FileProvider.getUriForFile(component.context(),
                             BuildConfig.APPLICATION_ID + ".provider", file);
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
@@ -282,7 +284,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     @Override
     public void showUploadSuccess() {
         hideProgressBar();
-        Toast.makeText(context, R.string.success_message_file_upload, Toast.LENGTH_SHORT).show();
+        Toast.makeText(component.context(), R.string.success_message_file_upload, Toast.LENGTH_SHORT).show();
         if (getActivity() != null)
             getActivity().onBackPressed();
     }
@@ -340,7 +342,12 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     }
 
     private void uploadAndComplete() {
-        File file = FileUtils.getFile(component.context(), imageUri);
+        File file;
+        if (image_file != null) {
+            file = image_file;
+        } else {
+            file = FileUtils.getFile(component.context(), imageUri);
+        }
 
         if (file != null && imageUri != null) {
             if (getActivity() != null) {

@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/spacing_small">
 
@@ -26,6 +27,7 @@
                 android:id="@+id/task_date"
                 android:layout_width="@dimen/button_height_tall"
                 android:layout_height="@dimen/button_height_tall"
+                android:layout_margin="@dimen/spacing_tiny"
                 android:background="@drawable/bg_circle_view"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
@@ -37,7 +39,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
             android:gravity="center_vertical"
             android:orientation="vertical"
