@@ -6,6 +6,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
+import com.techsales.taskmanager.data.model.notification.NotificationDetails;
 import com.techsales.taskmanager.utils.Commons;
 
 public class NotificationViewModel extends BaseObservable {
@@ -31,6 +32,14 @@ public class NotificationViewModel extends BaseObservable {
     @Bindable
     public String getNotificationDescription() {
         return items.getDescription();
+    }
+
+    public NotificationDetails getNotificationDetails() {
+        NotificationDetails notificationDetails = new NotificationDetails();
+        notificationDetails.setTime(items.getCreatedAt());
+        notificationDetails.setNotificationTitle(getNotificationTitle());
+        notificationDetails.setNotificationDescription(getNotificationDescription());
+        return notificationDetails;
     }
 
 

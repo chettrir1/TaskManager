@@ -15,6 +15,7 @@ import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.notification.NotificationViewModel;
 import com.techsales.taskmanager.databinding.FragmentNotificationBinding;
+import com.techsales.taskmanager.notification.viewnotification.ViewNotificationFragment;
 
 import java.util.List;
 
@@ -37,9 +38,9 @@ public class NotificationFragment extends BaseFragment implements NotificationCo
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notification, null, false);
-
         binding.contentState.setContent(binding.content);
-        // Inflate the layout for this fragment
+        binding.swipeContainer.setColorSchemeResources(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
+        binding.swipeContainer.setOnRefreshListener(() -> presenter.getAllNotification());
         return binding.getRoot();
     }
 
@@ -57,30 +58,48 @@ public class NotificationFragment extends BaseFragment implements NotificationCo
 
     @Override
     public void showProgress() {
-        binding.contentState.showProgress("Please wait...");
+        binding.contentState.showProgress(getResources().getString(R.string.text_please_wait));
     }
 
     @Override
     public void showLoadingError(String message) {
+        hideSwipeContainer();
         binding.contentState.showError(R.drawable.ic_loading_error, message);
     }
 
     @Override
     public void showLoadingSuccess(List<NotificationViewModel> viewModel) {
-        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
-        binding.rvNotification.addItemDecoration(decoration);
+        hideSwipeContainer();
+        if (getContext() != null) {
+            DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
+            binding.rvNotification.addItemDecoration(decoration);
+        }
         NotificationRecyclerAdapter adapter = new NotificationRecyclerAdapter(viewModel, presenter);
         binding.rvNotification.setAdapter(adapter);
         binding.contentState.showContent();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void showNetworkNotAvailable() {
+        hideSwipeContainer();
         binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
     }
 
     @Override
     public void onRecyclerItemClicked(NotificationViewModel viewModel, int position) {
+        if (getActivity() != null) {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.notificationContainer,
+                            ViewNotificationFragment.getInstance(viewModel.getNotificationDetails()))
+                    .addToBackStack(null)
+                    .commit();
+        }
+    }
 
+    private void hideSwipeContainer() {
+        if (binding.swipeContainer.isRefreshing() && binding.swipeContainer != null) {
+            binding.swipeContainer.setRefreshing(false);
+        }
     }
 }

@@ -9,6 +9,7 @@ import com.techsales.taskmanager.data.model.viewmodel.notification.NotificationV
 import com.techsales.taskmanager.di.TaskManagerComponent;
 import com.techsales.taskmanager.utils.Commons;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
@@ -37,11 +38,12 @@ public class NotificationPresenter implements NotificationContract.Presenter {
 
     @Override
     public void getAllNotification() {
+        view.showProgress();
         disposable = component.data().getAllNotification(component.data().savedUserInfo().getId())
                 .subscribe((List<NotificationResponse> notificationResponse) -> {
                     if (Commons.isEmpty(notificationResponse)) {
-                        List<NotificationViewModel> viewModels =
-                                BaseNotificationResponse.mapToViewModel(component.context(), notificationResponse);
+                        List<NotificationViewModel> viewModels;
+                        viewModels = BaseNotificationResponse.mapToViewModel(component.context(), notificationResponse);
                         view.showLoadingSuccess(viewModels);
                     } else {
                         view.showLoadingError(component.context().getString(R.string.data_not_available));
@@ -60,6 +62,6 @@ public class NotificationPresenter implements NotificationContract.Presenter {
 
     @Override
     public void onNotificationItemClicked(NotificationViewModel items, int position) {
-
+        view.onRecyclerItemClicked(items, position);
     }
 }

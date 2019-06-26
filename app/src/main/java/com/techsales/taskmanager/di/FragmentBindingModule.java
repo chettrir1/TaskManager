@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.di;
 
-import android.app.Notification;
-
 import com.techsales.taskmanager.contacts.ContactFragmentModule;
 import com.techsales.taskmanager.contacts.ContactsFragment;
 import com.techsales.taskmanager.dashboard.DashboardFragment;
@@ -17,6 +15,8 @@ import com.techsales.taskmanager.notes.NoteListFragment;
 import com.techsales.taskmanager.notes.NoteListFragmentModule;
 import com.techsales.taskmanager.notification.NotificationFragment;
 import com.techsales.taskmanager.notification.NotificationFragmentModule;
+import com.techsales.taskmanager.notification.viewnotification.ViewNotificationFragment;
+import com.techsales.taskmanager.notification.viewnotification.ViewNotificationFragmentModule;
 import com.techsales.taskmanager.profile.ProfileFragment;
 import com.techsales.taskmanager.profile.ProfileFragmentModule;
 
@@ -57,4 +57,8 @@ abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = NotificationFragmentModule.class)
     abstract NotificationFragment notificationFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = ViewNotificationFragmentModule.class)
+    abstract ViewNotificationFragment viewNotificationFragment();
 }
