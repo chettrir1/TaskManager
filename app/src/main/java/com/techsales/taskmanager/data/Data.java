@@ -3,6 +3,7 @@ package com.techsales.taskmanager.data;
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
+import com.techsales.taskmanager.data.model.api.contacts.ContactsResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
@@ -113,6 +114,13 @@ public class Data {
     public Single<List<NotificationResponse>> getAllNotification(String user_id) {
         return remoteRepo.getNotifications(user_id)
                 .flatMap(baseNotificationResponse -> Single.just(baseNotificationResponse.getNotificationResponses()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<List<ContactsResponse>> getAllContacts() {
+        return remoteRepo.getContacts()
+                .flatMap(baseContactsResponse -> Single.just(baseContactsResponse.getContactsResponses()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

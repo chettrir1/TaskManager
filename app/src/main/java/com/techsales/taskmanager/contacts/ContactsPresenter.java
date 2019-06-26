@@ -11,7 +11,7 @@ public class ContactsPresenter implements ContactsContract.Presenter {
     private ContactsContract.View view;
     private Disposable disposable;
 
-    public ContactsPresenter(TaskManagerComponent component, ContactsContract.View view) {
+    ContactsPresenter(TaskManagerComponent component, ContactsContract.View view) {
         this.component = component;
         this.view = view;
     }
@@ -24,6 +24,5 @@ public class ContactsPresenter implements ContactsContract.Presenter {
     @Override
     public void stop() {
         Commons.dispose(disposable);
-
     }
 }

@@ -1,97 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tvNameLetter"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/bg_circle_view"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-        app:layout_constraintStart_toStartOf="@+id/leftGuidelines"
-        app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
-        tools:text="A" />
+    <data>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/leftGuidelines"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        <variable
+            name="contacts"
+            type="com.techsales.taskmanager.data.model.viewmodel.contacts.ContactsviewModel" />
+    </data>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/rightGuidelines"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelinesTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        <TextView
+            android:id="@+id/tvNameLetter"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_circle_view"
+            android:gravity="center"
+            android:text="@{contacts.shortName}"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@+id/leftGuidelines"
+            app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
+            tools:text="A" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="16dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftGuidelines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
 
-    <TextView
-        android:id="@+id/tvEmployeeName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/ivCall"
-        app:layout_constraintStart_toEndOf="@+id/tvNameLetter"
-        app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
-        tools:text="Raju Basnet" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightGuidelines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
 
-    <TextView
-        android:id="@+id/tvEmployeeDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/ivCall"
-        app:layout_constraintStart_toEndOf="@+id/tvNameLetter"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmployeeName"
-        tools:text="Administration" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinesTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
 
-    <TextView
-        android:id="@+id/tvEmployeePhone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-        app:layout_constraintEnd_toStartOf="@+id/ivCall"
-        app:layout_constraintStart_toStartOf="@+id/tvEmployeeDetails"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmployeeDetails"
-        tools:text="9808340360" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
 
-    <ImageView
-        android:id="@+id/ivCall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@null"
-        android:tint="@color/colorGreen"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-        app:layout_constraintEnd_toStartOf="@+id/rightGuidelines"
-        app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
-        app:srcCompat="@drawable/ic_call"
-        tools:ignore="VectorDrawableCompat" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvEmployeeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{contacts.nameAndPost}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toStartOf="@+id/ivCall"
+            app:layout_constraintStart_toEndOf="@+id/tvNameLetter"
+            app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
+            tools:text="Raju Basnet" />
+
+        <TextView
+            android:id="@+id/tvEmployeeDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{contacts.department}"
+            app:layout_constraintEnd_toStartOf="@+id/ivCall"
+            app:layout_constraintStart_toEndOf="@+id/tvNameLetter"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmployeeName"
+            tools:text="Administration" />
+
+        <TextView
+            android:id="@+id/tvEmployeePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{contacts.phoneAndExtension}"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@+id/ivCall"
+            app:layout_constraintStart_toStartOf="@+id/tvEmployeeDetails"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmployeeDetails"
+            tools:text="9808340360" />
+
+        <ImageView
+            android:id="@+id/ivCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@null"
+            android:tint="@color/colorGreen"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuidelines"
+            app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
+            app:srcCompat="@drawable/ic_call"
+            tools:ignore="VectorDrawableCompat" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
