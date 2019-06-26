@@ -24,6 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <activity android:name=".notification.container.NotificationActivity"></activity>
         <activity android:name=".notes.container.NoteListActivity" />
         <activity android:name=".notes.container.AddNotesActivity" />
         <activity android:name=".contacts.container.ContactsActivity" />

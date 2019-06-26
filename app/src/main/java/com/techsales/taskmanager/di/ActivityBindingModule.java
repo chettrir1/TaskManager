@@ -12,6 +12,8 @@ import com.techsales.taskmanager.notes.container.AddNotesActivity;
 import com.techsales.taskmanager.notes.container.AddNotesActivityModule;
 import com.techsales.taskmanager.notes.container.NoteListActivity;
 import com.techsales.taskmanager.notes.container.NoteListActivityModule;
+import com.techsales.taskmanager.notification.container.NotificationActivity;
+import com.techsales.taskmanager.notification.container.NotificationActivityModule;
 import com.techsales.taskmanager.profile.container.ProfileActivity;
 import com.techsales.taskmanager.profile.container.ProfileActivityModule;
 
@@ -45,4 +47,8 @@ abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = {NoteListActivityModule.class, FragmentBindingModule.class})
     abstract NoteListActivity noteListActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {NotificationActivityModule.class, FragmentBindingModule.class})
+    abstract NotificationActivity notificationActivity();
 }

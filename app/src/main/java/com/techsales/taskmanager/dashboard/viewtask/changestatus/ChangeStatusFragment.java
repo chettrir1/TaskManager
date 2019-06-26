@@ -89,6 +89,8 @@ public class ChangeStatusFragment extends BaseDialogFragment implements ChangeSt
     public void showChangeStatusSuccess(String message) {
         Toast.makeText(component.context(), message, Toast.LENGTH_SHORT).show();
         this.dismiss();
+        if (getActivity() != null)
+            getActivity().onBackPressed();
     }
 
     private String getStatusCount() {

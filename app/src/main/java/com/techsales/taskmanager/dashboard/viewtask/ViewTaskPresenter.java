@@ -73,9 +73,7 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
     public void uploadAndComplete(String taskId, String status, String remarks, MultipartBody.Part part) {
         view.showProgress();
         disposable = component.data().uploadCompletedTask(taskId, status, remarks, part)
-                .subscribe(baseResponse -> {
-                    view.showUploadSuccess();
-                }, throwable -> {
+                .subscribe(baseResponse -> view.showUploadSuccess(), throwable -> {
                     if (throwable instanceof FailedResponseException)
                         view.showErrorUpload(throwable.getMessage());
                     else if (throwable instanceof NetworkNotAvailableException)

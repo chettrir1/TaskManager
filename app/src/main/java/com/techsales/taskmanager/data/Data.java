@@ -6,6 +6,7 @@ import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
+import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
 
@@ -106,6 +107,14 @@ public class Data {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
+    }
+
+    public Single<NotificationResponse> getAllNotification(String user_id) {
+
+        return remoteRepo.getNotifications(user_id)
+                .flatMap(new NonNullMapper<>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Single<Long> insertNotes(Notes notes) {

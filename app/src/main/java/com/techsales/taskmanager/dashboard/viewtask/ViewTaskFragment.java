@@ -73,16 +73,17 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     private static final long NEEDED_SPACE = 1048576;
     private static final int REQUEST_TAKE_PHOTO = 101;
     private static final int REQUEST_GALLERY_PHOTO = 102;
-    private static String[] permissions = new String[]{
-            Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
     private static final String TAKE_PHOTO = "Take photo";
     private static final String CHOOSE_FROM_GALLERY = "Choose from gallery";
     private static final String DIALOG_CANCEL = "Dismiss";
 
+    private static String[] permissions = new String[]{
+            Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+    private File image_file;
+
     @Inject
     ViewTaskContract.Presenter presenter;
-    private File image_file;
 
     public static Fragment getInstance(TaskDetails details) {
         ViewTaskFragment fragment = new ViewTaskFragment();
@@ -132,7 +133,6 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
                 if (data != null) {
-                    Log.v("getImageUri", imageUri + "");
                     imageUri = data.getData();
                     presenter.showPreview(imageUri);
                 }
