@@ -12,8 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.techsales.taskmanager.R;
 
 import java.text.ParseException;
@@ -74,7 +72,7 @@ public class Commons {
     }
 
     public static boolean isEmpty(List list) {
-        return list == null || list.isEmpty();
+        return list != null && !list.isEmpty();
     }
 
     public static <T> T checkNotNull(T value, String message) {
@@ -85,8 +83,7 @@ public class Commons {
     }
 
     public static Date getCurrentDateTime() {
-        Date currentDate = Calendar.getInstance().getTime();
-        return currentDate;
+        return Calendar.getInstance().getTime();
     }
 
     public static String getFormattedDateString(Date date) {
@@ -131,10 +128,11 @@ public class Commons {
             formatter.setTimeZone(TimeZone.getTimeZone("GMT+5:45"));
             Date value = formatter.parse(date);
 
-            String[] splited = value.toString().split("\\s+");
-            parsed_date = String.valueOf(splited[0]);
-
-        } catch (Exception e) {
+            if (value != null) {
+                String[] splited = value.toString().split("\\s+");
+                parsed_date = String.valueOf(splited[0]);
+            }
+        } catch (Exception ignored) {
         }
         return parsed_date;
     }

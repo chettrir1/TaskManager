@@ -95,7 +95,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         disposable = component.data().getAllTasks(component.data().savedUserInfo().getId())
                 .subscribe((List<WhereTask> whereTasksList) -> {
 //                    int itemCount = tasks.getItemCount();
-                    if (!Commons.isEmpty(whereTasksList)) {
+                    if (Commons.isEmpty(whereTasksList)) {
                         List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(component.context(), whereTasksList);
                         view.showBottomRecyclerLoadSuccess(viewModels);
                     } else {

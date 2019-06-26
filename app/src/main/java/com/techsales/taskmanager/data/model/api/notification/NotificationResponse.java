@@ -1,9 +1,6 @@
 package com.techsales.taskmanager.data.model.api.notification;
 
-import android.content.Context;
-
 import com.google.gson.annotations.SerializedName;
-import com.techsales.taskmanager.data.model.viewmodel.notification.NotificationViewModel;
 
 public class NotificationResponse {
     private String id;
@@ -57,7 +54,4 @@ public class NotificationResponse {
         this.createdAt = createdAt;
     }
 
-    public static NotificationViewModel mapToViewModel(Context context, NotificationResponse response) {
-        return new NotificationViewModel(context, response);
-    }
 }

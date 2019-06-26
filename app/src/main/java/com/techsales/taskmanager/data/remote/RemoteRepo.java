@@ -1,10 +1,11 @@
 package com.techsales.taskmanager.data.remote;
 
+import com.techsales.taskmanager.data.model.api.notification.BaseNotificationResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
-import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Single;
@@ -40,7 +41,7 @@ public interface RemoteRepo {
             @Part MultipartBody.Part file);
 
     @GET("task/notification")
-    Single<BaseResponse<NotificationResponse>> getNotifications(
+    Single<BaseNotificationResponse> getNotifications(
             @Query("user_id") String user_id);
 
 }

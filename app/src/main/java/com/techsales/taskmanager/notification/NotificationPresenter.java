@@ -3,10 +3,13 @@ package com.techsales.taskmanager.notification;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
+import com.techsales.taskmanager.data.model.api.notification.BaseNotificationResponse;
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.model.viewmodel.notification.NotificationViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 import com.techsales.taskmanager.utils.Commons;
+
+import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 
@@ -33,17 +36,19 @@ public class NotificationPresenter implements NotificationContract.Presenter {
     }
 
     @Override
-    public void getAllNotification(String userId) {
-        disposable = component.data().getAllNotification(userId)
-                .subscribe(notificationResponse -> {
-                    if (notificationResponse != null) {
-                        NotificationViewModel viewModel =
-                                NotificationResponse.mapToViewModel(component.context(), notificationResponse);
-                        view.showLoadingSuccess(viewModel);
+    public void getAllNotification() {
+        disposable = component.data().getAllNotification(component.data().savedUserInfo().getId())
+                .subscribe((List<NotificationResponse> notificationResponse) -> {
+                    if (Commons.isEmpty(notificationResponse)) {
+                        List<NotificationViewModel> viewModels =
+                                BaseNotificationResponse.mapToViewModel(component.context(), notificationResponse);
+                        view.showLoadingSuccess(viewModels);
                     } else {
                         view.showLoadingError(component.context().getString(R.string.data_not_available));
                     }
-                }, throwable -> {
+                }, throwable ->
+
+                {
                     if (throwable instanceof FailedResponseException)
                         view.showLoadingError(throwable.getMessage());
                     else if (throwable instanceof NetworkNotAvailableException)
@@ -51,5 +56,10 @@ public class NotificationPresenter implements NotificationContract.Presenter {
                     else
                         view.showLoadingError(component.context().getString(R.string.server_error));
                 });
+    }
+
+    @Override
+    public void onNotificationItemClicked(NotificationViewModel items, int position) {
+
     }
 }

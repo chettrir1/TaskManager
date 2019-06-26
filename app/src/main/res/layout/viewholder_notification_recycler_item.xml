@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -8,8 +10,7 @@
             type="com.techsales.taskmanager.data.model.viewmodel.notification.NotificationViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,14 +18,14 @@
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center|clip_vertical|center_vertical"
-            android:padding="@dimen/spacing_small"
             android:text="@{notification.timeAgo}"
             android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toTopOf="@+id/barrier"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMessage"
             app:layout_constraintStart_toStartOf="@+id/leftGuideline"
-            app:layout_constraintTop_toTopOf="@+id/topGuideline"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/tvTitle"
             tools:text="Just now" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -52,7 +53,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/open_sans"
             android:singleLine="true"
@@ -69,16 +70,15 @@
             android:id="@+id/tvMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/open_sans"
             android:maxLines="2"
             android:singleLine="false"
             android:text="@{notification.notificationDescription}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomGuideline"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tvTime"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="MotionLayout is a new class available in the ConstraintLayout 2.0 library to help Android developers manage motion and widget animation in their application." />
@@ -90,5 +90,13 @@
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="tvMessage,tvTitle,tvTime"
             tools:layout_editor_absoluteY="88dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

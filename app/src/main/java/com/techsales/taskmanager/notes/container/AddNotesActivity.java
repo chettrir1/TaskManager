@@ -22,6 +22,7 @@ public class AddNotesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityAddNotesBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_add_notes);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.addNotesContainer, AddNotesFragment.getInstance())
                 .commit();

@@ -6,30 +6,31 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
+import com.techsales.taskmanager.utils.Commons;
 
 public class NotificationViewModel extends BaseObservable {
 
-    private NotificationResponse notificationResponse;
+    private NotificationResponse items;
     private Context context;
 
-    public NotificationViewModel(Context context, NotificationResponse notificationResponse) {
-        this.notificationResponse = notificationResponse;
+    public NotificationViewModel(Context context, NotificationResponse items) {
+        this.items = items;
         this.context = context;
     }
 
     @Bindable
     public String getTimeAgo() {
-        return notificationResponse.getCreatedAt();
+        return Commons.getParsedDay(items.getCreatedAt());
     }
 
     @Bindable
     public String getNotificationTitle() {
-        return notificationResponse.getName();
+        return items.getName();
     }
 
     @Bindable
     public String getNotificationDescription() {
-        return notificationResponse.getDescription();
+        return items.getDescription();
     }
 
 

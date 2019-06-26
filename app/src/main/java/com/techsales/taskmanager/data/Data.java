@@ -3,10 +3,11 @@ package com.techsales.taskmanager.data;
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
+import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
+import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
-import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
 
@@ -76,7 +77,8 @@ public class Data {
                 .doOnSuccess(userInfo -> {
                     if (userInfo != null)
                         localRepo.setUserInfo(userInfo);
-                }).subscribeOn(Schedulers.io())
+                })
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
     }
@@ -106,13 +108,11 @@ public class Data {
                 .flatMap(baseTasksResponse -> Single.just(baseTasksResponse.getwhereTasks()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-
     }
 
-    public Single<NotificationResponse> getAllNotification(String user_id) {
-
+    public Single<List<NotificationResponse>> getAllNotification(String user_id) {
         return remoteRepo.getNotifications(user_id)
-                .flatMap(new NonNullMapper<>())
+                .flatMap(baseNotificationResponse -> Single.just(baseNotificationResponse.getNotificationResponses()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
