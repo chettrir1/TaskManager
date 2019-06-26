@@ -29,8 +29,8 @@ task clean(type: Delete) {
 ext {
     //SDK and tools
     minSdkVersion = 17
-    compileSdkVersion = 28
-    targetSdkVersion = 28
+    compileSdkVersion = 29
+    targetSdkVersion = 29
 
     //App Dependencies
     gsonVersion = '2.8.2'
