@@ -1,4 +1,4 @@
-package com.techsales.taskmanager.notification.container;
+package com.techsales.taskmanager.status.container;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,30 +8,31 @@ import androidx.databinding.DataBindingUtil;
 
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.dashboard.container.DashboardActivity;
-import com.techsales.taskmanager.databinding.ActivityNotificationBinding;
-import com.techsales.taskmanager.notification.NotificationFragment;
+import com.techsales.taskmanager.databinding.ActivityStatusBinding;
+import com.techsales.taskmanager.status.StatusFragment;
 
-public class NotificationActivity extends BaseActivity {
+public class StatusActivity extends BaseActivity {
+
+    private String toolbarTitle = "Status";
 
     public static void start(Activity activity) {
-        Intent intent = new Intent(activity, NotificationActivity.class);
+        Intent intent = new Intent(activity, StatusActivity.class);
         activity.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityNotificationBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_notification);
+        ActivityStatusBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_status);
         if (binding.includeToolbar.customToolbar != null) {
             setSupportActionBar(binding.includeToolbar.customToolbar);
             binding.includeToolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
-            binding.includeToolbar.tvToolbarText.setText(R.string.text_notification);
-
+            binding.includeToolbar.tvToolbarText.setText(toolbarTitle);
             binding.includeToolbar.ivToolbarImage.setOnClickListener(view -> onBackPressed());
         }
+
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.notificationContainer, NotificationFragment.getInstance())
+                .replace(R.id.statusContainer, StatusFragment.getInstance())
                 .commit();
     }
 }

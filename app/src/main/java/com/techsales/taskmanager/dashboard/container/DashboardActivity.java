@@ -63,7 +63,9 @@ public class DashboardActivity extends BaseActivity {
                 break;
 
             case R.id.note_src:
+/*
                 NoteListActivity.start(this);
+*/
                 break;
 
             case R.id.logout_src:
