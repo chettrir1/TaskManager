@@ -132,5 +132,4 @@ public class TaskDetailsViewModel extends BaseObservable {
         return context.getResources().getColor(R.color.colorBlue);
     }
 
-
 }

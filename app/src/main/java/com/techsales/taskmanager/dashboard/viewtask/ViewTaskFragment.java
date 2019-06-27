@@ -3,7 +3,6 @@ package com.techsales.taskmanager.dashboard.viewtask;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +97,12 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_task, null, false);
         getDataWithBundle();
 
+        if (taskStatus == COUNT_THREE) {
+            setCompleteTaskVisible();
+        } else {
+            setChangeStatusVisible();
+        }
+
         binding.includeStatus.tvStatusOpen.setOnClickListener(view -> {
             if (taskStatus == COUNT_ONE) {
                 openBottomDialog(taskId, COUNT_TWO);
@@ -122,6 +126,16 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding.includeCompleteTask.tvCompleteAndUpload.setOnClickListener(view -> uploadAndComplete());
 
         return binding.getRoot();
+    }
+
+    private void setChangeStatusVisible() {
+        binding.includeStatus.llChangeStatus.setVisibility(View.VISIBLE);
+        binding.includeCompleteTask.llChooseFile.setVisibility(View.GONE);
+    }
+
+    private void setCompleteTaskVisible() {
+        binding.includeStatus.llChangeStatus.setVisibility(View.GONE);
+        binding.includeCompleteTask.llChooseFile.setVisibility(View.VISIBLE);
     }
 
     @Override
