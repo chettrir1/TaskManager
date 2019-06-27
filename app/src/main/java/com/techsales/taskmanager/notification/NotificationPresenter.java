@@ -48,9 +48,7 @@ public class NotificationPresenter implements NotificationContract.Presenter {
                     } else {
                         view.showLoadingError(component.context().getString(R.string.data_not_available));
                     }
-                }, throwable ->
-
-                {
+                }, throwable -> {
                     if (throwable instanceof FailedResponseException)
                         view.showLoadingError(throwable.getMessage());
                     else if (throwable instanceof NetworkNotAvailableException)

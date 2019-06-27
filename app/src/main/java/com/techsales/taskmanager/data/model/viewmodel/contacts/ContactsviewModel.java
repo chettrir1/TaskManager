@@ -28,7 +28,11 @@ public class ContactsviewModel extends BaseObservable {
         return items.getDepartment();
     }
 
+    public String getPhone() {
+        return items.getContact();
+    }
+
     public String getPhoneAndExtension() {
-        return String.format("%s (%s) ", items.getContact(), items.getContact());
+        return String.format("%s (%s) ", items.getContact(), items.getExtNumber());
     }
 }
