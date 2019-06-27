@@ -47,5 +47,4 @@ public interface RemoteRepo {
     @GET("telephone/list")
     Single<BaseContactsResponse> getContacts();
 
-
 }

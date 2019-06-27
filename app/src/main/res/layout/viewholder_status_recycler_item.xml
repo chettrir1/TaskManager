@@ -1,28 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+    <data>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="16dp" />
+        <variable
+            name="status"
+            type="com.techsales.taskmanager.data.model.viewmodel.status.StatusViewModel" />
+    </data>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
+
+        <ImageView
+            android:id="@+id/ivTaskStatus"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_circle_view"
+            android:contentDescription="@null"
+            android:padding="@dimen/spacing_normal"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
+            app:srcCompat="@{status.drawable}"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/tvTaskTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
+            android:singleLine="true"
+            android:text="@{status.taskTitle}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/ivTaskStatus"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
+            tools:text="Some title here" />
+
+        <TextView
+            android:id="@+id/tvTaskDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
+            android:maxLines="2"
+            android:text="@{status.taskDescription}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/ivTaskStatus"
+            app:layout_constraintTop_toBottomOf="@+id/tvTaskTitle"
+            tools:text="Task description here" />
+
+        <TextView
+            android:id="@+id/tvTaskAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
+            android:singleLine="true"
+            android:text="@{status.taskAuthor}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/ivTaskStatus"
+            app:layout_constraintTop_toBottomOf="@+id/tvTaskDescription"
+            tools:text="Assigned by : Administrator" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bod_edittext"
+            android:fontFamily="@font/open_sans"
+            android:paddingStart="@dimen/spacing_small"
+            android:paddingTop="@dimen/spacing_tiny"
+            android:paddingEnd="@dimen/spacing_small"
+            android:paddingBottom="@dimen/spacing_tiny"
+            android:text="@string/text_view"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@{status.statusColor}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

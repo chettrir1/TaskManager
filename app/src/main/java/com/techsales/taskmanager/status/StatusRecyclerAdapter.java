@@ -5,9 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.status.StatusViewModel;
+import com.techsales.taskmanager.databinding.ViewholderStatusRecyclerItemBinding;
 import com.techsales.taskmanager.views.LoadMoreAdapter;
 
 import java.util.List;
@@ -31,12 +34,19 @@ public class StatusRecyclerAdapter extends LoadMoreAdapter<StatusRecyclerAdapter
 
     @Override
     public StatusViewHolder onCreateViewHolder_(LayoutInflater inflater, ViewGroup parent, int viewType) {
-        return null;
+        return new StatusViewHolder(DataBindingUtil.inflate(inflater, R.layout.viewholder_status_recycler_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder_(StatusViewHolder holder, int position) {
-
+        if (items != null) {
+            holder.binding.setStatus(items.get(position));
+        }
+        holder.binding.getRoot().setOnClickListener(view -> {
+            if (items != null)
+                listener.onRecyclerItemClicked(items.get(position), position);
+        });
+        holder.binding.executePendingBindings();
     }
 
     void addMoreItems(List<StatusViewModel> items, boolean hasMoreItems) {
@@ -50,9 +60,11 @@ public class StatusRecyclerAdapter extends LoadMoreAdapter<StatusRecyclerAdapter
     }
 
     class StatusViewHolder extends RecyclerView.ViewHolder {
+        private final ViewholderStatusRecyclerItemBinding binding;
 
-        public StatusViewHolder(@NonNull View itemView) {
-            super(itemView);
+        StatusViewHolder(ViewholderStatusRecyclerItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

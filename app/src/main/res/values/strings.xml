@@ -94,4 +94,5 @@
     <string name="text_please_wait">Please wait...</string>
     <string name="text_task_info">Task Info</string>
     <string name="text_eg_task_completed">eg. Task completed</string>
+    <string name="text_view">view</string>
 </resources>

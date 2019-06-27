@@ -19,6 +19,8 @@ import com.techsales.taskmanager.notification.viewnotification.ViewNotificationF
 import com.techsales.taskmanager.notification.viewnotification.ViewNotificationFragmentModule;
 import com.techsales.taskmanager.profile.ProfileFragment;
 import com.techsales.taskmanager.profile.ProfileFragmentModule;
+import com.techsales.taskmanager.status.StatusFragment;
+import com.techsales.taskmanager.status.StatusFragmentModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -61,4 +63,8 @@ abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = ViewNotificationFragmentModule.class)
     abstract ViewNotificationFragment viewNotificationFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = StatusFragmentModule.class)
+    abstract StatusFragment statusFragment();
 }
