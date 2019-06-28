@@ -84,6 +84,11 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"
 
+//    Firebase
+    implementation "com.google.firebase:firebase-core:$rootProject.ext.firebaseCoreVersion"
+
     testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     testImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.ext.retrofitVersion"
 }
+
+apply plugin: 'com.google.gms.google-services'
