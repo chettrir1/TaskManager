@@ -1,8 +1,5 @@
 package com.techsales.taskmanager.status;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;

@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.dashboard.container.DashboardActivity;
 import com.techsales.taskmanager.data.model.viewmodel.login.LoginViewModel;
 import com.techsales.taskmanager.databinding.ActivityLoginBinding;
-import com.techsales.taskmanager.dashboard.container.DashboardActivity;
 import com.techsales.taskmanager.utils.Commons;
 
 import javax.inject.Inject;
