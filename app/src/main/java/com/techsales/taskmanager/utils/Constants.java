@@ -22,6 +22,12 @@ public class Constants {
     public static final String STATUS_OPEN = "OPEN TASK";
     public static final String STATUS_PENDING = "PENDING TASK";
 
+    public static final String TITLE_NEW_TASK = "New Tasks";
+    public static final String TITLE_OPENED_TASK = "Opened Tasks";
+    public static final String TITLE_PENDING_TASK = "Pending Tasks";
+    public static final String TITLE_COMPLETED_TASK = "Completed Tasks";
+
+
     static final int CAMERA_REQUEST_CODE = 100;
     static final int GALLERY_REQUEST_CODE = 203;
     static final int STORAGE_PERMISSION_CODE = 400;

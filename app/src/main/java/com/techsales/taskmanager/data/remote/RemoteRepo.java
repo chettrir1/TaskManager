@@ -4,6 +4,7 @@ import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.api.contacts.BaseContactsResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.api.notification.BaseNotificationResponse;
+import com.techsales.taskmanager.data.model.api.status.BaseStatusResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 
 import java.util.Map;
@@ -46,5 +47,9 @@ public interface RemoteRepo {
 
     @GET("telephone/list")
     Single<BaseContactsResponse> getContacts();
+
+    @POST("task/status")
+    Single<BaseResponse<BaseStatusResponse>> requestStatus(
+            @Body Map<String, Object> params);
 
 }

@@ -2,33 +2,29 @@ package com.techsales.taskmanager.data.model.api.status;
 
 import android.content.Context;
 
-import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.status.StatusViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseStatusResponse {
-    @SerializedName("total")
-    private int itemCount;
+    private int total;
+    private List<StatusResponse> data;
 
-    @SerializedName("data")
-    private List<StatusResponse> items;
-
-    public int getItemCount() {
-        return itemCount;
+    public int getTotal() {
+        return total;
     }
 
-    public void setItemCount(int itemCount) {
-        this.itemCount = itemCount;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public List<StatusResponse> getItems() {
-        return items;
+        return data;
     }
 
     public void setItems(List<StatusResponse> items) {
-        this.items = items;
+        this.data = items;
     }
 
     public static List<StatusViewModel> mapToViewModel(Context context, List<StatusResponse> items) {

@@ -24,7 +24,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     private Disposable disposable;
 
 
-    public DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
+    DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
         this.component = component;
         this.view = view;
     }
@@ -70,19 +70,19 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                 R.color.colorGreen
         };
 
-        TaskStatus newTask = new TaskStatus("1", component.context().getString(R.string.task_new),
+        TaskStatus newTask = new TaskStatus("0", component.context().getString(R.string.task_new),
                 icons[0], color[0]);
         items.add(newTask);
 
-        TaskStatus openTask = new TaskStatus("2", component.context().getString(R.string.task_open),
+        TaskStatus openTask = new TaskStatus("1", component.context().getString(R.string.task_open),
                 icons[1], color[1]);
         items.add(openTask);
 
-        TaskStatus pendingTask = new TaskStatus("3", component.context().getString(R.string.task_pending),
+        TaskStatus pendingTask = new TaskStatus("2", component.context().getString(R.string.task_pending),
                 icons[2], color[2]);
         items.add(pendingTask);
 
-        TaskStatus completedTask = new TaskStatus("4", component.context().getString(R.string.task_completed),
+        TaskStatus completedTask = new TaskStatus("3", component.context().getString(R.string.task_completed),
                 icons[3], color[3]);
         items.add(completedTask);
 
@@ -94,7 +94,6 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         view.showProgress();
         disposable = component.data().getAllTasks(component.data().savedUserInfo().getId())
                 .subscribe((List<WhereTask> whereTasksList) -> {
-//                    int itemCount = tasks.getItemCount();
                     if (Commons.isEmpty(whereTasksList)) {
                         List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(component.context(), whereTasksList);
                         view.showBottomRecyclerLoadSuccess(viewModels);

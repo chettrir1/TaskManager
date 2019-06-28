@@ -6,6 +6,8 @@ import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.api.contacts.ContactsResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
+import com.techsales.taskmanager.data.model.api.status.BaseStatusResponse;
+import com.techsales.taskmanager.data.model.api.status.StatusResponse;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
@@ -122,6 +124,17 @@ public class Data {
         return remoteRepo.getContacts()
                 .flatMap(baseContactsResponse -> Single.just(baseContactsResponse.getContactsResponses()))
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseStatusResponse> requestStatus(int page, int limit, String userId, int status) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("page", page);
+        params.put("limit", limit);
+        params.put("user_id", userId);
+        params.put("status", status);
+        return remoteRepo.requestStatus(params)
+                .map(BaseResponse::getData)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

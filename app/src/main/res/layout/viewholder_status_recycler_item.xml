@@ -49,11 +49,10 @@
             android:background="@drawable/bg_circle_view"
             android:contentDescription="@null"
             android:padding="@dimen/spacing_normal"
+            android:src="@{status.drawable}"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
-            app:srcCompat="@{status.drawable}"
-            tools:ignore="VectorDrawableCompat" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
 
         <TextView
             android:id="@+id/tvTaskTitle"

@@ -5,27 +5,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.gson.Gson;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.auth.login.LoginActivity;
 import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragment;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
-import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.databinding.FragmentDashboardBinding;
+import com.techsales.taskmanager.status.container.StatusActivity;
 import com.techsales.taskmanager.utils.GridSpacingItemDecoration;
 
 import java.util.List;
@@ -33,6 +31,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class DashboardFragment extends BaseFragment implements DashboardContract.View {
+
+    private static final int SPACING_VALUE = 10;
 
     public static DashboardFragment getInstance() {
         return new DashboardFragment();
@@ -71,7 +71,7 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     private void initTopRecyclerView() {
         binding.dashboardTopRv.setLayoutManager(new GridLayoutManager(component.context(), 2));
-        binding.dashboardTopRv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        binding.dashboardTopRv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(), true));
         binding.dashboardTopRv.setItemAnimator(new DefaultItemAnimator());
         binding.dashboardTopRv.setNestedScrollingEnabled(false);
     }
@@ -116,8 +116,7 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
-        //Todo handle click Item
-        Toast.makeText(component.context(), "TOp recycler clicked:" + position, Toast.LENGTH_SHORT).show();
+        StatusActivity.start(getActivity(), items.getTaskCount());
     }
 
     @Override
@@ -136,9 +135,9 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         }
     }
 
-    private int dpToPx(int dp) {
+    private int dpToPx() {
         Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, SPACING_VALUE, r.getDisplayMetrics()));
     }
 
     private void hideSwipeContainer() {
