@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.status;
 
+import android.util.Log;
+
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
@@ -47,7 +49,7 @@ class StatusPresenter implements StatusContract.Presenter {
                     if (response != null) {
                         int itemCount = response.getTotal();
                         List<StatusResponse> items = response.getItems();
-
+                        Log.v("getItemsResponse", items + "");
                         if (itemCount > 0 && !Commons.isEmpty(items)) {
                             final int count = items.size();
                             page += count;
@@ -71,6 +73,7 @@ class StatusPresenter implements StatusContract.Presenter {
                 .subscribe(response -> {
                     int itemCount = response.getTotal();
                     List<StatusResponse> items = response.getItems();
+
                     if (itemCount > 0 && !Commons.isEmpty(items)) {
                         final int count = items.size();
                         page += count;

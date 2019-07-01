@@ -15,11 +15,11 @@ public interface StatusContract {
 
         void showLoadingSuccess(List<StatusViewModel> items, boolean hasMoreItems);
 
+        void showNoNetworkAvailableError();
+
         void showLoadMoreProgress();
 
         void showMoreTags(List<StatusViewModel> items, boolean hasMoreItems);
-
-        void showNoNetworkAvailableError();
 
         void showLoadMoreError();
 

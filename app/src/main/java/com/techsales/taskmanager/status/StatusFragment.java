@@ -2,14 +2,13 @@ package com.techsales.taskmanager.status;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
@@ -20,6 +19,8 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+
+import static android.widget.LinearLayout.VERTICAL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,14 +80,21 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
 
     @Override
     public void showLoadingSuccess(List<StatusViewModel> viewModel, boolean hasMoreItems) {
-        StatusRecyclerAdapter adapter = (StatusRecyclerAdapter) binding.rvStatus.getAdapter();
-        if (adapter != null)
-            adapter.detachLoadMore();
-        adapter = new StatusRecyclerAdapter(binding.rvStatus, viewModel, presenter);
-        if (hasMoreItems)
-            adapter.attachLoadMore(presenter, status);
+        hideSwipeContainer();
+        if (getContext() != null) {
+            DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
+            binding.rvStatus.addItemDecoration(decoration);
+        }
+        StatusRecyclerAdapter adapter = new StatusRecyclerAdapter(binding.rvStatus, viewModel, presenter);
         binding.rvStatus.setAdapter(adapter);
         binding.contentState.showContent();
+    }
+
+    @Override
+    public void showNoNetworkAvailableError() {
+        hideSwipeContainer();
+        binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
+
     }
 
     @Override
@@ -99,13 +107,6 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
         StatusRecyclerAdapter adapter = (StatusRecyclerAdapter) binding.rvStatus.getAdapter();
         if (adapter != null)
             adapter.addMoreItems(items, hasMoreItems);
-    }
-
-    @Override
-    public void showNoNetworkAvailableError() {
-        hideSwipeContainer();
-        binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
-
     }
 
     @Override

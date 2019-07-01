@@ -1,7 +1,6 @@
 package com.techsales.taskmanager.status;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,9 +18,9 @@ public class StatusRecyclerAdapter extends LoadMoreAdapter<StatusRecyclerAdapter
     private final List<StatusViewModel> items;
     private final StatusItemClickListener listener;
 
-    public StatusRecyclerAdapter(@NonNull RecyclerView recyclerView,
-                                 List<StatusViewModel> items,
-                                 StatusItemClickListener listener) {
+    StatusRecyclerAdapter(@NonNull RecyclerView recyclerView,
+                          List<StatusViewModel> items,
+                          StatusItemClickListener listener) {
         super(recyclerView);
         this.items = items;
         this.listener = listener;
