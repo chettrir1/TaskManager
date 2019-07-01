@@ -29,7 +29,6 @@ public class ContactsFragment extends BaseFragment implements ContactsContract.V
     @Inject
     ContactsContract.Presenter presenter;
 
-
     public static ContactsFragment getInstance() {
         return new ContactsFragment();
     }
@@ -59,8 +58,7 @@ public class ContactsFragment extends BaseFragment implements ContactsContract.V
 
     @Override
     public void showProgress() {
-        binding.contentState.showProgress(getResources().getString(R.string.text_please_wait));
-
+        binding.contentState.showProgress(getResources().getString(R.string.contacts_loading_message));
     }
 
     @Override
@@ -84,7 +82,7 @@ public class ContactsFragment extends BaseFragment implements ContactsContract.V
     @Override
     public void showNoNetworkAvailable() {
         hideSwipeContainer();
-        binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
+        binding.contentState.showError(R.drawable.no_internet, getString(R.string.error_network_not_available));
     }
 
     @Override

@@ -35,7 +35,7 @@
                     android:id="@+id/task_icon"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/content_dashbord_top_recycler_icon"
+                    android:contentDescription="@null"
                     android:padding="@dimen/spacing_normal"
                     android:src="@{dashboardTop.taskIcon}" />
             </LinearLayout>

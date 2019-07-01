@@ -2,101 +2,104 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_container"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:overScrollMode="never">
 
-                <ScrollView
+                <LinearLayout
+                    android:id="@+id/llRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/white"
-                    android:overScrollMode="never">
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/llRecycler"
+                    <TextView
+                        style="@style/TextStyleBlack"
+                        android:padding="@dimen/spacing_tiny"
+                        android:text="@string/dashboard_title_task_status"
+                        android:textSize="@dimen/h6_headline_medium" />
+
+                    <View
+                        style="@style/DividerStyleVertical"
+                        android:layout_marginLeft="@dimen/spacing_tiny"
+                        android:layout_marginRight="@dimen/spacing_tiny" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/dashboardTopRv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:orientation="vertical">
+                        android:overScrollMode="never">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <View
+                        style="@style/DividerStyleVertical"
+                        android:layout_marginLeft="@dimen/spacing_tiny"
+                        android:layout_marginRight="@dimen/spacing_tiny" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
-                            style="@style/TextStyleBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
                             android:padding="@dimen/spacing_tiny"
-                            android:text="@string/text_task_status"
+                            android:text="@string/dashboard_title_assigned_task"
+                            android:textColor="@color/colorBlack"
                             android:textSize="@dimen/h6_headline_medium" />
 
-                        <View
-                            style="@style/DividerStyleVertical"
-                            android:layout_marginLeft="@dimen/spacing_tiny"
-                            android:layout_marginRight="@dimen/spacing_tiny" />
+                    </LinearLayout>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/dashboardTopRv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:overScrollMode="never">
+                    <View
+                        style="@style/DividerStyleVertical"
+                        android:layout_marginLeft="@dimen/spacing_tiny"
+                        android:layout_marginRight="@dimen/spacing_tiny" />
 
-                        </androidx.recyclerview.widget.RecyclerView>
-
-                        <View
-                            style="@style/DividerStyleVertical"
-                            android:layout_marginLeft="@dimen/spacing_tiny"
-                            android:layout_marginRight="@dimen/spacing_tiny" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                style="@style/TextStyleBlack"
-                                android:layout_weight="1"
-                                android:padding="@dimen/spacing_tiny"
-                                android:text="@string/text_assigned_task"
-                                android:textSize="@dimen/h6_headline_medium" />
-
-                        </LinearLayout>
-
-                        <View
-                            style="@style/DividerStyleVertical"
-                            android:layout_marginLeft="@dimen/spacing_tiny"
-                            android:layout_marginRight="@dimen/spacing_tiny" />
-
-                        <RelativeLayout
+                            android:id="@+id/content"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <LinearLayout
-                                android:id="@+id/content"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/dashboardBottomRv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="wrap_content"
+                                android:overScrollMode="never"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/dashboardBottomRv"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:overScrollMode="never"
-                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
 
-                                </androidx.recyclerview.widget.RecyclerView>
-                            </LinearLayout>
+                        <com.techsales.taskmanager.views.ContentStateView
+                            android:id="@+id/contentState"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
 
-                            <com.techsales.taskmanager.views.ContentStateView
-                                android:id="@+id/contentState"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_centerInParent="true" />
-                        </RelativeLayout>
-                    </LinearLayout>
-                </ScrollView>
-
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-        </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 </layout>

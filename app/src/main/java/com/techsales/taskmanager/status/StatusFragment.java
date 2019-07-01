@@ -22,9 +22,6 @@ import javax.inject.Inject;
 
 import static android.widget.LinearLayout.VERTICAL;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StatusFragment extends BaseFragment implements StatusContract.View {
     private static final String STATUS = "status";
     private FragmentStatusBinding binding;
@@ -69,7 +66,7 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
     @Override
     public void showProgress() {
         hideSwipeContainer();
-        binding.contentState.showProgress(getResources().getString(R.string.text_please_wait));
+        binding.contentState.showProgress(getResources().getString(R.string.status_text_loading));
     }
 
     @Override
@@ -93,8 +90,7 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
     @Override
     public void showNoNetworkAvailableError() {
         hideSwipeContainer();
-        binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
-
+        binding.contentState.showError(R.drawable.no_internet, getString(R.string.error_network_not_available));
     }
 
     @Override

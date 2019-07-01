@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_client_information"
+            android:text="@string/view_task_title_client_information"
             android:textSize="@dimen/h6_headline_medium" />
 
         <View
@@ -31,7 +31,7 @@
             style="@style/TextViewTaskTitle"
             android:paddingTop="@dimen/spacing_small"
             android:paddingBottom="@dimen/spacing_tiny_small"
-            android:text="@string/text_name" />
+            android:text="@string/view_task_text_client_name" />
 
         <TextView
             android:id="@+id/tvClientName"
@@ -44,7 +44,7 @@
             style="@style/TextViewTaskTitle"
             android:paddingTop="@dimen/spacing_small"
             android:paddingBottom="@dimen/spacing_tiny_small"
-            android:text="@string/text_phone_no" />
+            android:text="@string/view_task_text_client_phone" />
 
         <TextView
             android:id="@+id/tvClientPhone"

@@ -53,7 +53,7 @@ public class Commons {
     }
 
     public static ProgressDialog showLoadingDialog(Context context) {
-        return showLoadingDialog(context, context.getResources().getString(R.string.message_loading));
+        return showLoadingDialog(context, context.getResources().getString(R.string.progress_dialog_loading));
     }
 
     public static void showSnackBar(Context context, final View layout, String message) {

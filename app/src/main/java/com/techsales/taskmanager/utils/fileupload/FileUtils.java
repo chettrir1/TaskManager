@@ -136,8 +136,7 @@ public class FileUtils {
             if (cursor != null && cursor.moveToFirst()) {
                 if (DEBUG)
                     DatabaseUtils.dumpCursor(cursor);
-
-/*crashed here*/                final int column_index = cursor.getColumnIndexOrThrow(column);
+                final int column_index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(column_index);
             }
         }
@@ -307,31 +306,22 @@ public class FileUtils {
         return bm;
     }
 
-    public static Comparator<File> sComparator = new Comparator<File>() {
-        @Override
-        public int compare(File f1, File f2) {
-            // Sort alphabetically by lower case, which is much cleaner
-            return f1.getName().toLowerCase().compareTo(
-                    f2.getName().toLowerCase());
-        }
+    public static Comparator<File> sComparator = (f1, f2) -> {
+        // Sort alphabetically by lower case, which is much cleaner
+        return f1.getName().toLowerCase().compareTo(
+                f2.getName().toLowerCase());
     };
 
-    public static FileFilter sFileFilter = new FileFilter() {
-        @Override
-        public boolean accept(File file) {
-            final String fileName = file.getName();
-            // Return files only (not directories) and skip hidden files
-            return file.isFile() && !fileName.startsWith(HIDDEN_PREFIX);
-        }
+    public static FileFilter sFileFilter = file -> {
+        final String fileName = file.getName();
+        // Return files only (not directories) and skip hidden files
+        return file.isFile() && !fileName.startsWith(HIDDEN_PREFIX);
     };
 
-    public static FileFilter sDirFilter = new FileFilter() {
-        @Override
-        public boolean accept(File file) {
-            final String fileName = file.getName();
-            // Return directories only and skip hidden directories
-            return file.isDirectory() && !fileName.startsWith(HIDDEN_PREFIX);
-        }
+    public static FileFilter sDirFilter = file -> {
+        final String fileName = file.getName();
+        // Return directories only and skip hidden directories
+        return file.isDirectory() && !fileName.startsWith(HIDDEN_PREFIX);
     };
 
     public static Intent createGetContentIntent() {

@@ -26,7 +26,7 @@ public class NoteListActivity extends BaseActivity {
 
         setSupportActionBar(binding.includeToolbar.customToolbar);
         binding.includeToolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
-        binding.includeToolbar.tvToolbarText.setText(getResources().getString(R.string.title_all_notes));
+        binding.includeToolbar.tvToolbarText.setText(getResources().getString(R.string.notes_toolbar_title));
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.noteListContainer, NoteListFragment.getInstance())

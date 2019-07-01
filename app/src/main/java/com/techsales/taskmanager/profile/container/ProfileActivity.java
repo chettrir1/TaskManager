@@ -29,7 +29,7 @@ public class ProfileActivity extends BaseActivity {
 
         binding.ivToolbarImage.setImageResource(R.drawable.ic_back);
         binding.ivToolbarImage.setOnClickListener(view -> onBackPressed());
-        binding.tvToolbarText.setText(R.string.text_your_profile);
+        binding.tvToolbarText.setText(R.string.profile_toolbar_title);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.profileContainer, ProfileFragment.getInstance())

@@ -108,7 +108,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                 openBottomDialog(taskId, COUNT_TWO);
             } else {
                 Commons.showSnackBar(component.context(), binding.llMainView, getResources()
-                        .getString(R.string.error_task_status_changed));
+                        .getString(R.string.view_task_error_status_cant_change));
             }
         });
 
@@ -117,7 +117,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                 openBottomDialog(taskId, COUNT_THREE);
             } else {
                 Commons.showSnackBar(component.context(), binding.llMainView, getResources()
-                        .getString(R.string.error_task_status_changed));
+                        .getString(R.string.view_task_error_status_cant_change));
             }
         });
 
@@ -232,9 +232,9 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     @Override
     public void showNoSpaceDialog() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(component.context());
-        builder.setTitle(getString(R.string.error_message_no_more_space));
-        builder.setMessage(getString(R.string.error_message_insufficient_space));
-        builder.setPositiveButton(getString(R.string.text_dialog_dismiss), (dialog, which) -> dialog.cancel());
+        builder.setTitle(getString(R.string.view_task_error_storage_full));
+        builder.setMessage(getString(R.string.view_task_error_isufficent_memory));
+        builder.setPositiveButton(getString(R.string.view_task_dialog_dimiss), (dialog, which) -> dialog.cancel());
         builder.show();
     }
 
@@ -263,7 +263,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     @Override
     public void showErrorDialog() {
-        Toast.makeText(component.context(), getString(R.string.no_tasks_available), Toast.LENGTH_SHORT).show();
+        Toast.makeText(component.context(), getString(R.string.view_task_error_empty_task), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -291,21 +291,21 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     public void showNetworkNotAvailableError() {
         hideProgressBar();
         Commons.showSnackBar(component.context(), binding.llMainView,
-                getString(R.string.network_not_available_error));
+                getString(R.string.error_network_not_available));
 
     }
 
     @Override
     public void showUploadSuccess() {
         hideProgressBar();
-        Toast.makeText(component.context(), R.string.success_message_file_upload, Toast.LENGTH_SHORT).show();
+        Toast.makeText(component.context(), R.string.view_task_success_file_upload, Toast.LENGTH_SHORT).show();
         if (getActivity() != null)
             getActivity().onBackPressed();
     }
 
     private void selectImage() {
-        final CharSequence[] items = {getString(R.string.text_dialog_take_photo), getString(R.string.text_dialog_from_gallery),
-                getString(R.string.text_dialog_dismiss)};
+        final CharSequence[] items = {getString(R.string.view_task_text_take_photo), getString(R.string.view_task_text_gallery),
+                getString(R.string.view_task_text_dialog_dismiss)};
         if (getActivity() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setItems(items, (dialog, item) -> {
@@ -345,13 +345,13 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     private void showSettingDailog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(component.context());
-        builder.setTitle(getResources().getString(R.string.text_need_permission));
-        builder.setMessage(getResources().getString(R.string.text_permission_message));
-        builder.setPositiveButton(getResources().getString(R.string.text_btn_go_settings), (dialog, which) -> {
+        builder.setTitle(getResources().getString(R.string.view_task_text_need_permissions));
+        builder.setMessage(getResources().getString(R.string.view_task_text_permission_message));
+        builder.setPositiveButton(getResources().getString(R.string.view_task_go_to_settings), (dialog, which) -> {
             dialog.cancel();
             openSetting();
         });
-        builder.setNegativeButton(getResources().getString(R.string.no_tasks_available), (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton(getResources().getString(R.string.view_task_error_empty_task), (dialog, which) -> dialog.cancel());
         builder.show();
     }
 

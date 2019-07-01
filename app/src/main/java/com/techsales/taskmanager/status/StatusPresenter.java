@@ -80,7 +80,7 @@ class StatusPresenter implements StatusContract.Presenter {
                         List<StatusViewModel> viewModel = BaseStatusResponse.mapToViewModel(component.context(), items);
                         view.showLoadingSuccess(viewModel, itemCount > page);
                     } else {
-                        view.showLoadingError(component.context().getString(R.string.data_not_available));
+                        view.showLoadingError(component.context().getString(R.string.status_error_empty_task));
                     }
                 }, throwable -> {
                     if (throwable instanceof FailedResponseException) {
@@ -88,7 +88,7 @@ class StatusPresenter implements StatusContract.Presenter {
                     } else if (throwable instanceof NetworkNotAvailableException) {
                         view.showNoNetworkAvailableError();
                     } else {
-                        view.showLoadingError(component.context().getString(R.string.server_error));
+                        view.showLoadingError(component.context().getString(R.string.error_server));
                     }
 
                 });

@@ -46,7 +46,7 @@
                 style="@style/TextViewTaskTitle"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:paddingTop="@dimen/spacing_small"
-                android:text="@string/text_description" />
+                android:text="@string/view_task_text_description" />
 
             <TextView
                 android:id="@+id/tvTaskDescription"
@@ -65,7 +65,7 @@
                 style="@style/TextViewTaskTitle"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:paddingTop="@dimen/spacing_small"
-                android:text="@string/text_task_status" />
+                android:text="@string/view_task_text_task_status" />
 
             <TextView
                 android:id="@+id/tvTaskStatus"
@@ -83,7 +83,7 @@
                 style="@style/TextViewTaskTitle"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:paddingTop="@dimen/spacing_small"
-                android:text="@string/text_task_priority" />
+                android:text="@string/view_task_text_task_priority" />
 
             <TextView
                 android:id="@+id/tvTaskPriority"

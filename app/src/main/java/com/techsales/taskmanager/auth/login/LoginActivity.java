@@ -32,9 +32,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             String username = binding.etUsername.getText().toString();
             String password = binding.etPassword.getText().toString();
             if (TextUtils.isEmpty(username)) {
-                showEmptyUsername(getResources().getString(R.string.empty_field_message));
+                showEmptyUsername(getResources().getString(R.string.login_error_username_empty));
             } else if (TextUtils.isEmpty(password)) {
-                showEmptyPassword(getResources().getString(R.string.empty_field_message));
+                showEmptyPassword(getResources().getString(R.string.login_error_password_empty));
             } else {
                 if (binding.cbRememberMe.isChecked()) {
                     data.rememberChecked(username, password, true);
@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void showLoginProgress() {
-        progressDialog = Commons.showLoadingDialog(this, getResources().getString(R.string.veryfing_login));
+        progressDialog = Commons.showLoadingDialog(this, getResources().getString(R.string.login_verify_username_passowrd));
     }
 
     @Override
@@ -84,7 +84,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void showNetworkNotAvailableError() {
         dismissProgress();
-        Commons.showSnackBar(this, binding.rlMain, getString(R.string.network_not_available_error));
+        Commons.showSnackBar(this, binding.rlMain, getString(R.string.error_network_not_available));
     }
 
     private void dismissProgress() {

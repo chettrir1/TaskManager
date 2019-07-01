@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_change_status"
+            android:text="@string/view_task_title_change_status"
             android:textColor="@android:color/black"
             android:textSize="@dimen/h6_headline_medium" />
 
@@ -35,7 +35,7 @@
                 android:layout_marginEnd="@dimen/spacing_tiny"
                 android:background="@drawable/bg_button_view"
                 android:padding="@dimen/spacing_small"
-                android:text="@string/text_open"
+                android:text="@string/view_task_text_open"
                 android:textAllCaps="true"
                 android:textColor="@color/colorGreen"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:layout_marginEnd="@dimen/spacing_small"
                 android:background="@drawable/bg_button_view"
                 android:padding="@dimen/spacing_small"
-                android:text="@string/text_append"
+                android:text="@string/view_task_text_append_task"
                 android:textAllCaps="true"
                 android:textColor="@color/colorRed" />
 

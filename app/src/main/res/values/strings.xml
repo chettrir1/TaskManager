@@ -1,98 +1,121 @@
 <resources>
     <string name="app_name">TaskManager</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Username</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="error_login">Login Error</string>
-    <string name="text_new_task">New Task</string>
-    <string name="text_opened_task">Opened Task</string>
-    <string name="text_pending_task">Pending Task</string>
-    <string name="text_completed_task">Completed Task</string>
-    <string name="verifying_login">Verifying username and password…</string>
-    <string name="network_not_available_error">Make sure you are connected to internet</string>
-    <string name="text_assigned_by">Assigned by: %s</string>
-    <string name="text_status">Status: %s</string>
-
-    <string name="title_activity_splash">SplashActivity</string>
-
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <string name="task_new">New</string>
-    <string name="task_open">Opened</string>
-    <string name="task_pending">Pending</string>
-    <string name="task_completed">Completed</string>
-    <string name="task_tracker">Task Tracker</string>
-    <string name="text_notification">Notifications</string>
-    <string name="text_phone_directory">Phone Directory</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hint_add_description">Add Description</string>
-    <string name="hint_add_title">Add Title</string>
-    <string name="empty_note_message">Note cannot be empty</string>
-    <string name="message_saved_success">Successfully saved</string>
-    <string name="text_add_new_note">Add new note</string>
-    <string name="text_edit_note">Edit note</string>
-    <string name="text_added_notes">Added Notes</string>
-    <string name="no_tasks_available">No Available</string>
-    <string name="text_remember_me">Remember me</string>
-    <string name="server_error">Server Error</string>
-    <string name="empty_field_message">Field can\'t be empty</string>
-    <string name="message_loading">Loading</string>
-    <string name="veryfing_login">Verifying username and password</string>
+    <!--error message-->
+    <string name="error_network_not_available">Make sure you are connected to internet</string>
+    <string name="error_server">Couldn\'t fetch data</string>
+    <!---->
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="content_image">toolbar image</string>
-    <string name="text_task_status">Task Status</string>
-    <string name="text_assigned_task">Assigned Task</string>
-    <string name="content_dashbord_top_recycler_icon">dashbordTopRecyclerIcon</string>
-    <string name="data_not_available">No data available to fetch</string>
-    <string name="text_your_profile">Your Profile</string>
-    <string name="text_employee_contacts">Employee Contacts</string>
-    <string name="title_all_notes">All Notes</string>
-    <string name="text_client_information">Client Information</string>
-    <string name="text_phone_no">Phone No</string>
-    <string name="text_name">Name</string>
-    <string name="text_change_status">Change Status</string>
-    <string name="text_open">Open</string>
-    <string name="text_append">Append</string>
-    <string name="text_deadline">Deadline</string>
-    <string name="text_assigned_date">Assigned Date</string>
-    <string name="text_description">Description</string>
-    <string name="text_task_priority">Task Priority</string>
-    <string name="text_not_available">N/A</string>
-    <string name="text_username">Username</string>
-    <string name="text_email">Email</string>
-    <string name="text_address">Address</string>
-    <string name="text_permanent">Permanent</string>
-    <string name="text_temporory">Temporory</string>
-    <string name="text_contact">Contact</string>
-    <string name="text_personal_information">Personal Information</string>
-    <string name="text_complete_task">Complete Task</string>
-    <string name="text_upload_file_and_complete">Upload file and complete</string>
-    <string name="text_enter_remarks_optional">Enter remarks (Optional)</string>
-    <string name="text_dialog_dismiss">Dismiss</string>
-    <string name="error_task_status_changed">You can\'t change, please select other option</string>
-    <string name="text_choose_file">Choose File</string>
-    <string name="text_dialog_take_photo">Take photo</string>
-    <string name="text_dialog_from_gallery">Choose from gallery</string>
-    <string name="error_message_no_more_space">Your storage is unavailable.</string>
-    <string name="error_message_insufficient_space">You have few space available, please make sure your have more than 5MB on disk to
-        take pictures!</string>
-    <string name="text_need_permission">Need Permissions</string>
-    <string name="text_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
-    <string name="text_btn_go_settings">GOTO SETTINGS</string>
-    <string name="success_message_file_upload">File upload successful</string>
-    <string name="text_please_wait">Please wait...</string>
-    <string name="text_task_info">Task Info</string>
-    <string name="text_eg_task_completed">eg. Task completed</string>
-    <string name="text_view">view</string>
+    <!--Login Strings-->
+    <string name="login_hint_enter_email">Enter Email</string>
+    <string name="login_action_sign_in">Sign in</string>
+    <string name="login_action_sign_in_short">Sign in</string>
+    <string name="login_hint_enter_password">Enter password</string>
+    <string name="login_text_remember_me">Remember me</string>
+    <string name="login_btn_sign_in">Sign in</string>
+    <string name="login_error_username_empty">username field can\'t be empty</string>
+    <string name="login_error_password_empty">password field can\'t be empty</string>
+    <string name="login_verify_username_passowrd">Verifying username and password</string>
+    <!---->
+
+
+    <!--contacts strings-->
+    <string name="contacts_toolbar_title_employee_contacts">Employee Contacts</string>
+    <string name="contacts_loading_message">Please wait…</string>
+    <!---->
+
+    <!--content state strings-->
+    <string name="content_state_loading_message">Please wait…</string>
+    <!---->
+
+    <!--add notes strings-->
+    <string name="add_notes_hint_add_note_title">Add note title</string>
+    <string name="add_notes_hint_add_description">Add description</string>
+    <string name="notes_error_empty_title">Title field can\'t be empty</string>
+    <string name="notes_error_empty_description">Description field can\'t be empty</string>
+    <string name="notes_toolbar_title">All notes</string>
+    <!---->
+
+    <!--change status string-->
+    <string name="title_change_status">Change Status</string>
+    <string name="change_status_enter_remarks">Enter remarks (Optional)</string>
+    <string name="change_status_dialog_dismiss">Dismiss</string>
+
+    <!---->
+
+    <!--fragment dashboard strings-->
+    <string name="dashboard_title_assigned_task">Assigned Task</string>
+    <string name="dashboard_title_task_status">Task Status</string>
+    <string name="dashboard_task_text_new">New</string>
+    <string name="dashboard_task_text_open">Opened</string>
+    <string name="dashboard_task_text_pending">Append</string>
+    <string name="dashboard_task_text_complete">Completed</string>
+    <string name="dashboard_error_empty_task">No data available to fetch</string>
+    <!---->
+
+    <!--fragment profile strings-->
+    <string name="profile_title_personal_information">Personal Information</string>
+    <string name="profile_text_name">Name</string>
+    <string name="profile_text_username">Username</string>
+    <string name="profile_text_email">Email</string>
+    <string name="profile_text_address">Address</string>
+    <string name="profile_text_permanent">Permanent</string>
+    <string name="profile_text_temporary">Temporary</string>
+    <string name="profile_text_contact">Contact</string>
+    <string name="profile_toolbar_title">Your Profile</string>
+    <!---->
+
+    <!--fragment view tasks strings-->
+    <string name="view_task_text_description">Description</string>
+    <string name="view_task_text_task_status">Task status</string>
+    <string name="view_task_text_task_priority">Task priority</string>
+    <string name="view_task_title_client_information">Client Information</string>
+    <string name="view_task_text_client_name">Client name</string>
+    <string name="view_task_text_client_phone">Client phone</string>
+    <string name="view_task_title_change_status">Change Status</string>
+    <string name="view_task_text_open">Open Task</string>
+    <string name="view_task_text_append_task">Append Task</string>
+    <string name="view_task_title_complete_task">Complete Task</string>
+    <string name="view_task_et_enter_remarks">Enter Remarks (optional)</string>
+    <string name="view_task_tv_choose_file">Choose file</string>
+    <string name="view_task_tv_upload_and_complete">Upload and Complete</string>
+    <string name="view_task_text_assigned_date">Assigned date</string>
+    <string name="view_task_text_deadline">Deadline</string>
+    <string name="view_task_error_status_cant_change">You can\'t change, please select other option</string>
+    <string name="view_task_error_storage_full">Please check your storage.</string>
+    <string name="view_task_error_isufficent_memory">You have few space available, please make sure your have more than 5MB on disk to
+            take pictures!</string>
+    <string name="view_task_dialog_dimiss">Dismiss</string>
+    <string name="view_task_error_empty_task">No task available</string>
+    <string name="view_task_success_file_upload">File upload successful</string>
+
+    <string name="view_task_text_take_photo">Take photo</string>
+    <string name="view_task_text_gallery">Gallery</string>
+    <string name="view_task_text_dialog_dismiss">Dismiss</string>
+    <string name="view_task_text_need_permissions">Need Permissions</string>
+    <string name="view_task_text_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="view_task_go_to_settings">Go to settings</string>
+    <!---->
+
+    <!--status view strings-->
+    <string name="status_view_tv_view">View</string>
+    <string name="status_text_loading">Please wait…</string>
+    <string name="status_error_empty_task">No task available</string>
+    <!---->
+
+    <!--notification strings-->
+    <string name="notification_text_loading">Please wait…</string>
+    <string name="notification_toolbar_title">Notifications</string>
+    <string name="notification_error_empty_notification">No data available to fetch</string>
+    <!---->
+
+    <!--taskdetails strings-->
+    <string name="task_details_error_no_data">N/A</string>
+    <!---->
+
+    <!--progress dialog-->
+    <string name="progress_dialog_loading">Loading…</string>
+    <!---->
+
 </resources>

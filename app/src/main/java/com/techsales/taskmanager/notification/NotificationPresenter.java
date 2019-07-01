@@ -46,7 +46,7 @@ public class NotificationPresenter implements NotificationContract.Presenter {
                         viewModels = BaseNotificationResponse.mapToViewModel(component.context(), notificationResponse);
                         view.showLoadingSuccess(viewModels);
                     } else {
-                        view.showLoadingError(component.context().getString(R.string.data_not_available));
+                        view.showLoadingError(component.context().getString(R.string.notification_error_empty_notification));
                     }
                 }, throwable -> {
                     if (throwable instanceof FailedResponseException)
@@ -54,7 +54,7 @@ public class NotificationPresenter implements NotificationContract.Presenter {
                     else if (throwable instanceof NetworkNotAvailableException)
                         view.showNetworkNotAvailable();
                     else
-                        view.showLoadingError(component.context().getString(R.string.server_error));
+                        view.showLoadingError(component.context().getString(R.string.error_server));
                 });
     }
 

@@ -37,7 +37,7 @@ class ChangeStatusPresenter implements ChangeStatusContract.Presenter {
                     else if (throwable instanceof NetworkNotAvailableException)
                         view.showNetworkNotAvailableError();
                     else
-                        view.showChangeStatusError(component.context().getString(R.string.server_error));
+                        view.showChangeStatusError(component.context().getString(R.string.error_server));
                 });
 
     }

@@ -58,7 +58,7 @@ public class NotificationFragment extends BaseFragment implements NotificationCo
 
     @Override
     public void showProgress() {
-        binding.contentState.showProgress(getResources().getString(R.string.text_please_wait));
+        binding.contentState.showProgress(getResources().getString(R.string.notification_text_loading));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class NotificationFragment extends BaseFragment implements NotificationCo
     @Override
     public void showNetworkNotAvailable() {
         hideSwipeContainer();
-        binding.contentState.showError(R.drawable.no_internet, getString(R.string.network_not_available_error));
+        binding.contentState.showError(R.drawable.no_internet, getString(R.string.error_network_not_available));
     }
 
     @Override

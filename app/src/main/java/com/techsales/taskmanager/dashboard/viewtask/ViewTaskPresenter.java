@@ -79,7 +79,7 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
                     else if (throwable instanceof NetworkNotAvailableException)
                         view.showNetworkNotAvailableError();
                     else
-                        view.showErrorUpload(component.context().getString(R.string.server_error));
+                        view.showErrorUpload(component.context().getString(R.string.error_server));
                 });
     }
 

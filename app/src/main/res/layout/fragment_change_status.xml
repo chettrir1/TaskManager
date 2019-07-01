@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_change_status"
+            android:text="@string/title_change_status"
             android:textColor="@android:color/black"
             android:textSize="@dimen/h6_headline_medium" />
 
@@ -35,9 +35,9 @@
                 android:id="@+id/etRemarks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_enter_remarks_optional"
+                android:hint="@string/change_status_enter_remarks"
                 android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeActionLabel="@string/login_action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
                 android:lines="4"
@@ -69,7 +69,7 @@
             android:layout_marginEnd="@dimen/spacing_tiny"
             android:background="@drawable/bg_button_view"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_dialog_dismiss"
+            android:text="@string/change_status_dialog_dismiss"
             android:textAllCaps="true"
             android:textColor="@color/colorRed"
             android:textStyle="bold" />

@@ -30,9 +30,9 @@ class AddNotesPresenter implements AddNotesContract.Presenter {
     public void insertNotes(String title, String description) {
         view.showProgress();
         if (TextUtils.isEmpty(title)) {
-            view.showEmptyFields(component.context().getResources().getString(R.string.empty_field_message));
+            view.showEmptyFields(component.context().getResources().getString(R.string.notes_error_empty_title));
         } else if (TextUtils.isEmpty(description)) {
-            view.showEmptyFields(component.context().getResources().getString(R.string.empty_field_message));
+            view.showEmptyFields(component.context().getResources().getString(R.string.notes_error_empty_description));
         } else {
             Notes notes = new Notes();
             notes.setTitle(title);

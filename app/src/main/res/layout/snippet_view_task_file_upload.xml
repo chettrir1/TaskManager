@@ -2,9 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
+        android:id="@+id/llChooseFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/llChooseFile"
         android:layout_marginBottom="?attr/actionBarSize"
         android:orientation="vertical">
 
@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_complete_task"
+            android:text="@string/view_task_title_complete_task"
             android:textColor="@android:color/black"
             android:textSize="@dimen/h6_headline_medium" />
 
@@ -33,9 +33,9 @@
                 android:id="@+id/etRemarks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_enter_remarks_optional"
+                android:hint="@string/view_task_et_enter_remarks"
                 android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeActionLabel="@string/login_action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
                 android:lines="4"
@@ -52,7 +52,7 @@
             android:layout_marginEnd="@dimen/spacing_small"
             android:background="@drawable/bg_button_view"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_choose_file"
+            android:text="@string/view_task_tv_choose_file"
             android:textAllCaps="true"
             android:textColor="@color/colorRed"
             android:textStyle="bold" />
@@ -64,7 +64,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/spacing_small"
             android:background="@drawable/bg_bod_edittext"
-            android:contentDescription="@string/content_image"
+            android:contentDescription="@null"
             android:padding="@dimen/spacing_tiny"
             android:src="@color/colorView" />
 
@@ -86,7 +86,7 @@
             android:layout_marginEnd="@dimen/spacing_small"
             android:background="@drawable/bg_button_view"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_upload_file_and_complete"
+            android:text="@string/view_task_tv_upload_and_complete"
             android:textAllCaps="true"
             android:textColor="@color/colorGreen"
             android:textStyle="bold" />

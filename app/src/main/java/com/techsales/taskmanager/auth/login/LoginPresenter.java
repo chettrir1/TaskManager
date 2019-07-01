@@ -43,7 +43,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     else if (throwable instanceof NetworkNotAvailableException)
                         view.showNetworkNotAvailableError();
                     else
-                        view.showLoginError(component.context().getString(R.string.server_error));
+                        view.showLoginError(component.context().getString(R.string.error_server));
                 });
 
     }

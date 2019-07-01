@@ -82,7 +82,7 @@ public class ChangeStatusFragment extends BaseDialogFragment implements ChangeSt
 
     @Override
     public void showNetworkNotAvailableError() {
-        Commons.showSnackBar(component.context(), binding.llChangeStatus, component.context().getResources().getString(R.string.network_not_available_error));
+        Commons.showSnackBar(component.context(), binding.llChangeStatus, component.context().getResources().getString(R.string.error_network_not_available));
     }
 
     @Override

@@ -28,7 +28,7 @@
 
                 <TextView
                     style="@style/ProfileInfoTextView"
-                    android:text="@string/text_name" />
+                    android:text="@string/profile_text_name" />
 
                 <View
                     android:layout_width="@dimen/view_height"
@@ -57,7 +57,7 @@
 
                 <TextView
                     style="@style/ProfileInfoTextView"
-                    android:text="@string/text_username" />
+                    android:text="@string/profile_text_username" />
 
                 <View
                     android:layout_width="@dimen/view_height"
@@ -86,7 +86,7 @@
 
                 <TextView
                     style="@style/ProfileInfoTextView"
-                    android:text="@string/text_email" />
+                    android:text="@string/profile_text_email" />
 
                 <View
                     android:layout_width="@dimen/view_height"
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="@dimen/spacing_small"
-            android:text="@string/text_address"
+            android:text="@string/profile_text_address"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorRed" />
@@ -130,7 +130,7 @@
 
                 <TextView
                     style="@style/ProfileInfoTextView"
-                    android:text="@string/text_permanent" />
+                    android:text="@string/profile_text_permanent" />
 
                 <View
                     android:layout_width="@dimen/view_height"
@@ -159,7 +159,7 @@
 
                 <TextView
                     style="@style/ProfileInfoTextView"
-                    android:text="@string/text_temporory" />
+                    android:text="@string/profile_text_temporary" />
 
                 <View
                     android:layout_width="@dimen/view_height"
@@ -188,7 +188,7 @@
 
                 <TextView
                     style="@style/ProfileInfoTextView"
-                    android:text="@string/text_contact" />
+                    android:text="@string/profile_text_contact" />
 
                 <View
                     android:layout_width="@dimen/view_height"

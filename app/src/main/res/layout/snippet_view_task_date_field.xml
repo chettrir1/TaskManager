@@ -24,7 +24,7 @@
             <TextView
                 style="@style/TextViewTaskTitle"
                 android:layout_marginBottom="@dimen/spacing_tiny"
-                android:text="@string/text_assigned_date" />
+                android:text="@string/view_task_text_assigned_date" />
 
             <TextView
                 android:id="@+id/tvAssignedDate"
@@ -48,7 +48,7 @@
             <TextView
                 style="@style/TextViewTaskTitle"
                 android:layout_marginBottom="@dimen/spacing_tiny"
-                android:text="@string/text_deadline" />
+                android:text="@string/view_task_text_deadline" />
 
             <TextView
                 android:id="@+id/tvDeadlineDate"

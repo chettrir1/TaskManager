@@ -49,7 +49,7 @@ public class ContactsPresenter implements ContactsContract.Presenter {
                     else if (throwable instanceof NetworkNotAvailableException)
                         view.showNoNetworkAvailable();
                     else
-                        view.showLoadingError(component.context().getString(R.string.server_error));
+                        view.showLoadingError(component.context().getString(R.string.error_server));
                 });
     }
 

@@ -29,7 +29,7 @@ public class ContactsActivity extends BaseActivity {
         if (binding.toolbar.customToolbar != null) {
             setSupportActionBar(binding.toolbar.customToolbar);
             binding.toolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
-            binding.toolbar.tvToolbarText.setText(R.string.text_employee_contacts);
+            binding.toolbar.tvToolbarText.setText(R.string.contacts_toolbar_title_employee_contacts);
             binding.toolbar.ivToolbarImage.setOnClickListener(view -> onBackPressed());
         }
 

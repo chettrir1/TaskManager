@@ -65,7 +65,7 @@ public class TaskDetailsViewModel extends BaseObservable {
         if (status == COUNT_FOUR) {
             return STATUS_TYPE_FOUR;
         }
-        return context.getResources().getString(R.string.no_tasks_available);
+        return context.getResources().getString(R.string.task_details_error_no_data);
     }
 
     public String getTaskPriority() {
@@ -81,7 +81,7 @@ public class TaskDetailsViewModel extends BaseObservable {
         if (priority == COUNT_FOUR) {
             return PRIORITY_TYPE_THREE;
         }
-        return context.getResources().getString(R.string.no_tasks_available);
+        return context.getResources().getString(R.string.task_details_error_no_data);
     }
 
     public String getClientName() {

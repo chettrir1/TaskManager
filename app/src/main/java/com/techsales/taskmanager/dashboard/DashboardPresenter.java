@@ -23,7 +23,6 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     private DashboardContract.View view;
     private Disposable disposable;
 
-
     DashboardPresenter(TaskManagerComponent component, DashboardContract.View view) {
         this.component = component;
         this.view = view;
@@ -70,19 +69,19 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                 R.color.colorGreen
         };
 
-        TaskStatus newTask = new TaskStatus("0", component.context().getString(R.string.task_new),
+        TaskStatus newTask = new TaskStatus("0", component.context().getString(R.string.dashboard_task_text_new),
                 icons[0], color[0]);
         items.add(newTask);
 
-        TaskStatus openTask = new TaskStatus("1", component.context().getString(R.string.task_open),
+        TaskStatus openTask = new TaskStatus("1", component.context().getString(R.string.dashboard_task_text_open),
                 icons[1], color[1]);
         items.add(openTask);
 
-        TaskStatus pendingTask = new TaskStatus("2", component.context().getString(R.string.task_pending),
+        TaskStatus pendingTask = new TaskStatus("2", component.context().getString(R.string.dashboard_task_text_pending),
                 icons[2], color[2]);
         items.add(pendingTask);
 
-        TaskStatus completedTask = new TaskStatus("3", component.context().getString(R.string.task_completed),
+        TaskStatus completedTask = new TaskStatus("3", component.context().getString(R.string.dashboard_task_text_complete),
                 icons[3], color[3]);
         items.add(completedTask);
 
@@ -98,7 +97,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                         List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(component.context(), whereTasksList);
                         view.showBottomRecyclerLoadSuccess(viewModels);
                     } else {
-                        view.showEmptyTasks(component.context().getString(R.string.data_not_available));
+                        view.showEmptyTasks(component.context().getString(R.string.dashboard_error_empty_task));
                     }
                 }, throwable -> {
                     if (throwable instanceof FailedResponseException) {
@@ -106,10 +105,9 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                     } else if (throwable instanceof NetworkNotAvailableException) {
                         view.showNetworkNotAvailableError();
                     } else {
-                        view.showTasksLoadError(component.context().getString(R.string.server_error));
+                        view.showTasksLoadError(component.context().getString(R.string.error_server));
                     }
                 });
-
     }
 
     @Override
