@@ -9,11 +9,6 @@ import dagger.Provides;
 @Module
 public class DashboardActivityModule {
 
-    /* @Provides
-     @ActivityScope
-     Activity provideActivity(DashboardActivity activity) {
-         return activity;
-     }*/
     @Provides
     @ActivityScope
     DashboardContract.View provideDashboardActivity(DashboardActivity activity) {

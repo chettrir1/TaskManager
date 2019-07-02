@@ -5,7 +5,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -191,7 +191,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/etTaskDetails" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/prioritySpinner"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height_normal"
                 android:layout_marginTop="8dp"
@@ -206,11 +206,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Task Type"
+                android:text="@string/create_new_task_text_task_type"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -225,10 +225,10 @@
                 android:textStyle="italic"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/taskTypeSpinner"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height_normal"
                 android:layout_marginTop="8dp"
@@ -243,11 +243,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Client Name"
+                android:text="@string/view_task_text_client_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeSpinner" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -263,7 +263,7 @@
                 android:textStyle="italic"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/textView12"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeSpinner" />
 
             <EditText
                 android:id="@+id/editText4"
@@ -312,7 +312,6 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height_normal"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="32dp"
                 android:background="@drawable/bg_bod_edittext"
                 android:ems="10"
                 android:fontFamily="@font/open_sans"
@@ -321,8 +320,25 @@
                 android:paddingEnd="@dimen/spacing_tiny"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/bg_bod_edittext"
+                android:text="@string/create_new_task_text_task_client_button"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/etClientPhone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

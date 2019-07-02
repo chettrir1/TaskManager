@@ -19,7 +19,6 @@
     <string name="login_verify_username_passowrd">Verifying username and password</string>
     <!---->
 
-
     <!--contacts strings-->
     <string name="contacts_toolbar_title_employee_contacts">Employee Contacts</string>
     <string name="contacts_loading_message">Please wait…</string>
@@ -41,7 +40,6 @@
     <string name="title_change_status">Change Status</string>
     <string name="change_status_enter_remarks">Enter remarks (Optional)</string>
     <string name="change_status_dialog_dismiss">Dismiss</string>
-
     <!---->
 
     <!--fragment dashboard strings-->
@@ -125,7 +123,10 @@
     <string name="create_new_task_warning_optional">- (Optional)</string>
     <string name="create_new_task_text_task_deatails">Task Details</string>
     <string name="create_new_task_text_task_priority">Task Priority</string>
+    <string name="create_new_task_text_task_type">Task Type</string>
+    <string name="create_new_task_text_task_client_name">Client Phone</string>
     <string name="create_new_task_text_task_client_phone">Client Phone</string>
+    <string name="create_new_task_text_task_client_button">Add Task</string>
     <!---->
 
     <!--toolbar menu strings-->

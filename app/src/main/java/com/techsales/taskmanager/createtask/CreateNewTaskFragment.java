@@ -5,13 +5,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.databinding.FragmentCreateNewTaskBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 public class CreateNewTaskFragment extends BaseFragment implements CreateNewTaskContract.View {
+    private FragmentCreateNewTaskBinding binding;
+
+    @Inject
+    CreateNewTaskContract.Presenter presenter;
 
 
     public static Fragment getInstance() {
@@ -19,10 +32,40 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_new_task, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_new_task, null, false);
+
+        return binding.getRoot();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.start();
+    }
+
+    @Override
+    public void onStop() {
+        presenter.stop();
+        super.onStop();
+    }
+
+    @Override
+    public void setPrioritySpinner(List<String> priority) {
+        if (getContext() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, priority);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            binding.prioritySpinner.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void setTaskTypeSpinner(List<String> type) {
+        if (getContext() != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, type);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            binding.taskTypeSpinner.setAdapter(adapter);
+        }
+    }
 }

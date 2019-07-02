@@ -27,6 +27,9 @@ public class Constants {
     public static final String TITLE_PENDING_TASK = "Pending Tasks";
     public static final String TITLE_COMPLETED_TASK = "Completed Tasks";
 
+    public static final String TASK_TYPE_NEW = "NEW";
+    public static final String TASK_TYPE_MANTAIN = "MAINTAINANCE";
+
 
     static final int CAMERA_REQUEST_CODE = 100;
     static final int GALLERY_REQUEST_CODE = 203;
@@ -34,5 +37,6 @@ public class Constants {
     static final int LOCATION_PERMISSION_CODE = 300;
     static final int CONTACTS_PERMISSION_CODE = 500;
     static final int CALL_PERMISSION_CODE = 600;
+
 
 }
