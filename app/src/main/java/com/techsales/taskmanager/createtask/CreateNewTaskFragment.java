@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.createtask.chooseemployee.ChooseEmployeeFragment;
 import com.techsales.taskmanager.databinding.FragmentCreateNewTaskBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,7 +26,6 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
     @Inject
     CreateNewTaskContract.Presenter presenter;
 
-
     public static Fragment getInstance() {
         return new CreateNewTaskFragment();
     }
@@ -35,6 +34,7 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_new_task, null, false);
+        binding.btnAddTask.setOnClickListener(view -> openBottomDialog());
 
         return binding.getRoot();
     }
@@ -67,5 +67,12 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             binding.taskTypeSpinner.setAdapter(adapter);
         }
+    }
+
+    private void openBottomDialog() {
+        ChooseEmployeeFragment fragment = ChooseEmployeeFragment.getInstance();
+        if (getActivity() != null)
+            fragment.show(getActivity().getSupportFragmentManager(), "dialog");
+        fragment.setCancelable(true);
     }
 }

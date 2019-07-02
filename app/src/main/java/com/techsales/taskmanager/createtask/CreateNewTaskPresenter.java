@@ -1,13 +1,10 @@
 package com.techsales.taskmanager.createtask;
 
 import com.techsales.taskmanager.di.TaskManagerComponent;
-import com.techsales.taskmanager.utils.Commons;
 import com.techsales.taskmanager.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.disposables.Disposable;
 
 public class CreateNewTaskPresenter implements CreateNewTaskContract.Presenter {
 

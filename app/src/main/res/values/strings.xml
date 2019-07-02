@@ -137,4 +137,9 @@
     <string name="toolbar_menu_logout">Logout</string>
     <!---->
 
+    <!--choose employee strings-->
+    <string name="dialog_choose_employee_title">Employee Lists</string>
+    <string name="dialog_choose_employee_btn_assign_task">Assign Task</string>
+    <!---->
+
 </resources>
