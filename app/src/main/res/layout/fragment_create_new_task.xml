@@ -1,0 +1,328 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.techsales.taskmanager.createtask.CreateNewTaskFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <TextView
+                android:id="@+id/tvTaskTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_text_task_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+
+            <EditText
+                android:id="@+id/etTaskTitle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_bod_edittext"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:inputType="textCapWords"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingEnd="@dimen/spacing_tiny"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvTaskTitle" />
+
+            <TextView
+                android:id="@+id/tvTaskDeadline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_text_task_deadline"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskTitle" />
+
+            <EditText
+                android:id="@+id/etTaskDeadline"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_bod_edittext"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:inputType="textCapWords"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingEnd="@dimen/spacing_tiny"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvTaskDeadline" />
+
+            <TextView
+                android:id="@+id/tvTitleImp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_important"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/tvTaskTitle"
+                app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+
+            <TextView
+                android:id="@+id/tvDeadlineImp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_important"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/tvTaskDeadline"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskTitle" />
+
+            <TextView
+                android:id="@+id/tvTaskDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_text_task_deatails"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskDeadline" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_optional"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/tvTaskDetails"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskDeadline" />
+
+            <EditText
+                android:id="@+id/etTaskDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_bod_edittext"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:maxLines="4"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingTop="@dimen/spacing_tiny"
+                android:paddingEnd="@dimen/spacing_tiny"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvTaskDetails" />
+
+            <TextView
+                android:id="@+id/tvTaskPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_text_task_priority"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskDetails" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_important"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/tvTaskPriority"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskDetails" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_bod_edittext"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/tvTaskPriority" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Task Type"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_optional"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_bod_edittext"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Client Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_important"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_bod_edittext"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingEnd="@dimen/spacing_tiny"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_text_task_client_phone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+            <TextView
+                android:id="@+id/tvClientPhoneOptional"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_warning_optional"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorLightBlack"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+            <EditText
+                android:id="@+id/etClientPhone"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/bg_bod_edittext"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:inputType="phone"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingEnd="@dimen/spacing_tiny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

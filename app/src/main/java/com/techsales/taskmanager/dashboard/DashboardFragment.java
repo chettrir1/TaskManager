@@ -4,14 +4,15 @@ package com.techsales.taskmanager.dashboard;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.auth.login.LoginActivity;
+import com.techsales.taskmanager.createtask.container.CreateNewTaskActivity;
 import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragment;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
@@ -53,8 +55,11 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
         checkAlreadyLogin();
         initTopRecyclerView();
         binding.swipeContainer.setOnRefreshListener(() -> presenter.onBottomRecyclerLoad());
+        initFabView();
+
         return binding.getRoot();
     }
+
 
     @Override
     public void onResume() {
@@ -156,4 +161,20 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
                     .commit();
         }
     }
+
+    private void initFabView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.scrollView.setOnScrollChangeListener((NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) -> {
+                if (scrollY > oldScrollY) {
+                    binding.fabAssignTask.hide();
+                } else {
+                    binding.fabAssignTask.show();
+                }
+            });
+        }
+
+        binding.fabAssignTask.setOnClickListener(view -> CreateNewTaskActivity.start(getActivity()));
+    }
+
+
 }

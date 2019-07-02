@@ -4,6 +4,8 @@ import com.techsales.taskmanager.auth.login.LoginActivity;
 import com.techsales.taskmanager.auth.login.LoginActivityModule;
 import com.techsales.taskmanager.contacts.container.ContactsActivity;
 import com.techsales.taskmanager.contacts.container.ContactsActivityModule;
+import com.techsales.taskmanager.createtask.container.CreateNewTaskActivity;
+import com.techsales.taskmanager.createtask.container.CreateNewTaskActivityModule;
 import com.techsales.taskmanager.dashboard.container.DashboardActivity;
 import com.techsales.taskmanager.dashboard.container.DashboardActivityModule;
 import com.techsales.taskmanager.di.scope.ActivityScope;
@@ -57,4 +59,8 @@ abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = {StatusActivityModule.class, FragmentBindingModule.class})
     abstract StatusActivity statusActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {CreateNewTaskActivityModule.class, FragmentBindingModule.class})
+    abstract CreateNewTaskActivity createNewTaskActivity();
 }

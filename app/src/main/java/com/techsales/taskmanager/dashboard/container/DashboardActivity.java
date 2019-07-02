@@ -21,8 +21,6 @@ import com.techsales.taskmanager.profile.container.ProfileActivity;
 
 public class DashboardActivity extends BaseActivity {
 
-    private ActivityDashboardBinding binding;
-
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, DashboardActivity.class);
         activity.startActivity(intent);
@@ -31,7 +29,7 @@ public class DashboardActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        ActivityDashboardBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         setSupportActionBar(binding.customToolbar);
         binding.ivToolbarImage.setImageResource(R.mipmap.ic_launcher_round);
         binding.tvToolbarText.setText(R.string.app_name);

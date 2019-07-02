@@ -114,8 +114,26 @@
     <string name="task_details_error_no_data">N/A</string>
     <!---->
 
-    <!--progress dialog-->
+    <!--progress dialog strings-->
     <string name="progress_dialog_loading">Loading…</string>
+
+    <!--create new task strings -->
+    <string name="create_new_task_toolbar_title">Create New Task</string>
+    <string name="create_new_task_text_task_title">Title</string>
+    <string name="create_new_task_text_task_deadline">Deadline</string>
+    <string name="create_new_task_warning_important">- (Important)</string>
+    <string name="create_new_task_warning_optional">- (Optional)</string>
+    <string name="create_new_task_text_task_deatails">Task Details</string>
+    <string name="create_new_task_text_task_priority">Task Priority</string>
+    <string name="create_new_task_text_task_client_phone">Client Phone</string>
+    <!---->
+
+    <!--toolbar menu strings-->
+    <string name="toolbar_menu_notification">Notification</string>
+    <string name="toolbar_menu_profile">Profile</string>
+    <string name="toolbar_menu_contacts">Contacts</string>
+    <string name="toolbar_menu_note">Note</string>
+    <string name="toolbar_menu_logout">Logout</string>
     <!---->
 
 </resources>

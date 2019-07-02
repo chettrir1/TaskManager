@@ -2,6 +2,8 @@ package com.techsales.taskmanager.di;
 
 import com.techsales.taskmanager.contacts.ContactFragmentModule;
 import com.techsales.taskmanager.contacts.ContactsFragment;
+import com.techsales.taskmanager.createtask.CreateNewTaskFragment;
+import com.techsales.taskmanager.createtask.CreateNewTaskFragmentModule;
 import com.techsales.taskmanager.dashboard.DashboardFragment;
 import com.techsales.taskmanager.dashboard.DashboardFragmentModule;
 import com.techsales.taskmanager.dashboard.viewtask.ViewTaskFragment;
@@ -67,4 +69,8 @@ abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = StatusFragmentModule.class)
     abstract StatusFragment statusFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = CreateNewTaskFragmentModule.class)
+    abstract CreateNewTaskFragment createNewTaskFragment();
 }
