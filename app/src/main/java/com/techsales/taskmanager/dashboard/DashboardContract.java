@@ -11,6 +11,9 @@ import java.util.List;
 public interface DashboardContract {
 
     interface View extends BaseView<Presenter> {
+
+        void checkIfAdmin(boolean admin);
+
         void showProgress();
 
         void showTopRecyclerLoadSuccess(List<DashboardTopRecyclerViewModel> items);

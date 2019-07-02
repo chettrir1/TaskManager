@@ -26,7 +26,7 @@ public class NotificationActivity extends BaseActivity {
         if (binding.includeToolbar.customToolbar != null) {
             setSupportActionBar(binding.includeToolbar.customToolbar);
             binding.includeToolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
-            binding.includeToolbar.tvToolbarText.setText(R.string.notification_text_loading);
+            binding.includeToolbar.tvToolbarText.setText(R.string.notification_toolbar_title);
 
             binding.includeToolbar.ivToolbarImage.setOnClickListener(view -> onBackPressed());
         }

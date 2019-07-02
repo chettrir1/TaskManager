@@ -19,7 +19,14 @@ import com.techsales.taskmanager.notes.container.NoteListActivity;
 import com.techsales.taskmanager.notification.container.NotificationActivity;
 import com.techsales.taskmanager.profile.container.ProfileActivity;
 
-public class DashboardActivity extends BaseActivity {
+import javax.inject.Inject;
+
+public class DashboardActivity extends BaseActivity implements DashboardContract.View {
+
+    private ActivityDashboardBinding binding;
+
+    @Inject
+    DashboardContract.Presenter presenter;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, DashboardActivity.class);
@@ -29,14 +36,30 @@ public class DashboardActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityDashboardBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         setSupportActionBar(binding.customToolbar);
         binding.ivToolbarImage.setImageResource(R.mipmap.ic_launcher_round);
-        binding.tvToolbarText.setText(R.string.app_name);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.dashboardContainer, DashboardFragment.getInstance())
                 .commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.start();
+    }
+
+    @Override
+    protected void onStop() {
+        presenter.stop();
+        super.onStop();
+    }
+
+    @Override
+    public void setToolbarTitle(String type) {
+        binding.tvToolbarText.setText(type);
     }
 
     @Override
@@ -79,5 +102,4 @@ public class DashboardActivity extends BaseActivity {
         startActivity(new Intent(activity, LoginActivity.class));
         activity.finish();
     }
-
 }

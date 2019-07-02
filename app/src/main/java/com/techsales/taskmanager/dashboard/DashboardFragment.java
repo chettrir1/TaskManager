@@ -82,6 +82,15 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
     }
 
     @Override
+    public void checkIfAdmin(boolean admin) {
+        if (admin) {
+            binding.fabAssignTask.show();
+        } else {
+            binding.fabAssignTask.hide();
+        }
+    }
+
+    @Override
     public void showProgress() {
         binding.contentState.showProgress();
     }

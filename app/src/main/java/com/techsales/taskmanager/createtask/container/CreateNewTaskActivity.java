@@ -12,7 +12,6 @@ import com.techsales.taskmanager.createtask.CreateNewTaskFragment;
 import com.techsales.taskmanager.databinding.ActivityCreateNewTaskBinding;
 
 public class CreateNewTaskActivity extends BaseActivity {
-    private ActivityCreateNewTaskBinding binding;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, CreateNewTaskActivity.class);
@@ -22,11 +21,13 @@ public class CreateNewTaskActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_new_task);
+        ActivityCreateNewTaskBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_create_new_task);
         if (binding.includeToolbar.customToolbar != null) {
             setSupportActionBar(binding.includeToolbar.customToolbar);
             binding.includeToolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
             binding.includeToolbar.tvToolbarText.setText(R.string.create_new_task_toolbar_title);
+
+            binding.includeToolbar.ivToolbarImage.setOnClickListener(view -> onBackPressed());
         }
 
         getSupportFragmentManager().beginTransaction()

@@ -18,7 +18,6 @@ public class CreateNewTaskPresenter implements CreateNewTaskContract.Presenter {
 
     @Override
     public void start() {
-
     }
 
     @Override

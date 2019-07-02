@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.dashboard;
 
+import android.util.Log;
+
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
@@ -30,6 +32,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     @Override
     public void start() {
+        checkIfAdminOrNot();
         prepareDashBoardStatus();
     }
 
@@ -114,6 +117,15 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
         view.onBottomRecyclerItemClicked(items, position);
 
+    }
+
+    private void checkIfAdminOrNot() {
+        String ifAdmin = component.data().savedUserInfo().getUserType();
+        if (ifAdmin.equals("1")) {
+            view.checkIfAdmin(true);
+        } else {
+            view.checkIfAdmin(false);
+        }
     }
 
 }

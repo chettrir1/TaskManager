@@ -26,12 +26,10 @@ public class LocalRepo {
     private boolean cachedRememberStatus;
 
     private final Gson gson;
-    private final Context context;
 
     @Inject
     LocalRepo(Gson gson, Context context) {
         this.gson = gson;
-        this.context = context;
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 

@@ -19,6 +19,8 @@ public class UserInfo {
     private String profileImage;
     @SerializedName("citizenship_image")
     private String citizenshipImage;
+    @SerializedName("user_type")
+    private String userType;
     @SerializedName("user_name")
     private String userName;
     @SerializedName("last_login_at")
@@ -86,6 +88,14 @@ public class UserInfo {
 
     public void setCitizenshipImage(String citizenshipImage) {
         this.citizenshipImage = citizenshipImage;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getUserName() {
