@@ -52,7 +52,7 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
     }
 
     @Override
-    public void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, int position, CheckBox cbAssignTo) {
-        view.onEmployeeItemClick(items, position, cbAssignTo);
+    public void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean isChecked) {
+        view.onEmployeeItemClick(items, position, isChecked);
     }
 }

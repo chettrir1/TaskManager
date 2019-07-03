@@ -12,12 +12,15 @@ import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.chooseemployee.ChooseEmployeeViewModel;
 import com.techsales.taskmanager.databinding.ViewholderChooseEmployeeRecyclerItemBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEmployeeRecyclerAdapter.ChooseEmployeeViewHolder> {
     private List<ChooseEmployeeViewModel> items;
     private LayoutInflater layoutInflater;
     private ChooseEmployeeItemsClickListener listener;
+    private boolean isChecked = false;
+    private List<String> employeeList;
 
     @NonNull
     @Override
@@ -31,10 +34,19 @@ public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEm
 
     @Override
     public void onBindViewHolder(@NonNull ChooseEmployeeViewHolder holder, int position) {
+        employeeList = new ArrayList<>(50);
         holder.binding.setChooseEmployee(items.get(position));
         holder.binding.getRoot().setOnClickListener(view -> {
-            if (items != null)
-                listener.onChooseEmployeeItemClick(items.get(position), position, holder.binding.cbAssignTo);
+            if (items != null) {
+                if (!isChecked) {
+                    isChecked = true;
+                    holder.binding.cbAssignTo.setChecked(true);
+                } else {
+                    isChecked = false;
+                    holder.binding.cbAssignTo.setChecked(false);
+                }
+                listener.onChooseEmployeeItemClick(items.get(position), position, isChecked);
+            }
         });
     }
 
@@ -58,6 +70,6 @@ public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEm
     }
 
     public interface ChooseEmployeeItemsClickListener {
-        void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, int position, CheckBox cbAssignTo);
+        void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean isChecked);
     }
 }

@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,11 +27,10 @@ import static android.widget.LinearLayout.VERTICAL;
 public class ChooseEmployeeFragment extends BaseDialogFragment implements ChooseEmployeeContract.View {
     private static final String ABOUT_TASK = "aboutTask";
     private DialogChooseEmployeeBinding binding;
-    private List<String> employeeList = new ArrayList<>();
+    private List<String> employeeList;
 
     @Inject
     ChooseEmployeeContract.Presenter presenter;
-    private boolean isChecked = false;
 
     public static ChooseEmployeeFragment getInstance(AboutTask tasks) {
         ChooseEmployeeFragment fragment = new ChooseEmployeeFragment();
@@ -48,6 +45,7 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
         binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.dialog_choose_employee, null, false);
+        employeeList = new ArrayList<>(50);
         binding.contentState.setContent(binding.content);
         binding.tvDialogTitle.setText(R.string.dialog_choose_employee_title);
         binding.btnAssignTask.setOnClickListener(view -> Log.v("employeeList", employeeList.size() + ""));
@@ -96,17 +94,14 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
     }
 
     @Override
-    public void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, CheckBox cbAssignTo) {
-        if (!isChecked) {
-            Toast.makeText(getContext(), "added" + items.getEmployeeName(), Toast.LENGTH_SHORT).show();
+    public void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean isChecked) {
+        if (isChecked) {
+            Log.v("employeeAdded", items.getEmployeeName());
             employeeList.add(items.getEmployeeName());
-            cbAssignTo.setChecked(true);
-            isChecked = true;
         } else {
-            Toast.makeText(getContext(), "removed" + items.getEmployeeName(), Toast.LENGTH_SHORT).show();
+            Log.v("employeeRemoved", items.getEmployeeName());
             employeeList.remove(items.getEmployeeName());
-            cbAssignTo.setChecked(false);
-            isChecked = false;
         }
+        Log.v("employeeList", employeeList + "");
     }
 }

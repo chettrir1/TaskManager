@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.createtask.chooseemployee;
 
-import android.widget.CheckBox;
-
 import com.techsales.taskmanager.BasePresenter;
 import com.techsales.taskmanager.BaseView;
 import com.techsales.taskmanager.data.model.viewmodel.chooseemployee.ChooseEmployeeViewModel;
@@ -18,7 +16,7 @@ public interface ChooseEmployeeContract {
 
         void showLoadingSuccess(List<ChooseEmployeeViewModel> viewModels);
 
-        void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, CheckBox cbAssignTo);
+        void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean cbAssignTo);
     }
 
     interface Presenter extends BasePresenter, ChooseEmployeeRecyclerAdapter.ChooseEmployeeItemsClickListener {
