@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseChooseEmployeeResponse {
+
     @SerializedName("data")
     private List<ChooseEmployeeResponse> items;
 
-    public List<ChooseEmployeeResponse> getItems() {
+    public List<ChooseEmployeeResponse> getChooseEmployeeResponse() {
         return items;
     }
 

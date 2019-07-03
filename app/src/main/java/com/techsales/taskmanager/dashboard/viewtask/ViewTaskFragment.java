@@ -55,10 +55,10 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
-import static com.techsales.taskmanager.utils.Constants.COUNT_FOUR;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 
 public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.View {
 
@@ -97,15 +97,15 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_task, null, false);
         getDataWithBundle();
 
-        if (taskStatus == COUNT_THREE) {
+        if (taskStatus == COUNT_TWO) {
             setCompleteTaskVisible();
         } else {
             setChangeStatusVisible();
         }
 
         binding.includeStatus.tvStatusOpen.setOnClickListener(view -> {
-            if (taskStatus == COUNT_ONE) {
-                openBottomDialog(taskId, COUNT_TWO);
+            if (taskStatus == COUNT_ZERO) {
+                openBottomDialog(taskId, COUNT_ONE);
             } else {
                 Commons.showSnackBar(component.context(), binding.llMainView, getResources()
                         .getString(R.string.view_task_error_status_cant_change));
@@ -113,8 +113,8 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         });
 
         binding.includeStatus.tvStatusAppend.setOnClickListener(view -> {
-            if (taskStatus == COUNT_TWO) {
-                openBottomDialog(taskId, COUNT_THREE);
+            if (taskStatus == COUNT_ONE) {
+                openBottomDialog(taskId, COUNT_TWO);
             } else {
                 Commons.showSnackBar(component.context(), binding.llMainView, getResources()
                         .getString(R.string.view_task_error_status_cant_change));
@@ -369,7 +369,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                         file);
                 MultipartBody.Part part = MultipartBody.Part.createFormData("file_upload", file.getName(), file_part);
                 String remarks = binding.includeCompleteTask.etRemarks.getText().toString();
-                presenter.uploadAndComplete(taskId, String.valueOf(COUNT_FOUR), remarks, part);
+                presenter.uploadAndComplete(taskId, String.valueOf(COUNT_THREE), remarks, part);
             }
         }
     }

@@ -1,7 +1,12 @@
 package com.techsales.taskmanager.createtask.chooseemployee;
 
+import android.widget.CheckBox;
+
 import com.techsales.taskmanager.BasePresenter;
 import com.techsales.taskmanager.BaseView;
+import com.techsales.taskmanager.data.model.viewmodel.chooseemployee.ChooseEmployeeViewModel;
+
+import java.util.List;
 
 public interface ChooseEmployeeContract {
     interface View extends BaseView<Presenter> {
@@ -11,10 +16,12 @@ public interface ChooseEmployeeContract {
 
         void showNoNetworkAvailable();
 
-        void showLoadingSuccess();
+        void showLoadingSuccess(List<ChooseEmployeeViewModel> viewModels);
+
+        void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, CheckBox cbAssignTo);
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter, ChooseEmployeeRecyclerAdapter.ChooseEmployeeItemsClickListener {
 
     }
 }

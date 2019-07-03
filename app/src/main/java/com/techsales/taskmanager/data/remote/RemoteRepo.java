@@ -1,6 +1,7 @@
 package com.techsales.taskmanager.data.remote;
 
 import com.techsales.taskmanager.data.model.api.BaseResponse;
+import com.techsales.taskmanager.data.model.api.chooseemployee.BaseChooseEmployeeResponse;
 import com.techsales.taskmanager.data.model.api.contacts.BaseContactsResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.api.notification.BaseNotificationResponse;
@@ -51,5 +52,8 @@ public interface RemoteRepo {
     @POST("task/status")
     Single<BaseResponse<BaseStatusResponse>> requestStatus(
             @Body Map<String, Object> params);
+
+    @GET("user/list")
+    Single<BaseChooseEmployeeResponse> getEmployeeList();
 
 }

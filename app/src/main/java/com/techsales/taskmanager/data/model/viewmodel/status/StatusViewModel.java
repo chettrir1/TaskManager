@@ -9,10 +9,10 @@ import androidx.databinding.Bindable;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.api.status.StatusResponse;
 
-import static com.techsales.taskmanager.utils.Constants.COUNT_FOUR;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 
 public class StatusViewModel extends BaseObservable {
     private StatusResponse items;
@@ -42,19 +42,19 @@ public class StatusViewModel extends BaseObservable {
     public int getStatusColor() {
         int count = items.getStatus();
 
-        if (count == COUNT_ONE) {
+        if (count == COUNT_ZERO) {
             return context.getResources().getColor(R.color.colorBlue);
         }
 
-        if (count == COUNT_TWO) {
+        if (count == COUNT_ONE) {
             return context.getResources().getColor(R.color.colorYellow);
         }
 
-        if (count == COUNT_THREE) {
+        if (count == COUNT_TWO) {
             return context.getResources().getColor(R.color.colorRed);
         }
 
-        if (count == COUNT_FOUR) {
+        if (count == COUNT_THREE) {
             return context.getResources().getColor(R.color.colorGreen);
 
         }
@@ -66,19 +66,19 @@ public class StatusViewModel extends BaseObservable {
     public Drawable getDrawable() {
         int count = items.getStatus();
 
-        if (count == COUNT_ONE) {
+        if (count == COUNT_ZERO) {
             return context.getResources().getDrawable(R.drawable.ic_new_task);
         }
 
-        if (count == COUNT_TWO) {
+        if (count == COUNT_ONE) {
             return context.getResources().getDrawable(R.drawable.ic_opened_task);
         }
 
-        if (count == COUNT_THREE) {
+        if (count == COUNT_TWO) {
             return context.getResources().getDrawable(R.drawable.ic_pending_task);
         }
 
-        if (count == COUNT_FOUR) {
+        if (count == COUNT_THREE) {
             return context.getResources().getDrawable(R.drawable.ic_completed_task);
 
         }

@@ -9,10 +9,10 @@ public class Constants {
     public static final String STATUS_TYPE_THREE = "PENDING";
     public static final String STATUS_TYPE_FOUR = "COMPLETED";
 
-    public static final int COUNT_ONE = 0;
-    public static final int COUNT_TWO = 1;
-    public static final int COUNT_THREE = 2;
-    public static final int COUNT_FOUR = 3;
+    public static final int COUNT_ZERO = 0;
+    public static final int COUNT_ONE = 1;
+    public static final int COUNT_TWO = 2;
+    public static final int COUNT_THREE = 3;
 
     public static final String PRIORITY_TYPE_ONE = "NORMAL";
     public static final String PRIORITY_TYPE_TWO = "IMPORTANT";

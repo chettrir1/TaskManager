@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
@@ -22,7 +21,6 @@ import static com.techsales.taskmanager.utils.Commons.checkNotNull;
 public class ContentStateView extends FrameLayout {
     private ContentStateViewBinding binding;
 
-    @NonNull
     private View contentView;
 
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
@@ -64,13 +62,13 @@ public class ContentStateView extends FrameLayout {
 
     public void showError(@DrawableRes int image, @StringRes int message) {
         this.binding.tvConnectionState.setText(message);
-        binding.ivContentState.setImageDrawable(ContextCompat.getDrawable(binding.ivContentState.getContext(),image));
+        binding.ivContentState.setImageDrawable(ContextCompat.getDrawable(binding.ivContentState.getContext(), image));
         errorVisible();
     }
 
     public void showError(@DrawableRes int image, String message) {
         this.binding.tvConnectionState.setText(message);
-        binding.ivContentState.setImageDrawable(ContextCompat.getDrawable(binding.ivContentState.getContext(),image));
+        binding.ivContentState.setImageDrawable(ContextCompat.getDrawable(binding.ivContentState.getContext(), image));
         errorVisible();
     }
 

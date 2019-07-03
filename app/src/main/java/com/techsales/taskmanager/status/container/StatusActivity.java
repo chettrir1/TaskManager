@@ -3,13 +3,11 @@ package com.techsales.taskmanager.status.container;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.databinding.DataBindingUtil;
 
 import com.techsales.taskmanager.BaseActivity;
 import com.techsales.taskmanager.R;
-import com.techsales.taskmanager.data.model.dashboard.top.Status;
 import com.techsales.taskmanager.databinding.ActivityStatusBinding;
 import com.techsales.taskmanager.status.StatusFragment;
 import com.techsales.taskmanager.utils.Constants;
@@ -40,19 +38,19 @@ public class StatusActivity extends BaseActivity {
     }
 
     private String getToolbarTitle(int status) {
-        if (status == Constants.COUNT_ONE) {
+        if (status == Constants.COUNT_ZERO) {
             return Constants.TITLE_NEW_TASK;
         }
 
-        if (status == Constants.COUNT_TWO) {
+        if (status == Constants.COUNT_ONE) {
             return Constants.TITLE_OPENED_TASK;
         }
 
-        if (status == Constants.COUNT_THREE) {
+        if (status == Constants.COUNT_TWO) {
             return Constants.TITLE_PENDING_TASK;
         }
 
-        if (status == Constants.COUNT_FOUR) {
+        if (status == Constants.COUNT_THREE) {
             return Constants.TITLE_COMPLETED_TASK;
         }
         return "";

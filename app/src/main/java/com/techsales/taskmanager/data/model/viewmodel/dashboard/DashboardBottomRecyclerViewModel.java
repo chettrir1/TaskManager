@@ -10,10 +10,10 @@ import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.utils.Commons;
 
-import static com.techsales.taskmanager.utils.Constants.COUNT_FOUR;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_FOUR;
 import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_ONE;
 import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_THREE;
@@ -49,19 +49,19 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
     @Bindable
     public String getStatus() {
         int status = whereTask.getStatus();
-        if (status == COUNT_ONE) {
+        if (status == COUNT_ZERO) {
             return STATUS_TYPE_ONE;
         }
 
-        if (status == COUNT_TWO) {
+        if (status == COUNT_ONE) {
             return STATUS_TYPE_TWO;
         }
 
-        if (status == COUNT_THREE) {
+        if (status == COUNT_TWO) {
             return STATUS_TYPE_THREE;
         }
 
-        if (status == COUNT_FOUR) {
+        if (status == COUNT_THREE) {
             return STATUS_TYPE_FOUR;
         }
         return "N/A";
@@ -70,19 +70,19 @@ public class DashboardBottomRecyclerViewModel extends BaseObservable {
     @Bindable
     public int getBackgroundColor() {
         int count = whereTask.getStatus();
-        if (count == COUNT_ONE) {
+        if (count == COUNT_ZERO) {
             return context.getResources().getColor(R.color.colorBlue);
         }
 
-        if (count == COUNT_TWO) {
+        if (count == COUNT_ONE) {
             return context.getResources().getColor(R.color.colorYellow);
         }
 
-        if (count == COUNT_THREE) {
+        if (count == COUNT_TWO) {
             return context.getResources().getColor(R.color.colorRed);
         }
 
-        if (count == COUNT_FOUR) {
+        if (count == COUNT_THREE) {
             return context.getResources().getColor(R.color.colorGreen);
         }
         return context.getResources().getColor(R.color.colorBlue);

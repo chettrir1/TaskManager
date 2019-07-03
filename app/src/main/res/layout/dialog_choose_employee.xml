@@ -51,8 +51,7 @@
         <LinearLayout
             android:id="@+id/llRecycler"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_height="300dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -74,7 +73,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvEmployeeList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </LinearLayout>
         </LinearLayout>
@@ -82,7 +82,7 @@
         <Button
             android:id="@+id/btnAssignTask"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height_normal"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_bod_edittext"
             android:fontFamily="@font/open_sans"

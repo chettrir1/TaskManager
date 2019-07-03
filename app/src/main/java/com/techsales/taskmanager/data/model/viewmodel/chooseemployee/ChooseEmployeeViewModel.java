@@ -4,8 +4,11 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
+import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.api.chooseemployee.ChooseEmployeeResponse;
+import com.techsales.taskmanager.utils.Constants;
 
 public class ChooseEmployeeViewModel extends BaseObservable {
     private Context context;
@@ -16,14 +19,43 @@ public class ChooseEmployeeViewModel extends BaseObservable {
         this.items = items;
     }
 
+    @Bindable
     public String getEmployeeName() {
         return items.getFullName();
     }
 
+    @Bindable
     public Drawable getPositionIcon() {
-        int usertype = items.getUserType();
+        int userType = items.getUserType();
 
-        return context.getResources().getDrawable(items.getUserType());
+        if (userType == Constants.COUNT_ZERO) {
+            return context.getResources().getDrawable(R.drawable.ic_assign_staff);
+        }
+        if (userType == Constants.COUNT_ONE) {
+            return context.getResources().getDrawable(R.drawable.ic_assign_admin);
+        }
+        if (userType == Constants.COUNT_TWO) {
+            return context.getResources().getDrawable(R.drawable.ic_assign_accountant);
+        }
+        return context.getResources().getDrawable(R.drawable.ic_assign_admin);
+    }
+
+    @Bindable
+    public int getPositionIconColor() {
+        int userType = items.getUserType();
+
+        if (userType == Constants.COUNT_ZERO) {
+            return context.getResources().getColor(R.color.colorGreen);
+        }
+
+        if (userType == Constants.COUNT_ONE) {
+            return context.getResources().getColor(R.color.colorBlue);
+        }
+
+        if (userType == Constants.COUNT_TWO) {
+            return context.getResources().getColor(R.color.colorRed);
+        }
+        return context.getResources().getColor(R.color.colorBlue);
     }
 
 

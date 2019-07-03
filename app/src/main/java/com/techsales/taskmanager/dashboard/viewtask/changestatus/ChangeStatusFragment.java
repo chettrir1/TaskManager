@@ -19,9 +19,8 @@ import javax.inject.Inject;
 
 import dagger.android.support.HasSupportFragmentInjector;
 
-import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
-import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.STATUS_NAME;
 import static com.techsales.taskmanager.utils.Constants.STATUS_NEW;
 import static com.techsales.taskmanager.utils.Constants.STATUS_OPEN;
@@ -94,11 +93,11 @@ public class ChangeStatusFragment extends BaseDialogFragment implements ChangeSt
     }
 
     private String getStatusCount() {
-        if (statusName == COUNT_TWO) {
+        if (statusName == COUNT_ONE) {
             return STATUS_OPEN;
         }
 
-        if (statusName == COUNT_THREE) {
+        if (statusName == COUNT_TWO) {
             return STATUS_PENDING;
         }
         return STATUS_NEW;

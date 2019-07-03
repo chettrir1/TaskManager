@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.createtask.chooseemployee.ChooseEmployeeFragment;
+import com.techsales.taskmanager.data.model.createtask.AboutTask;
 import com.techsales.taskmanager.databinding.FragmentCreateNewTaskBinding;
 
 import java.util.List;
@@ -70,7 +71,15 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
     }
 
     private void openBottomDialog() {
-        ChooseEmployeeFragment fragment = ChooseEmployeeFragment.getInstance();
+        AboutTask tasks = new AboutTask();
+        tasks.setTitle(binding.etTaskTitle.getText().toString());
+        tasks.setDeadline(binding.etTaskDeadline.getText().toString());
+        tasks.setTaskDetails(binding.etTaskDetails.getText().toString());
+        tasks.setTaskPriority(binding.prioritySpinner.getSelectedItem().toString());
+        tasks.setTaskType(binding.taskTypeSpinner.getSelectedItem().toString());
+        tasks.setClientName(binding.etClientName.getText().toString());
+        tasks.setClientPhone(binding.etClientPhone.getText().toString());
+        ChooseEmployeeFragment fragment = ChooseEmployeeFragment.getInstance(tasks);
         if (getActivity() != null)
             fragment.show(getActivity().getSupportFragmentManager(), "dialog");
         fragment.setCancelable(true);

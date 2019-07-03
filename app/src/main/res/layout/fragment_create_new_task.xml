@@ -266,7 +266,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/taskTypeSpinner" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/etClientName"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height_normal"
                 android:layout_marginTop="8dp"
@@ -290,7 +290,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+                app:layout_constraintTop_toBottomOf="@+id/etClientName" />
 
             <TextView
                 android:id="@+id/tvClientPhoneOptional"
@@ -305,7 +305,7 @@
                 android:textStyle="italic"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/textView14"
-                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+                app:layout_constraintTop_toBottomOf="@+id/etClientName" />
 
             <EditText
                 android:id="@+id/etClientPhone"

@@ -8,10 +8,10 @@ import androidx.databinding.Bindable;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 
-import static com.techsales.taskmanager.utils.Constants.COUNT_FOUR;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
 import static com.techsales.taskmanager.utils.Constants.PRIORITY_TYPE_ONE;
 import static com.techsales.taskmanager.utils.Constants.PRIORITY_TYPE_THREE;
 import static com.techsales.taskmanager.utils.Constants.PRIORITY_TYPE_TWO;
@@ -50,19 +50,19 @@ public class TaskDetailsViewModel extends BaseObservable {
 
     public String getTaskStatus() {
         int status = taskDetails.getTaskStatus();
-        if (status == COUNT_ONE) {
+        if (status == COUNT_ZERO) {
             return STATUS_TYPE_ONE;
         }
 
-        if (status == COUNT_TWO) {
+        if (status == COUNT_ONE) {
             return STATUS_TYPE_TWO;
         }
 
-        if (status == COUNT_THREE) {
+        if (status == COUNT_TWO) {
             return STATUS_TYPE_THREE;
         }
 
-        if (status == COUNT_FOUR) {
+        if (status == COUNT_THREE) {
             return STATUS_TYPE_FOUR;
         }
         return context.getResources().getString(R.string.task_details_error_no_data);
@@ -70,15 +70,15 @@ public class TaskDetailsViewModel extends BaseObservable {
 
     public String getTaskPriority() {
         int priority = taskDetails.getTaskPriority();
-        if (priority == COUNT_TWO) {
+        if (priority == COUNT_ONE) {
             return PRIORITY_TYPE_ONE;
         }
 
-        if (priority == COUNT_THREE) {
+        if (priority == COUNT_TWO) {
             return PRIORITY_TYPE_TWO;
         }
 
-        if (priority == COUNT_FOUR) {
+        if (priority == COUNT_THREE) {
             return PRIORITY_TYPE_THREE;
         }
         return context.getResources().getString(R.string.task_details_error_no_data);
@@ -96,19 +96,19 @@ public class TaskDetailsViewModel extends BaseObservable {
     @Bindable
     public int getTaskStatusColor() {
         int status = taskDetails.getTaskStatus();
-        if (status == COUNT_ONE) {
+        if (status == COUNT_ZERO) {
             return context.getResources().getColor(R.color.colorBlue);
         }
 
-        if (status == COUNT_TWO) {
+        if (status == COUNT_ONE) {
             return context.getResources().getColor(R.color.colorYellow);
         }
 
-        if (status == COUNT_THREE) {
+        if (status == COUNT_TWO) {
             return context.getResources().getColor(R.color.colorRed);
         }
 
-        if (status == COUNT_FOUR) {
+        if (status == COUNT_THREE) {
             return context.getResources().getColor(R.color.colorGreen);
         }
         return context.getResources().getColor(R.color.colorBlue);
@@ -118,15 +118,15 @@ public class TaskDetailsViewModel extends BaseObservable {
     public int getTaskPriorityColor() {
         int status = taskDetails.getTaskPriority();
 
-        if (status == COUNT_TWO) {
+        if (status == COUNT_ONE) {
             return context.getResources().getColor(R.color.colorGreen);
         }
 
-        if (status == COUNT_THREE) {
+        if (status == COUNT_TWO) {
             return context.getResources().getColor(R.color.colorYellow);
         }
 
-        if (status == COUNT_FOUR) {
+        if (status == COUNT_THREE) {
             return context.getResources().getColor(R.color.colorRed);
         }
         return context.getResources().getColor(R.color.colorBlue);
