@@ -58,5 +58,14 @@ public class ChooseEmployeeViewModel extends BaseObservable {
         return context.getResources().getColor(R.color.colorBlue);
     }
 
+    @Bindable
+    public boolean getChecked() {
+        return items.isChecked();
+    }
+
+    @Bindable
+    public void setChecked(boolean checked) {
+        items.setChecked(checked);
+    }
 
 }

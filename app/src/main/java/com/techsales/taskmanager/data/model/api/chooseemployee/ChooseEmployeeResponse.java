@@ -11,6 +11,8 @@ public class ChooseEmployeeResponse {
     @SerializedName("user_type")
     private int userType;
 
+    private boolean isChecked;
+
     public int getId() {
         return id;
     }
@@ -33,5 +35,13 @@ public class ChooseEmployeeResponse {
 
     public void setUserType(int userType) {
         this.userType = userType;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

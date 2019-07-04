@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,91 +10,115 @@
             type="com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_small">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineleft"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/task_date"
-                android:layout_width="@dimen/button_height_tall"
-                android:layout_height="@dimen/button_height_tall"
-                android:layout_margin="@dimen/spacing_tiny"
-                android:background="@drawable/bg_circle_view"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:text="@{dashboardBottom.day}"
-                android:textAllCaps="true"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                tools:text="SUN" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingStart="@dimen/spacing_tiny"
-            tools:ignore="RtlSymmetry">
+            app:layout_constraintGuide_begin="16dp" />
 
-            <TextView
-                android:id="@+id/task_title"
-                style="@style/TextStyleBlack"
-                android:text="@{dashboardBottom.name}"
-                android:textSize="@dimen/h6_headline_medium"
-                tools:text="Kantipur temple house" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
 
-            <TextView
-                android:id="@+id/task_assigned_by"
-                style="@style/TextStyleBlack"
-                android:layout_marginBottom="@dimen/spacing_tiny"
-                android:text="@{dashboardBottom.createdBy}"
-                android:textSize="@dimen/caption_medium" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="16dp" />
 
-            <TextView
-                android:id="@+id/task_status"
-                style="@style/TextStyleBlack"
-                android:background="@{dashboardBottom.backgroundColor}"
-                android:paddingLeft="@dimen/spacing_small"
-                android:paddingRight="@dimen/spacing_small"
-                android:text="@{dashboardBottom.status}"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/over_line_semi_bold_caps"
-                android:textStyle="bold"
-                tools:text="New" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/task_date"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:background="@{dashboardBottom.backgroundColor}"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@{dashboardBottom.day}"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@+id/guidelineleft"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
+            tools:text="SUN" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/task_title"
+            style="@style/TextStyleBlack"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center|right"
-            tools:ignore="RtlHardcoded">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{dashboardBottom.name}"
+            app:layout_constraintEnd_toStartOf="@+id/btn_view_task"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/task_date"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
+            tools:text="Kantipur temple house" />
 
-            <TextView
-                android:id="@+id/btn_view_task"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_height_short"
-                android:background="@drawable/bg_button_view"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:paddingLeft="@dimen/spacing_large"
-                android:paddingRight="@dimen/spacing_large"
-                android:text="View"
-                android:textColor="@color/colorGreen" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/task_assigned_by"
+            style="@style/TextStyleBlack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{dashboardBottom.createdBy}"
+            android:textSize="@dimen/caption_medium"
+            app:layout_constraintEnd_toStartOf="@+id/btn_view_task"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/task_date"
+            app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/task_status"
+            style="@style/TextStyleBlack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{dashboardBottom.status}"
+            android:textSize="@dimen/over_line_semi_bold_caps"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@+id/btn_view_task"
+            app:layout_constraintStart_toEndOf="@+id/task_date"
+            app:layout_constraintTop_toBottomOf="@+id/task_assigned_by"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="New" />
 
+        <TextView
+            android:id="@+id/btn_view_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_view"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_tiny"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_tiny"
+            android:text="View"
+            android:textColor="@color/colorGreen"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

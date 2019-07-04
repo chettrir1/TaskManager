@@ -1,6 +1,7 @@
 package com.techsales.taskmanager.createtask.chooseemployee;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.techsales.taskmanager.BaseDialogFragment;
 import com.techsales.taskmanager.R;
+import com.techsales.taskmanager.dashboard.container.DashboardActivity;
 import com.techsales.taskmanager.data.model.createtask.AboutTask;
 import com.techsales.taskmanager.data.model.viewmodel.chooseemployee.ChooseEmployeeViewModel;
 import com.techsales.taskmanager.databinding.DialogChooseEmployeeBinding;
+import com.techsales.taskmanager.utils.Commons;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,7 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
     private static final String ABOUT_TASK = "aboutTask";
     private DialogChooseEmployeeBinding binding;
     private List<String> employeeList;
+    private ProgressDialog progressDialog;
 
     @Inject
     ChooseEmployeeContract.Presenter presenter;
@@ -45,10 +49,11 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
         binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.dialog_choose_employee, null, false);
+        getDataWithBundle();
         employeeList = new ArrayList<>(50);
         binding.contentState.setContent(binding.content);
         binding.tvDialogTitle.setText(R.string.dialog_choose_employee_title);
-        binding.btnAssignTask.setOnClickListener(view -> Log.v("employeeList", employeeList.size() + ""));
+        binding.btnAssignTask.setOnClickListener(view -> presenter.assignTask(Commons.getJsonData(employeeList)));
         dialog.setContentView(binding.getRoot());
         return dialog;
     }
@@ -103,5 +108,45 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
             employeeList.remove(items.getEmployeeName());
         }
         Log.v("employeeList", employeeList + "");
+    }
+
+    @Override
+    public void showTaskAssignProgress() {
+        progressDialog = Commons.showLoadingDialog(getContext());
+    }
+
+    @Override
+    public void showTaskAssignError(String message) {
+        dissmissDialog();
+        if (getContext() != null)
+            Commons.showSnackBar(getContext(), binding.llMainView, message);
+    }
+
+    @Override
+    public void showTaskAssignSuccess(String message) {
+        dissmissDialog();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        dismiss();
+        DashboardActivity.start(getActivity());
+    }
+
+    @Override
+    public void showTaskAssignNetworkError() {
+        if (getContext() != null)
+            Commons.showSnackBar(getContext(), binding.llMainView, getContext().getString(R.string.error_network_not_available));
+
+    }
+
+    private void getDataWithBundle() {
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            AboutTask aboutTask = (AboutTask) bundle.getSerializable(ABOUT_TASK);
+            presenter.getDataWithBundle(aboutTask);
+        }
+    }
+
+    private void dissmissDialog() {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 }

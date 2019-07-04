@@ -127,6 +127,8 @@
     <string name="create_new_task_text_task_client_name">Client Phone</string>
     <string name="create_new_task_text_task_client_phone">Client Phone</string>
     <string name="create_new_task_text_task_client_button">Add Task</string>
+    <string name="create_new_task_deadline_example_hint">In days (Example. 1, 2, 3)</string>
+
     <!---->
 
     <!--toolbar menu strings-->

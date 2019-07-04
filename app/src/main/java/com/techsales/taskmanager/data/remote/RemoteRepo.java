@@ -56,4 +56,8 @@ public interface RemoteRepo {
     @GET("user/list")
     Single<BaseChooseEmployeeResponse> getEmployeeList();
 
+    @POST("task/store")
+    Single<BaseResponse> assignTask(
+            @Body Map<String, Object> params);
+
 }

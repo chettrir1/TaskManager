@@ -1,5 +1,8 @@
 package com.techsales.taskmanager.data;
 
+import android.util.JsonReader;
+
+import com.google.gson.JsonObject;
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
@@ -12,6 +15,8 @@ import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -126,13 +131,6 @@ public class Data {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<List<ChooseEmployeeResponse>> getAllEmployee() {
-        return remoteRepo.getEmployeeList()
-                .flatMap(baseChooseEmployeeResponse -> Single.just(baseChooseEmployeeResponse.getChooseEmployeeResponse()))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
-
     public Single<BaseStatusResponse> requestStatus(int page, int limit, String userId, int status) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("page", page);
@@ -141,6 +139,31 @@ public class Data {
         params.put("status", status);
         return remoteRepo.requestStatus(params)
                 .map(BaseResponse::getData)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<List<ChooseEmployeeResponse>> getAllEmployee() {
+        return remoteRepo.getEmployeeList()
+                .flatMap(baseChooseEmployeeResponse -> Single.just(baseChooseEmployeeResponse.getChooseEmployeeResponse()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseResponse> assignTask(String name, String status, String priority,
+                                           String clientName, String deadline, JSONObject staffsId,
+                                           String createdBy, String description) {
+        HashMap<String, Object> params = new HashMap<>(8);
+        params.put("name", name);
+        params.put("status", status);
+        params.put("priority", priority);
+        params.put("client_name", clientName);
+        params.put("deadline", deadline);
+        params.put("staff", staffsId);
+        params.put("created_by", createdBy);
+        params.put("description", description);
+
+        return remoteRepo.assignTask(params)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

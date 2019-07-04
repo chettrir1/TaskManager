@@ -10,10 +10,10 @@ import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.utils.Commons;
 
-import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
-import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_FOUR;
 import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_ONE;
 import static com.techsales.taskmanager.utils.Constants.STATUS_TYPE_THREE;

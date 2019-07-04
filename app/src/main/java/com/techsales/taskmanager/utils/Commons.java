@@ -14,8 +14,12 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.techsales.taskmanager.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -135,6 +139,22 @@ public class Commons {
         } catch (Exception ignored) {
         }
         return parsed_date;
+    }
+
+    public static JSONObject getJsonData(List<String> items) {
+        JSONObject object = new JSONObject();
+        try {
+            JSONArray array = new JSONArray();
+            for (int i = 0; i < items.size(); i++) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("staff", items.get(i));
+                array.put(jsonObject);
+            }
+            object.put("data", array);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 
 }
