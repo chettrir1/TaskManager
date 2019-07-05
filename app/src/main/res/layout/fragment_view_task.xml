@@ -299,7 +299,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvClientName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
