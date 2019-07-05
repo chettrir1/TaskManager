@@ -46,7 +46,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tvChooseFile"
+            android:id="@+id/tvCompleteAndUpload"
             style="@style/TextViewFileUpload"
             android:layout_marginStart="@dimen/spacing_small"
             android:layout_marginEnd="@dimen/spacing_small"
@@ -79,7 +79,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/tvCompleteAndUpload"
+            android:id="@+id/tvChooseFiles"
             style="@style/TextViewFileUpload"
             android:layout_marginStart="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_small"

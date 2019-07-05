@@ -94,6 +94,10 @@
     <string name="view_task_text_need_permissions">Need Permissions</string>
     <string name="view_task_text_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
     <string name="view_task_go_to_settings">Go to settings</string>
+    <string name="view_task_fragment_file_submitting_message">Please wait while submitting task..</string>
+    <string name="view_task_fragment_status_open">Open</string>
+    <string name="view_task_fragment_status_pending">Pending</string>
+    <string name="view_task_fragment_title_task_information">Task Information</string>
     <!---->
 
     <!--status view strings-->

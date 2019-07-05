@@ -3,6 +3,7 @@ package com.techsales.taskmanager.dashboard.viewtask;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -55,10 +56,10 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
-import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
-import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 
 public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.View {
 
@@ -82,6 +83,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     @Inject
     ViewTaskContract.Presenter presenter;
+    private ProgressDialog progressDialog;
 
     public static Fragment getInstance(TaskDetails details) {
         ViewTaskFragment fragment = new ViewTaskFragment();
@@ -103,7 +105,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
             setChangeStatusVisible();
         }
 
-        binding.includeStatus.tvStatusOpen.setOnClickListener(view -> {
+        binding.tvOpenTask.setOnClickListener(view -> {
             if (taskStatus == COUNT_ZERO) {
                 openBottomDialog(taskId, COUNT_ONE);
             } else {
@@ -112,7 +114,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
             }
         });
 
-        binding.includeStatus.tvStatusAppend.setOnClickListener(view -> {
+        binding.tvAppendTask.setOnClickListener(view -> {
             if (taskStatus == COUNT_ONE) {
                 openBottomDialog(taskId, COUNT_TWO);
             } else {
@@ -121,21 +123,21 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
             }
         });
 
-        binding.includeCompleteTask.tvChooseFile.setOnClickListener(view -> selectImage());
+        binding.tvChooseFiles.setOnClickListener(view -> selectImage());
 
-        binding.includeCompleteTask.tvCompleteAndUpload.setOnClickListener(view -> uploadAndComplete());
+        binding.tvCompleteAndUpload.setOnClickListener(view -> uploadAndComplete());
 
         return binding.getRoot();
     }
 
     private void setChangeStatusVisible() {
-        binding.includeStatus.llChangeStatus.setVisibility(View.VISIBLE);
-        binding.includeCompleteTask.llChooseFile.setVisibility(View.GONE);
+        binding.groupChangeStatus.setVisibility(View.VISIBLE);
+        binding.completeTaskGroup.setVisibility(View.GONE);
     }
 
     private void setCompleteTaskVisible() {
-        binding.includeStatus.llChangeStatus.setVisibility(View.GONE);
-        binding.includeCompleteTask.llChooseFile.setVisibility(View.VISIBLE);
+        binding.groupChangeStatus.setVisibility(View.GONE);
+        binding.completeTaskGroup.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -273,12 +275,12 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         Glide.with(this).load(mFileUri).apply(new RequestOptions()
                 .fitCenter()).format(DecodeFormat.PREFER_ARGB_8888)
                 .override(Target.SIZE_ORIGINAL)
-                .into(binding.includeCompleteTask.ivChoosedImage);
+                .into(binding.ivChoosedImage);
     }
 
     @Override
     public void showProgress() {
-        binding.includeCompleteTask.progressBar.setVisibility(View.VISIBLE);
+        progressDialog = Commons.showLoadingDialog(getContext(), getResources().getString(R.string.view_task_fragment_file_submitting_message));
     }
 
     @Override
@@ -368,15 +370,15 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
                 RequestBody file_part = RequestBody.create(MediaType.parse(Objects.requireNonNull(getActivity().getContentResolver().getType(imageUri))),
                         file);
                 MultipartBody.Part part = MultipartBody.Part.createFormData("file_upload", file.getName(), file_part);
-                String remarks = binding.includeCompleteTask.etRemarks.getText().toString();
+                String remarks = binding.etRemarks.getText().toString();
                 presenter.uploadAndComplete(taskId, String.valueOf(COUNT_THREE), remarks, part);
             }
         }
     }
 
     private void hideProgressBar() {
-        if (binding.includeCompleteTask.progressBar != null) {
-            binding.includeCompleteTask.progressBar.setVisibility(View.GONE);
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
         }
     }
 }
