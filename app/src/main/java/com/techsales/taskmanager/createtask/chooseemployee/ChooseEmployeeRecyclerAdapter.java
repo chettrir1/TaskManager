@@ -1,8 +1,9 @@
 package com.techsales.taskmanager.createtask.chooseemployee;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -12,14 +13,13 @@ import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.chooseemployee.ChooseEmployeeViewModel;
 import com.techsales.taskmanager.databinding.ViewholderChooseEmployeeRecyclerItemBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEmployeeRecyclerAdapter.ChooseEmployeeViewHolder> {
     private List<ChooseEmployeeViewModel> items;
     private LayoutInflater layoutInflater;
     private ChooseEmployeeItemsClickListener listener;
-    private List<String> employeeList;
+    private boolean isChecked;
 
 
     @NonNull
@@ -34,32 +34,12 @@ public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEm
 
     @Override
     public void onBindViewHolder(@NonNull ChooseEmployeeViewHolder holder, int position) {
-        if (items.get(position).getChecked()) {
-            holder.binding.cbAssignTo.setChecked(false);
-        } else {
-            holder.binding.cbAssignTo.setChecked(true);
-        }
+        items.get(position).setChecked(false);
         holder.binding.setChooseEmployee(items.get(position));
 
-        employeeList = new ArrayList<>();
-
-        holder.binding.getRoot().setOnClickListener(view -> {
-            if (items != null) {
-                int adapterPosition = holder.getAdapterPosition();
-                if (items.get(adapterPosition).getChecked()) {
-                    holder.binding.cbAssignTo.setChecked(true);
-                    items.get(adapterPosition).setChecked(true);
-                    employeeList.add(items.get(adapterPosition).getEmployeeName());
-                } else {
-                    holder.binding.cbAssignTo.setChecked(false);
-                    items.get(adapterPosition).setChecked(false);
-                    employeeList.remove(items.get(adapterPosition).getEmployeeName());
-                }
-                Log.v("employeeList", employeeList + "");
-/*
-                listener.onChooseEmployeeItemClick(items.get(position), position, isChecked);
-*/
-            }
+        holder.binding.cbAssignTo.setOnCheckedChangeListener((compoundButton, checked) -> {
+            isChecked = !checked;
+            listener.onChooseEmployeeItemClick(items.get(position), isChecked);
         });
     }
 
@@ -69,6 +49,11 @@ public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEm
             return 0;
         }
         return items.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     class ChooseEmployeeViewHolder extends RecyclerView.ViewHolder {
@@ -86,7 +71,7 @@ public class ChooseEmployeeRecyclerAdapter extends RecyclerView.Adapter<ChooseEm
     }
 
     public interface ChooseEmployeeItemsClickListener {
-        void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean isChecked);
+        void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, boolean isChecked);
     }
 
 }

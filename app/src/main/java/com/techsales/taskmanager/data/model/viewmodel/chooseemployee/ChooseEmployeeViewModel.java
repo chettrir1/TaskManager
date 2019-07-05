@@ -20,6 +20,11 @@ public class ChooseEmployeeViewModel extends BaseObservable {
     }
 
     @Bindable
+    public String getEmployeeId() {
+        return String.valueOf(items.getId());
+    }
+
+    @Bindable
     public String getEmployeeName() {
         return items.getFullName();
     }

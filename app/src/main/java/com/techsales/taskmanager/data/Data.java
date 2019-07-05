@@ -149,16 +149,16 @@ public class Data {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<BaseResponse> assignTask(String name, String status, String priority,
-                                           String clientName, String deadline, JSONObject staffsId,
-                                           String createdBy, String description) {
-        HashMap<String, Object> params = new HashMap<>(8);
+    public Single<BaseResponse> assignTask(String name, int status, int priority,
+                                           String clientName, int deadline, JSONObject staffsId,
+                                           int createdBy, String description) {
+        HashMap<String, Object> params = new HashMap<>(10);
         params.put("name", name);
         params.put("status", status);
         params.put("priority", priority);
         params.put("client_name", clientName);
         params.put("deadline", deadline);
-        params.put("staff", staffsId);
+        params.put("staff", String.valueOf(staffsId));
         params.put("created_by", createdBy);
         params.put("description", description);
 

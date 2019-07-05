@@ -6,7 +6,7 @@ public class AboutTask implements Serializable {
     private String title;
     private String deadline;
     private String taskDetails;
-    private String taskPriority;
+    private int taskPriority;
     private String taskType;
     private String clientName;
     private String clientPhone;
@@ -35,11 +35,11 @@ public class AboutTask implements Serializable {
         this.taskDetails = taskDetails;
     }
 
-    public String getTaskPriority() {
+    public int getTaskPriority() {
         return taskPriority;
     }
 
-    public void setTaskPriority(String taskPriority) {
+    public void setTaskPriority(int taskPriority) {
         this.taskPriority = taskPriority;
     }
 

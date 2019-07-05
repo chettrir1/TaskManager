@@ -1,8 +1,12 @@
 package com.techsales.taskmanager.createtask.chooseemployee;
 
+import android.util.Log;
+import android.widget.CheckBox;
+
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
+import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.api.chooseemployee.BaseChooseEmployeeResponse;
 import com.techsales.taskmanager.data.model.api.chooseemployee.ChooseEmployeeResponse;
 import com.techsales.taskmanager.data.model.createtask.AboutTask;
@@ -23,13 +27,12 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
     private ChooseEmployeeContract.View view;
     private Disposable disposable;
     private String taskTitle;
-    private String taskDeadline;
+    private int taskDeadline;
     private String clienPhone;
     private String clientName;
     private String taskType;
-    private String taskPriority;
+    private int taskPriority;
     private String taskDetails;
-
 
     ChooseEmployeePresenter(TaskManagerComponent component, ChooseEmployeeContract.View view) {
         this.component = component;
@@ -62,8 +65,8 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
     }
 
     @Override
-    public void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean isChecked) {
-        view.onEmployeeItemClick(items, position, isChecked);
+    public void onChooseEmployeeItemClick(ChooseEmployeeViewModel items, boolean isChecked) {
+        view.onEmployeeItemClick(items, isChecked);
     }
 
     @Override
@@ -71,7 +74,7 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
         taskTitle = aboutTask.getTitle();
         taskPriority = aboutTask.getTaskPriority();
         clientName = aboutTask.getClientName();
-        taskDeadline = aboutTask.getDeadline();
+        taskDeadline = Integer.parseInt(aboutTask.getDeadline());
         taskType = aboutTask.getTaskType();
         clienPhone = aboutTask.getClientPhone();
         taskDetails = aboutTask.getTaskDetails();
@@ -80,11 +83,14 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
     @Override
     public void assignTask(JSONObject staffs) {
         view.showTaskAssignProgress();
-        String userId = component.data().savedUserInfo().getId();
-        String status = String.valueOf(Constants.COUNT_ZERO);
+        int userId = Integer.parseInt(component.data().savedUserInfo().getId());
+        int status = Integer.parseInt(String.valueOf(Constants.COUNT_ZERO));
         disposable = component.data().assignTask(taskTitle, status,
                 taskPriority, clientName, taskDeadline, staffs, userId, taskDetails)
-                .subscribe(baseResponse -> view.showTaskAssignSuccess(baseResponse.getMessage()), throwable -> {
+                .subscribe((baseResponse) -> {
+                    if (!baseResponse.getError())
+                    view.showTaskAssignSuccess(baseResponse.getMessage());
+                }, throwable -> {
                     if (throwable instanceof FailedResponseException)
                         view.showTaskAssignError(throwable.getMessage());
                     else if (throwable instanceof NetworkNotAvailableException)
@@ -93,4 +99,5 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
                         view.showTaskAssignError(component.context().getString(R.string.error_server));
                 });
     }
+
 }

@@ -19,7 +19,7 @@ public interface ChooseEmployeeContract {
 
         void showLoadingSuccess(List<ChooseEmployeeViewModel> viewModels);
 
-        void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean cbAssignTo);
+        void onEmployeeItemClick(ChooseEmployeeViewModel items, boolean isChecked);
 
         void showTaskAssignProgress();
 

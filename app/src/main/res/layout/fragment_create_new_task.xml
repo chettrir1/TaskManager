@@ -51,7 +51,7 @@
                 android:background="@drawable/bg_bod_edittext"
                 android:ems="10"
                 android:fontFamily="@font/open_sans"
-                android:inputType="textCapWords"
+                android:inputType="textCapSentences"
                 android:paddingStart="@dimen/spacing_tiny"
                 android:paddingEnd="@dimen/spacing_tiny"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -77,8 +77,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_bod_edittext"
                 android:ems="10"
-                android:hint="@string/create_new_task_deadline_example_hint"
                 android:fontFamily="@font/open_sans"
+                android:hint="@string/create_new_task_deadline_example_hint"
                 android:inputType="number"
                 android:paddingStart="@dimen/spacing_tiny"
                 android:paddingEnd="@dimen/spacing_tiny"
@@ -96,7 +96,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorLightBlack"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/tvTaskTitle"
                 app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
 
@@ -111,7 +110,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorLightBlack"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/tvTaskDeadline"
                 app:layout_constraintTop_toBottomOf="@+id/etTaskTitle" />
 
@@ -152,7 +150,7 @@
                 android:ems="10"
                 android:fontFamily="@font/open_sans"
                 android:gravity="top|start"
-                android:inputType="textMultiLine"
+                android:inputType="textCapSentences|textMultiLine"
                 android:lines="4"
                 android:maxLines="4"
                 android:paddingStart="@dimen/spacing_tiny"
@@ -256,13 +254,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/create_new_task_warning_important"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorLightBlack"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/taskTypeSpinner" />
 
@@ -274,7 +270,7 @@
                 android:background="@drawable/bg_bod_edittext"
                 android:ems="10"
                 android:fontFamily="@font/open_sans"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:paddingStart="@dimen/spacing_tiny"
                 android:paddingEnd="@dimen/spacing_tiny"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -315,6 +311,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_bod_edittext"
                 android:ems="10"
+                android:maxLength="10"
                 android:fontFamily="@font/open_sans"
                 android:inputType="phone"
                 android:paddingStart="@dimen/spacing_tiny"
@@ -340,6 +337,55 @@
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/etClientPhone" />
+
+            <TextView
+                android:id="@+id/tvTitleError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/open_sans"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:text="@string/create_new_task_error_empty_field"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorRed"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/tvTitleImp"
+                app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+
+            <TextView
+                android:id="@+id/tvDeadlineError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_error_empty_field"
+                android:textAlignment="textEnd"
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorRed"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/tvDeadlineImp"
+                app:layout_constraintTop_toBottomOf="@+id/etTaskTitle" />
+
+            <TextView
+                android:id="@+id/tvClientNameError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/create_new_task_error_empty_field"
+                android:textAlignment="textEnd"
+                android:visibility="gone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorRed"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/taskTypeSpinner" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

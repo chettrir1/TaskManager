@@ -53,7 +53,14 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
         employeeList = new ArrayList<>(50);
         binding.contentState.setContent(binding.content);
         binding.tvDialogTitle.setText(R.string.dialog_choose_employee_title);
-        binding.btnAssignTask.setOnClickListener(view -> presenter.assignTask(Commons.getJsonData(employeeList)));
+
+        binding.btnAssignTask.setOnClickListener(view -> {
+            Log.v("employeeList", employeeList + "");
+            Log.v("employeeListSize", employeeList.size() + "");
+            Log.v("getJsonData", Commons.getJsonData(employeeList) + "");
+            presenter.assignTask(Commons.getJsonData(employeeList));
+        });
+
         dialog.setContentView(binding.getRoot());
         return dialog;
     }
@@ -99,15 +106,12 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
     }
 
     @Override
-    public void onEmployeeItemClick(ChooseEmployeeViewModel items, int position, boolean isChecked) {
-        if (isChecked) {
-            Log.v("employeeAdded", items.getEmployeeName());
-            employeeList.add(items.getEmployeeName());
+    public void onEmployeeItemClick(ChooseEmployeeViewModel items, boolean isChecked) {
+        if (!isChecked) {
+            employeeList.add(items.getEmployeeId());
         } else {
-            Log.v("employeeRemoved", items.getEmployeeName());
-            employeeList.remove(items.getEmployeeName());
+            employeeList.remove(items.getEmployeeId());
         }
-        Log.v("employeeList", employeeList + "");
     }
 
     @Override
@@ -117,24 +121,25 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
 
     @Override
     public void showTaskAssignError(String message) {
+        Log.v("getMessage", message);
         dissmissDialog();
         if (getContext() != null)
-            Commons.showSnackBar(getContext(), binding.llMainView, message);
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showTaskAssignSuccess(String message) {
-        dissmissDialog();
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        dissmissDialog();
         dismiss();
         DashboardActivity.start(getActivity());
+
     }
 
     @Override
     public void showTaskAssignNetworkError() {
         if (getContext() != null)
             Commons.showSnackBar(getContext(), binding.llMainView, getContext().getString(R.string.error_network_not_available));
-
     }
 
     private void getDataWithBundle() {

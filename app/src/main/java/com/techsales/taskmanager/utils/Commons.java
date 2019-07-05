@@ -147,10 +147,10 @@ public class Commons {
             JSONArray array = new JSONArray();
             for (int i = 0; i < items.size(); i++) {
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("staff", items.get(i));
+                jsonObject.put("staff_id", items.get(i));
                 array.put(jsonObject);
             }
-            object.put("data", array);
+            object.put("staff", array);
         } catch (Exception e) {
             e.printStackTrace();
         }

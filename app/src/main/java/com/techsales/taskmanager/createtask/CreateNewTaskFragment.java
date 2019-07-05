@@ -35,7 +35,15 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_new_task, null, false);
-        binding.btnAddTask.setOnClickListener(view -> openBottomDialog());
+        binding.btnAddTask.setOnClickListener(view ->
+                presenter.validateNewTask(
+                        binding.etTaskTitle.getText().toString(),
+                        binding.prioritySpinner.getSelectedItem().toString(),
+                        binding.etClientName.getText().toString(),
+                        binding.etTaskDeadline.getText().toString(),
+                        binding.etClientPhone.getText().toString(),
+                        binding.etTaskDetails.getText().toString()
+                ));
 
         return binding.getRoot();
     }
@@ -70,18 +78,45 @@ public class CreateNewTaskFragment extends BaseFragment implements CreateNewTask
         }
     }
 
-    private void openBottomDialog() {
-        AboutTask tasks = new AboutTask();
-        tasks.setTitle(binding.etTaskTitle.getText().toString());
-        tasks.setDeadline(binding.etTaskDeadline.getText().toString());
-        tasks.setTaskDetails(binding.etTaskDetails.getText().toString());
-        tasks.setTaskPriority(binding.prioritySpinner.getSelectedItem().toString());
-        tasks.setTaskType(binding.taskTypeSpinner.getSelectedItem().toString());
-        tasks.setClientName(binding.etClientName.getText().toString());
-        tasks.setClientPhone(binding.etClientPhone.getText().toString());
-        ChooseEmployeeFragment fragment = ChooseEmployeeFragment.getInstance(tasks);
-        if (getActivity() != null)
+    @Override
+    public void errorEmptyTitleVisible() {
+        binding.etTaskTitle.requestFocus();
+        binding.tvTitleError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void errorEmptyDeadlineVisible() {
+        binding.etTaskDeadline.requestFocus();
+        binding.tvDeadlineError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void errorClientNameVisible() {
+        binding.etClientName.requestFocus();
+        binding.tvClientNameError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void errorEmptyTitleInvisible() {
+        binding.tvTitleError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void errorEmptyDeadlineInvisible() {
+        binding.tvDeadlineError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void errorClientNameInvisible() {
+        binding.tvClientNameError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void validationSucces(AboutTask tasks) {
+        if (getActivity() != null) {
+            ChooseEmployeeFragment fragment = ChooseEmployeeFragment.getInstance(tasks);
             fragment.show(getActivity().getSupportFragmentManager(), "dialog");
-        fragment.setCancelable(true);
+            fragment.setCancelable(true);
+        }
     }
 }

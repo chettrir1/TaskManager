@@ -2,6 +2,7 @@ package com.techsales.taskmanager.dashboard.viewtask.changestatus;
 
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class ChangeStatusFragment extends BaseDialogFragment implements ChangeSt
 
     private String task_id;
     private int statusName;
+    private ProgressDialog progressDialog;
 
     public static ChangeStatusFragment getInstance(String taskId, int statusName) {
         ChangeStatusFragment fragment = new ChangeStatusFragment();
@@ -71,21 +73,24 @@ public class ChangeStatusFragment extends BaseDialogFragment implements ChangeSt
 
     @Override
     public void showProgress() {
-
+        progressDialog = Commons.showLoadingDialog(getContext());
     }
 
     @Override
     public void showChangeStatusError(String message) {
+        dismissDialog();
         Commons.showSnackBar(component.context(), binding.llChangeStatus, message);
     }
 
     @Override
     public void showNetworkNotAvailableError() {
+        dismissDialog();
         Commons.showSnackBar(component.context(), binding.llChangeStatus, component.context().getResources().getString(R.string.error_network_not_available));
     }
 
     @Override
     public void showChangeStatusSuccess(String message) {
+        dismissDialog();
         Toast.makeText(component.context(), message, Toast.LENGTH_SHORT).show();
         this.dismiss();
         if (getActivity() != null)
@@ -101,6 +106,11 @@ public class ChangeStatusFragment extends BaseDialogFragment implements ChangeSt
             return STATUS_PENDING;
         }
         return STATUS_NEW;
+    }
+
+    private void dismissDialog() {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
 }
