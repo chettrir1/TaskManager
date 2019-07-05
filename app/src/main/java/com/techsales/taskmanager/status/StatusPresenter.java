@@ -42,39 +42,16 @@ class StatusPresenter implements StatusContract.Presenter {
     }
 
     @Override
-    public void onLoadMore(int status) {
-        view.showLoadMoreProgress();
-        disposable = component.data().requestStatus(page, LIMIT, component.data().savedUserInfo().getId(), status)
-                .subscribe(response -> {
-                    if (response != null) {
-                        int itemCount = response.getTotal();
-                        List<StatusResponse> items = response.getItems();
-                        Log.v("getItemsResponse", items + "");
-                        if (itemCount > 0 && !Commons.isEmpty(items)) {
-                            final int count = items.size();
-                            page += count;
-                            List<StatusViewModel> viewModel = BaseStatusResponse.mapToViewModel(component.context(), items);
-                            view.showMoreTags(viewModel, itemCount > page);
-                        } else {
-                            view.onLoadComplete();
-                        }
-                    } else {
-                        view.showLoadMoreError();
-                    }
-                }, throwable -> view.showLoadMoreError());
-    }
-
-    @Override
-    public void requestStatus(int status) {
+    public void requestStatus() {
         view.showProgress();
         this.page = 1;
         disposable = component.data().requestStatus(page, LIMIT,
-                component.data().savedUserInfo().getId(), status)
+                component.data().savedUserInfo().getId(), view.getStatus())
                 .subscribe(response -> {
                     int itemCount = response.getTotal();
                     List<StatusResponse> items = response.getItems();
-
-                    if (itemCount > 0 && !Commons.isEmpty(items)) {
+                        boolean isTrue = Commons.isNotEmpty(items);
+                    if (itemCount > 0 && isTrue) {
                         final int count = items.size();
                         page += count;
                         List<StatusViewModel> viewModel = BaseStatusResponse.mapToViewModel(component.context(), items);
@@ -93,5 +70,29 @@ class StatusPresenter implements StatusContract.Presenter {
 
                 });
     }
+
+    @Override
+    public void onLoadMore() {
+        view.showLoadMoreProgress();
+        disposable = component.data().requestStatus(page, LIMIT, component.data().savedUserInfo().getId(), view.getStatus())
+                .subscribe(response -> {
+                    if (response != null) {
+                        int itemCount = response.getTotal();
+                        List<StatusResponse> items = response.getItems();
+                        Log.v("getItemsResponse", items + "");
+                        if (itemCount > 0 && Commons.isNotEmpty(items)) {
+                            final int count = items.size();
+                            page += count;
+                            List<StatusViewModel> viewModel = BaseStatusResponse.mapToViewModel(component.context(), items);
+                            view.showMoreItems(viewModel, itemCount > page);
+                        } else {
+                            view.onLoadComplete();
+                        }
+                    } else {
+                        view.showLoadMoreError();
+                    }
+                }, throwable -> view.showLoadMoreError());
+    }
+
 
 }

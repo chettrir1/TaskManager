@@ -38,7 +38,7 @@ public class ContactsPresenter implements ContactsContract.Presenter {
     public void getAllContacts() {
         disposable = component.data().getAllContacts()
                 .subscribe((List<ContactsResponse> contactsResponses) -> {
-                    if (Commons.isEmpty(contactsResponses)) {
+                    if (Commons.isNotEmpty(contactsResponses)) {
                         List<ContactsviewModel> contactsviewModels =
                                 BaseContactsResponse.mapToViewModel(component.context(), contactsResponses);
                         view.showLoadingSuccess(contactsviewModels);

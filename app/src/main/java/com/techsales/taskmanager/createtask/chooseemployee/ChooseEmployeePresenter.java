@@ -44,7 +44,7 @@ class ChooseEmployeePresenter implements ChooseEmployeeContract.Presenter {
         view.showProgress();
         disposable = component.data().getAllEmployee()
                 .subscribe((List<ChooseEmployeeResponse> response) -> {
-                    if (Commons.isEmpty(response)) {
+                    if (Commons.isNotEmpty(response)) {
                         List<ChooseEmployeeViewModel> viewModels =
                                 BaseChooseEmployeeResponse.mapToViewModel(component.context(), response);
                         view.showLoadingSuccess(viewModels);

@@ -42,7 +42,7 @@ public abstract class LoadMoreAdapter<VH extends RecyclerView.ViewHolder> extend
         this.layoutInflater = LayoutInflater.from(recyclerView.getContext());
     }
 
-    public void attachLoadMore(final LoadMoreListener listener, int status) {
+    public void attachLoadMore(final LoadMoreListener listener) {
         if (this.scrollListener != null) {
             throw new IllegalStateException("Listener already attached");
         }
@@ -54,7 +54,7 @@ public abstract class LoadMoreAdapter<VH extends RecyclerView.ViewHolder> extend
                     if (linearLayoutManager.findLastVisibleItemPosition() >=
                             (getItemCount_() - (loadMoreThreshold + 1))) {
                         loadPolicy.setLoadStart();
-                        listener.onLoadMore(status);
+                        listener.onLoadMore();
                         if (showLoading)
                             recyclerView.post(() -> notifyItemInserted(getItemCount_()));
                     }
@@ -145,7 +145,7 @@ public abstract class LoadMoreAdapter<VH extends RecyclerView.ViewHolder> extend
     }
 
     public interface LoadMoreListener {
-        void onLoadMore(int status);
+        void onLoadMore();
     }
 
     private static class BottomProgressViewHolder extends RecyclerView.ViewHolder {
