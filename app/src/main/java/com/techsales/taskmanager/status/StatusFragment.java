@@ -25,7 +25,6 @@ import static android.widget.LinearLayout.VERTICAL;
 public class StatusFragment extends BaseFragment implements StatusContract.View {
     private static final String STATUS = "status";
     private FragmentStatusBinding binding;
-    private int status;
 
     @Inject
     StatusContract.Presenter presenter;
@@ -108,10 +107,10 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
 
     @Override
     public void showMoreItems(List<StatusViewModel> items, boolean hasMoreItems) {
-       StatusRecyclerAdapter adapter =  ((StatusRecyclerAdapter) binding.rvStatus.getAdapter());
-       if (adapter != null){
-           adapter.addMoreItems(items, hasMoreItems);
-       }
+        StatusRecyclerAdapter adapter = ((StatusRecyclerAdapter) binding.rvStatus.getAdapter());
+        if (adapter != null) {
+            adapter.addMoreItems(items, hasMoreItems);
+        }
     }
 
     @Override
@@ -143,8 +142,8 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
     public Integer getStatus() {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-          return  status = Integer.parseInt(bundle.getString(STATUS));
+            return Integer.parseInt(bundle.getString(STATUS));
         }
-        return  -1;
+        return -1;
     }
 }

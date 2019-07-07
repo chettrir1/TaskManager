@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface StatusContract {
     interface View extends BaseView<Presenter> {
+
         Integer getStatus();
+
         void showProgress();
 
         void showLoadingError(String message);

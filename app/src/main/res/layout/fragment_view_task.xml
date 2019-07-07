@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_fragment_title_task_information"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -130,12 +131,14 @@
 
                     <TextView
                         android:id="@+id/tvAssignedDate"
+                        style="@style/TextViewTaskDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
                         android:text="@{taskDetails.assignedDate}"
                         android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#FFFFFF"
                         tools:text="2019-05-07" />
                 </LinearLayout>
@@ -163,12 +166,14 @@
 
                     <TextView
                         android:id="@+id/tvDeadlineDate"
+                        style="@style/TextViewTaskDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
                         android:text="@{taskDetails.deadline}"
                         android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#FFFFFF"
                         tools:text="2019-05-08" />
                 </LinearLayout>
@@ -191,11 +196,13 @@
 
             <TextView
                 android:id="@+id/tvStatusName"
+                style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@{taskDetails.taskStatus}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toStartOf="@+id/ivStatus"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
@@ -236,11 +243,13 @@
 
             <TextView
                 android:id="@+id/tvPriorityName"
+                style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@{taskDetails.taskPriority}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toStartOf="@+id/ivPriority"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -283,6 +292,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_title_client_information"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -299,7 +309,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-            <EditText
+            <TextView
                 android:id="@+id/tvClientName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -317,11 +327,13 @@
 
             <TextView
                 android:id="@+id/tvClientPhone"
+                style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@{taskDetails.clientPhone}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.426"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -345,6 +357,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_title_change_status"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -389,7 +402,6 @@
                 android:padding="@dimen/spacing_small"
                 android:text="@string/view_task_fragment_status_pending"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
                 android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/tvOpenTask"
@@ -406,7 +418,6 @@
                 android:padding="@dimen/spacing_small"
                 android:text="@string/view_task_fragment_status_open"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
                 android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toStartOf="@+id/tvAppendTask"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -503,7 +514,8 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_title_complete_task"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
