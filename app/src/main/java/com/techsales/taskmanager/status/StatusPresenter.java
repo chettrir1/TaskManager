@@ -52,7 +52,7 @@ class StatusPresenter implements StatusContract.Presenter {
                         Log.v("getItemsResponse", items + "");
                         if (itemCount > 0 && !Commons.isEmpty(items)) {
                             final int count = items.size();
-                            page += count;
+                            page ++;
                             List<StatusViewModel> viewModel = BaseStatusResponse.mapToViewModel(component.context(), items);
                             view.showMoreTags(viewModel, itemCount > page);
                         } else {
@@ -76,7 +76,7 @@ class StatusPresenter implements StatusContract.Presenter {
 
                     if (itemCount > 0 && !Commons.isEmpty(items)) {
                         final int count = items.size();
-                        page += count;
+                        page ++;
                         List<StatusViewModel> viewModel = BaseStatusResponse.mapToViewModel(component.context(), items);
                         view.showLoadingSuccess(viewModel, itemCount > page);
                     } else {

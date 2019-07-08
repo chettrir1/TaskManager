@@ -45,6 +45,7 @@ ext {
     roomVersion ='2.1.0'
     dexterVersion = '4.2.0'
     firebaseCoreVersion = '17.0.0'
+    firebaseMessagingVersion = '19.0.1'
 
     mockitoVersion = '1.10.19'
 }

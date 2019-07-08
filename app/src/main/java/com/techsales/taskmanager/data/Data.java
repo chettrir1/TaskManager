@@ -1,8 +1,5 @@
 package com.techsales.taskmanager.data;
 
-import android.util.JsonReader;
-
-import com.google.gson.JsonObject;
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
@@ -112,7 +109,7 @@ public class Data {
     public Single<List<WhereTask>> getAllTasks(String user_id) {
         return remoteRepo.getNewTasks(user_id)
                 .flatMap(new NonNullMapper<>())
-                .flatMap(baseTasksResponse -> Single.just(baseTasksResponse.getwhereTasks()))
+                .flatMap(baseTasksResponse -> Single.just(baseTasksResponse.getWhereTasks()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

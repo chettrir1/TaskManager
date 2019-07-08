@@ -88,6 +88,7 @@ dependencies {
 
 //    Firebase
     implementation "com.google.firebase:firebase-core:$rootProject.ext.firebaseCoreVersion"
+    implementation "com.google.firebase:firebase-messaging:$rootProject.ext.firebaseMessagingVersion"
 
     testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     testImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.ext.retrofitVersion"

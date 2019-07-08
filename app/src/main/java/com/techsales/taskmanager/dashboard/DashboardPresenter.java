@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.dashboard;
 
-import android.util.Log;
-
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;

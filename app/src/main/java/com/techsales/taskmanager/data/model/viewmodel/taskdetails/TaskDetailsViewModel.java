@@ -1,6 +1,7 @@
 package com.techsales.taskmanager.data.model.viewmodel.taskdetails;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -95,42 +96,42 @@ public class TaskDetailsViewModel extends BaseObservable {
 
 
     @Bindable
-    public int getTaskStatusColor() {
+    public Drawable getTaskStatusDrawable() {
         int status = taskDetails.getTaskStatus();
         if (status == COUNT_ZERO) {
-            return context.getResources().getColor(R.color.colorBlue);
+            return context.getResources().getDrawable(R.drawable.ic_new_task);
         }
 
         if (status == COUNT_ONE) {
-            return context.getResources().getColor(R.color.colorYellow);
+            return context.getResources().getDrawable(R.drawable.ic_opened_task);
         }
 
         if (status == COUNT_TWO) {
-            return context.getResources().getColor(R.color.colorRed);
+            return context.getResources().getDrawable(R.drawable.ic_pending_task);
         }
 
         if (status == COUNT_THREE) {
-            return context.getResources().getColor(R.color.colorGreen);
+            return context.getResources().getDrawable(R.drawable.ic_completed_task);
         }
-        return context.getResources().getColor(R.color.colorBlue);
+        return context.getResources().getDrawable(R.drawable.ic_new_task);
     }
 
     @Bindable
-    public int getTaskPriorityColor() {
+    public Drawable getPriorityDrawable() {
         int status = taskDetails.getTaskPriority();
 
         if (status == COUNT_ONE) {
-            return context.getResources().getColor(R.color.colorGreen);
+            return context.getResources().getDrawable(R.drawable.ic_priority_urgent);
         }
 
         if (status == COUNT_TWO) {
-            return context.getResources().getColor(R.color.colorYellow);
+            return context.getResources().getDrawable(R.drawable.ic_priority_important);
         }
 
         if (status == COUNT_THREE) {
-            return context.getResources().getColor(R.color.colorRed);
+            return context.getResources().getDrawable(R.drawable.ic_priority_urgent);
         }
-        return context.getResources().getColor(R.color.colorBlue);
+        return context.getResources().getDrawable(R.drawable.ic_new_task);
     }
 
 }

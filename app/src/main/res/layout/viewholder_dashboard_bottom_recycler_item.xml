@@ -114,7 +114,7 @@
             android:paddingTop="@dimen/spacing_tiny"
             android:paddingRight="@dimen/spacing_normal"
             android:paddingBottom="@dimen/spacing_tiny"
-            android:text="View"
+            android:text="@string/status_view_tv_view"
             android:textColor="@color/colorGreen"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"

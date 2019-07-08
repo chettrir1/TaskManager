@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_fragment_title_task_information"
+                android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -90,6 +91,7 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:text="@{taskDetails.taskDescription}"
+                android:textColor="@color/colorGrey"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -125,7 +127,7 @@
                         android:text="@string/view_task_text_assigned_date"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/colorTextGreenBackground"
                         android:textStyle="bold" />
 
                     <TextView
@@ -136,7 +138,7 @@
                         android:text="@{taskDetails.assignedDate}"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/colorTextGreenBackground"
                         tools:text="2019-05-07" />
                 </LinearLayout>
 
@@ -158,7 +160,7 @@
                         android:text="@string/view_task_text_deadline"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/colorTextRedBackground"
                         android:textStyle="bold" />
 
                     <TextView
@@ -169,7 +171,7 @@
                         android:text="@{taskDetails.deadline}"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/colorTextRedBackground"
                         tools:text="2019-05-08" />
                 </LinearLayout>
             </LinearLayout>
@@ -182,7 +184,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_text_task_status"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#000000"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -196,6 +198,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@{taskDetails.taskStatus}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorGrey"
                 app:layout_constraintEnd_toStartOf="@+id/ivStatus"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
@@ -206,10 +209,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
+                android:src="@{taskDetails.taskStatusDrawable}"
                 android:tint="@color/colorGreen"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
-                app:srcCompat="@drawable/ic_done"
                 tools:ignore="VectorDrawableCompat" />
 
             <androidx.constraintlayout.widget.Barrier
@@ -228,7 +231,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_text_task_priority"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#000000"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -241,6 +244,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@{taskDetails.taskPriority}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorGrey"
                 app:layout_constraintEnd_toStartOf="@+id/ivPriority"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -251,10 +255,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
+                android:src="@{taskDetails.priorityDrawable}"
                 android:tint="@color/colorGreen"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
-                app:srcCompat="@drawable/error_snackbar_src"
                 tools:ignore="VectorDrawableCompat" />
 
             <androidx.constraintlayout.widget.Barrier
@@ -283,6 +287,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_title_client_information"
+                android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -307,7 +312,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@{taskDetails.clientName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#000000"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.457"
@@ -322,6 +327,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@{taskDetails.clientPhone}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorGrey"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.426"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -345,6 +351,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_title_change_status"
+                android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -385,12 +392,13 @@
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_deadline_date"
+                android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
                 android:text="@string/view_task_fragment_status_pending"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
-                android:textColor="@color/colorWhite"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorTextRedBackground"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@+id/tvOpenTask"
                 app:layout_constraintTop_toBottomOf="@+id/changeStatusDivider" />
@@ -402,12 +410,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/spacing_tiny"
                 android:background="@drawable/bg_assign_date"
+                android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
                 android:text="@string/view_task_fragment_status_open"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
-                android:textColor="@color/colorWhite"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorTextGreenBackground"
                 app:layout_constraintEnd_toStartOf="@+id/tvAppendTask"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/changeStatusDivider" />
@@ -504,6 +513,8 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_title_complete_task"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorLightGrey"
+                android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -517,7 +528,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="@string/view_task_et_enter_remarks"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#000000"
+                android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"

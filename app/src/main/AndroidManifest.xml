@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".createtask.container.CreateNewTaskActivity"></activity>
+        <activity android:name=".createtask.container.CreateNewTaskActivity" />
         <activity android:name=".status.container.StatusActivity" />
         <activity android:name=".notification.container.NotificationActivity" />
         <activity android:name=".notes.container.NoteListActivity" />
@@ -49,6 +49,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
         </provider>
+
+        <!--<service-->
+            <!--android:name=""-->
+            <!--android:exported="false">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>
