@@ -29,7 +29,7 @@ public class BaseStatusResponse {
 
     public static List<StatusViewModel> mapToViewModel(Context context, List<StatusResponse> items) {
         final int count = items.size();
-        ArrayList<StatusViewModel> viewModels = new ArrayList<>(count);
+        ArrayList<StatusViewModel> viewModels = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             viewModels.add(new StatusViewModel(context, items.get(i)));
         }

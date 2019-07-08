@@ -135,7 +135,7 @@ public class Data {
         params.put("user_id", userId);
         params.put("status", status);
         return remoteRepo.requestStatus(params)
-                .map(BaseResponse::getData)
+                .flatMap(new NonNullMapper<>())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

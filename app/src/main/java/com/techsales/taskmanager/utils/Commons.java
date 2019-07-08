@@ -75,7 +75,7 @@ public class Commons {
         snackbar.show();
     }
 
-    public static boolean isEmpty(List list) {
+    public static boolean isNotEmpty(List list) {
         return list != null && !list.isEmpty();
     }
 

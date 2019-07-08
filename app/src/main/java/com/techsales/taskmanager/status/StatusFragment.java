@@ -25,7 +25,6 @@ import static android.widget.LinearLayout.VERTICAL;
 public class StatusFragment extends BaseFragment implements StatusContract.View {
     private static final String STATUS = "status";
     private FragmentStatusBinding binding;
-    private int status;
 
     @Inject
     StatusContract.Presenter presenter;
@@ -45,15 +44,14 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_status, null, false);
         binding.contentState.setContent(binding.content);
-        getDataWithBundle();
         binding.swipeContainer.setColorSchemeResources(R.color.colorBlue, R.color.colorYellow, R.color.colorRed, R.color.colorGreen);
-        binding.swipeContainer.setOnRefreshListener(() -> presenter.requestStatus(status));
+        binding.swipeContainer.setOnRefreshListener(() -> presenter.requestStatus());
         return binding.getRoot();
     }
 
     @Override
     public void onResume() {
-        presenter.requestStatus(status);
+        presenter.requestStatus();
         super.onResume();
     }
 
@@ -82,7 +80,16 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
             DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
             binding.rvStatus.addItemDecoration(decoration);
         }
-        StatusRecyclerAdapter adapter = new StatusRecyclerAdapter(binding.rvStatus, viewModel, presenter);
+
+
+        StatusRecyclerAdapter adapter = (StatusRecyclerAdapter) binding.rvStatus.getAdapter();
+        if (adapter != null)
+            adapter.detachLoadMore();
+        adapter = new StatusRecyclerAdapter(binding.rvStatus, viewModel, presenter);
+
+
+        if (hasMoreItems)
+            adapter.attachLoadMore(presenter);
         binding.rvStatus.setAdapter(adapter);
         binding.contentState.showContent();
     }
@@ -99,10 +106,11 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
     }
 
     @Override
-    public void showMoreTags(List<StatusViewModel> items, boolean hasMoreItems) {
-        StatusRecyclerAdapter adapter = (StatusRecyclerAdapter) binding.rvStatus.getAdapter();
-        if (adapter != null)
+    public void showMoreItems(List<StatusViewModel> items, boolean hasMoreItems) {
+        StatusRecyclerAdapter adapter = ((StatusRecyclerAdapter) binding.rvStatus.getAdapter());
+        if (adapter != null) {
             adapter.addMoreItems(items, hasMoreItems);
+        }
     }
 
     @Override
@@ -130,10 +138,12 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
         }
     }
 
-    private void getDataWithBundle() {
+    @Override
+    public Integer getStatus() {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            status = Integer.parseInt(bundle.getString(STATUS));
+            return Integer.parseInt(bundle.getString(STATUS));
         }
+        return -1;
     }
 }

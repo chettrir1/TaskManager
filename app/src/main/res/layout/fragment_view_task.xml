@@ -132,14 +132,16 @@
 
                     <TextView
                         android:id="@+id/tvAssignedDate"
+                        style="@style/TextViewTaskDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
                         android:text="@{taskDetails.assignedDate}"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/colorTextGreenBackground"
-                        tools:text="2019-05-07" />
+                        android:textColor="@color/colorTextGreenBackground" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -165,14 +167,16 @@
 
                     <TextView
                         android:id="@+id/tvDeadlineDate"
+                        style="@style/TextViewTaskDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
                         android:text="@{taskDetails.deadline}"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/colorTextRedBackground"
-                        tools:text="2019-05-08" />
+                        android:textColor="@color/colorTextRedBackground" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -193,9 +197,12 @@
 
             <TextView
                 android:id="@+id/tvStatusName"
+                style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@{taskDetails.taskStatus}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorGrey"
@@ -239,9 +246,12 @@
 
             <TextView
                 android:id="@+id/tvPriorityName"
+                style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@{taskDetails.taskPriority}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorGrey"
@@ -304,7 +314,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-            <EditText
+            <TextView
                 android:id="@+id/tvClientName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -322,9 +332,12 @@
 
             <TextView
                 android:id="@+id/tvClientPhone"
+                style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@{taskDetails.clientPhone}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorGrey"
@@ -414,7 +427,6 @@
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
                 android:text="@string/view_task_fragment_status_open"
-
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorTextGreenBackground"
                 app:layout_constraintEnd_toStartOf="@+id/tvAppendTask"

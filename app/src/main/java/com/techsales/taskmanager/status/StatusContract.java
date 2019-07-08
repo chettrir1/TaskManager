@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface StatusContract {
     interface View extends BaseView<Presenter> {
+
+        Integer getStatus();
+
         void showProgress();
 
         void showLoadingError(String message);
@@ -19,7 +22,7 @@ public interface StatusContract {
 
         void showLoadMoreProgress();
 
-        void showMoreTags(List<StatusViewModel> items, boolean hasMoreItems);
+        void showMoreItems(List<StatusViewModel> items, boolean hasMoreItems);
 
         void showLoadMoreError();
 
@@ -31,6 +34,6 @@ public interface StatusContract {
     interface Presenter extends BasePresenter,
             LoadMoreAdapter.LoadMoreListener,
             StatusRecyclerAdapter.StatusItemClickListener {
-        void requestStatus(int status);
+        void requestStatus();
     }
 }

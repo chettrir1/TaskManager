@@ -41,7 +41,7 @@ public class NotificationPresenter implements NotificationContract.Presenter {
         view.showProgress();
         disposable = component.data().getAllNotification(component.data().savedUserInfo().getId())
                 .subscribe((List<NotificationResponse> notificationResponse) -> {
-                    if (Commons.isEmpty(notificationResponse)) {
+                    if (Commons.isNotEmpty(notificationResponse)) {
                         List<NotificationViewModel> viewModels;
                         viewModels = BaseNotificationResponse.mapToViewModel(component.context(), notificationResponse);
                         view.showLoadingSuccess(viewModels);
