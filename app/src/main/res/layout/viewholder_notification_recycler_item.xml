@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,13 +16,12 @@
 
         <TextView
             android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/button_height_tall"
+            android:layout_height="0dp"
+            android:background="@color/colorGreen"
             android:gravity="center|clip_vertical|center_vertical"
             android:text="@{notification.timeAgo}"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/tvMessage"
             app:layout_constraintStart_toStartOf="@+id/leftGuideline"
             app:layout_constraintTop_toTopOf="@+id/tvTitle"
@@ -59,7 +58,7 @@
             android:singleLine="true"
             android:text="@{notification.notificationTitle}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#000000"
+            android:textColor="@color/colorBlack"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
             app:layout_constraintStart_toEndOf="@+id/tvTime"
@@ -77,6 +76,7 @@
             android:singleLine="false"
             android:text="@{notification.notificationDescription}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorGrey"
             app:layout_constraintBottom_toTopOf="@+id/bottomGuideline"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
             app:layout_constraintStart_toEndOf="@+id/tvTime"

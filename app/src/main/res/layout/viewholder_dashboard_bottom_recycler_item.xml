@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/task_date"
-            android:layout_width="60dp"
+            android:layout_width="@dimen/button_height_tall"
             android:layout_height="0dp"
             android:background="@{dashboardBottom.backgroundColor}"
             android:fontFamily="@font/open_sans"
@@ -53,7 +53,7 @@
             android:text="@{dashboardBottom.day}"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintStart_toStartOf="@+id/guidelineleft"
@@ -62,12 +62,17 @@
 
         <TextView
             android:id="@+id/task_title"
-            style="@style/TextStyleBlack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
             android:text="@{dashboardBottom.name}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/btn_view_task"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/task_date"
@@ -76,13 +81,13 @@
 
         <TextView
             android:id="@+id/task_assigned_by"
-            style="@style/TextStyleBlack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="@{dashboardBottom.createdBy}"
-            android:textSize="@dimen/caption_medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorGrey"
             app:layout_constraintEnd_toStartOf="@+id/btn_view_task"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/task_date"
@@ -90,13 +95,13 @@
 
         <TextView
             android:id="@+id/task_status"
-            style="@style/TextStyleBlack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="@{dashboardBottom.status}"
-            android:textSize="@dimen/over_line_semi_bold_caps"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorLightGrey"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintEnd_toStartOf="@+id/btn_view_task"

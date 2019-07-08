@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.dashboard;
 
+import android.util.Log;
+
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
@@ -94,6 +96,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         view.showProgress();
         disposable = component.data().getAllTasks(component.data().savedUserInfo().getId())
                 .subscribe((List<WhereTask> whereTasksList) -> {
+                    Log.v("getWhereTaskList", whereTasksList.size()+"");
                     if (Commons.isNotEmpty(whereTasksList)) {
                         List<DashboardBottomRecyclerViewModel> viewModels = BaseTasksResponse.mapToViewModel(component.context(), whereTasksList);
                         view.showBottomRecyclerLoadSuccess(viewModels);
@@ -114,7 +117,6 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     @Override
     public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
         view.onBottomRecyclerItemClicked(items, position);
-
     }
 
     private void checkIfAdminOrNot() {

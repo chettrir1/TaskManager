@@ -2,6 +2,7 @@ package com.techsales.taskmanager.data.model.viewmodel.taskdetails;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -10,10 +11,10 @@ import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.utils.Commons;
 
-import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
-import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
-import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_THREE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
+import static com.techsales.taskmanager.utils.Constants.COUNT_ZERO;
 import static com.techsales.taskmanager.utils.Constants.PRIORITY_TYPE_ONE;
 import static com.techsales.taskmanager.utils.Constants.PRIORITY_TYPE_THREE;
 import static com.techsales.taskmanager.utils.Constants.PRIORITY_TYPE_TWO;
@@ -31,7 +32,6 @@ public class TaskDetailsViewModel extends BaseObservable {
     public TaskDetailsViewModel(Context context, TaskDetails taskDetails) {
         this.context = context;
         this.taskDetails = taskDetails;
-
     }
 
     public String getTaskName() {
@@ -39,11 +39,15 @@ public class TaskDetailsViewModel extends BaseObservable {
     }
 
     public String getTaskDescription() {
+        if (TextUtils.isEmpty(taskDetails.getTaskDescription())) {
+            return context.getResources()
+                    .getString(R.string.view_task_fragment_task_desc_not_available);
+        }
         return taskDetails.getTaskDescription();
     }
 
     public String getAssignedDate() {
-        return taskDetails.getAssignedDate();
+        return Commons.dateParse(taskDetails.getAssignedDate());
     }
 
     public String getDeadline() {
@@ -87,10 +91,14 @@ public class TaskDetailsViewModel extends BaseObservable {
     }
 
     public String getClientName() {
-        return taskDetails.getClientName();
+        return Commons.capitalize(taskDetails.getClientName());
     }
 
     public String getClientPhone() {
+        if (TextUtils.isEmpty(taskDetails.getClientPhone())) {
+            return context.getResources()
+                    .getString(R.string.view_task_fragment_client_phone_not_available);
+        }
         return taskDetails.getClientPhone();
     }
 

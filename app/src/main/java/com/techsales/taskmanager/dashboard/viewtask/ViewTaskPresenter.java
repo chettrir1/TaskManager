@@ -8,6 +8,7 @@ import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
 import com.techsales.taskmanager.data.model.viewmodel.taskdetails.TaskDetailsViewModel;
 import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 import com.techsales.taskmanager.di.TaskManagerComponent;
+import com.techsales.taskmanager.utils.Commons;
 
 import java.io.File;
 
@@ -90,6 +91,6 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
 
     @Override
     public void stop() {
-
+        Commons.dispose(disposable);
     }
 }

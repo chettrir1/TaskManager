@@ -26,7 +26,7 @@ class ViewNotificationPresenter implements ViewNotificationContract.Presenter {
     @Override
     public NotificationDetailsViewModel getNotificationDetailsViewModel(NotificationDetails notificationDetails) {
         if (notificationDetails != null) {
-            return NotificationDetails.mapToNotificationDetailsViewModel(component.context(), notificationDetails);
+            return NotificationDetails.mapToNotificationDetailsViewModel(notificationDetails);
         }
         return null;
     }

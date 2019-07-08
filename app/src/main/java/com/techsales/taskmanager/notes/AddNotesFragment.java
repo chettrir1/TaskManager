@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.common.internal.Preconditions;
 import com.techsales.taskmanager.BaseFragment;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.databinding.FragmentAddNotesBinding;
@@ -33,8 +34,7 @@ public class AddNotesFragment extends BaseFragment implements AddNotesContract.V
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_notes, null, false);
         binding.includeToolbar.ivSave.setOnClickListener(view -> {
-
-            presenter.insertNotes(binding.etTitle.getText().toString(),binding.etDescription.getText().toString());
+            presenter.insertNotes(binding.etTitle.getText().toString(), binding.etDescription.getText().toString());
         });
 
 

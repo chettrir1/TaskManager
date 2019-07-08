@@ -49,7 +49,6 @@
                 android:text="@string/view_task_fragment_title_task_information"
                 android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
@@ -74,7 +73,6 @@
                 android:text="@{taskDetails.taskName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/h6_headline_medium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -87,6 +85,7 @@
                 style="@style/TextViewTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/open_sans"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
@@ -217,7 +216,6 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
                 android:src="@{taskDetails.taskStatusDrawable}"
-                android:tint="@color/colorGreen"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
                 tools:ignore="VectorDrawableCompat" />
@@ -266,7 +264,6 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
                 android:src="@{taskDetails.priorityDrawable}"
-                android:tint="@color/colorGreen"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
                 tools:ignore="VectorDrawableCompat" />
@@ -299,7 +296,6 @@
                 android:text="@string/view_task_title_client_information"
                 android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/taskInfoDivider" />
@@ -366,7 +362,6 @@
                 android:text="@string/view_task_title_change_status"
                 android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/clientInfoBottomDivider" />
@@ -527,7 +522,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorLightGrey"
                 android:textSize="@dimen/h6_headline_medium"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/changeStatusBottomDivider" />

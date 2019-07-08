@@ -98,6 +98,8 @@
     <string name="view_task_fragment_status_open">Open</string>
     <string name="view_task_fragment_status_pending">Pending</string>
     <string name="view_task_fragment_title_task_information">Task Information</string>
+    <string name="view_task_fragment_task_desc_not_available">Task description not available!</string>
+    <string name="view_task_fragment_client_phone_not_available">Client phone not available!</string>
     <!---->
 
     <!--status view strings-->
