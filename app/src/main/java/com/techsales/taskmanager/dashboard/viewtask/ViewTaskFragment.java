@@ -342,7 +342,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         ChangeStatusFragment fragment = ChangeStatusFragment.getInstance(id, statusCount);
         if (getActivity() != null)
             fragment.show(getActivity().getSupportFragmentManager(), "dialog");
-        fragment.setCancelable(false);
+        fragment.setCancelable(true);
     }
 
     private void showSettingDailog() {

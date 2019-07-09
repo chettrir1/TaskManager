@@ -4,6 +4,7 @@ import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.entity.NotesEntity;
 
 import java.util.List;
+import java.util.Observer;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

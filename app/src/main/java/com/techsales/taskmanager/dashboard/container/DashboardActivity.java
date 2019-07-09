@@ -84,9 +84,7 @@ public class DashboardActivity extends BaseActivity implements DashboardContract
                 break;
 
             case R.id.note_src:
-/*
                 NoteListActivity.start(this);
-*/
                 break;
 
             case R.id.logout_src:
