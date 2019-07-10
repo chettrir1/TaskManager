@@ -26,7 +26,12 @@
         tools:targetApi="m">
         <activity android:name=".createtask.container.CreateNewTaskActivity" />
         <activity android:name=".status.container.StatusActivity" />
-        <activity android:name=".notification.container.NotificationActivity" />
+        <activity android:name=".notification.container.NotificationActivity">
+            <intent-filter>
+                <action android:name="notify" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".notes.container.NoteListActivity" />
         <activity android:name=".notes.container.AddNotesActivity" />
         <activity android:name=".contacts.container.ContactsActivity" />
@@ -50,13 +55,13 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
 
-        <!--<service-->
-            <!--android:name=""-->
-            <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
+        <service
+            android:name=".auth.service.FirebaseListenerService"
+            android:permission="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />

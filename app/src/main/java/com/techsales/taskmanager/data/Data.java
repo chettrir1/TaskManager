@@ -7,6 +7,7 @@ import com.techsales.taskmanager.data.model.api.chooseemployee.ChooseEmployeeRes
 import com.techsales.taskmanager.data.model.api.contacts.ContactsResponse;
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.model.api.status.BaseStatusResponse;
+import com.techsales.taskmanager.data.model.dashboard.taskcount.TaskCount;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
@@ -84,7 +85,13 @@ public class Data {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
 
+    public Single<TaskCount> getTaskCount(String user_id) {
+        return remoteRepo.getTaskCount(user_id)
+                .flatMap(new NonNullMapper<>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Single<BaseResponse> requestChangeStatus(String taskId, String taskStatus, String remarks) {

@@ -50,6 +50,7 @@
     <string name="dashboard_task_text_pending">Append</string>
     <string name="dashboard_task_text_complete">Completed</string>
     <string name="dashboard_error_empty_task">No data available to fetch</string>
+    <string name="dashboard_empty_status">Empty</string>
     <!---->
 
     <!--fragment profile strings-->

@@ -14,16 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/tvNameLetter"
             android:layout_width="@dimen/button_height_tall"
-            android:layout_height="0dp"
-            android:background="@color/colorLightGrey"
-            android:gravity="center"
-            android:text="@{contacts.shortName}"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorWhite"
+            android:layout_height="@dimen/button_height_tall"
+            app:civ_border_color="@color/colorLightGrey"
+            app:civ_border_width="@dimen/view_height"
+            app:imagePath="@{contacts.imagePath}"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintStart_toStartOf="@+id/leftGuidelines"
             app:layout_constraintTop_toTopOf="@+id/guidelinesTop"
@@ -97,8 +94,8 @@
             android:text="@{contacts.phoneAndExtension}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/colorLightGrey"
-            android:textStyle="bold"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
             app:layout_constraintEnd_toStartOf="@+id/ivCall"
             app:layout_constraintStart_toStartOf="@+id/tvEmployeeDetails"

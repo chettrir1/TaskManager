@@ -32,6 +32,7 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
     private DialogChooseEmployeeBinding binding;
     private List<String> employeeList;
     private ProgressDialog progressDialog;
+    private boolean dividerPresent = false;
 
     @Inject
     ChooseEmployeeContract.Presenter presenter;
@@ -94,10 +95,13 @@ public class ChooseEmployeeFragment extends BaseDialogFragment implements Choose
 
     @Override
     public void showLoadingSuccess(List<ChooseEmployeeViewModel> viewModels) {
-        if (getContext() != null) {
-            DividerItemDecoration dividerItemDecoration =
-                    new DividerItemDecoration(getContext(), VERTICAL);
-            binding.rvEmployeeList.addItemDecoration(dividerItemDecoration);
+        if (!dividerPresent) {
+            if (getContext() != null) {
+                DividerItemDecoration dividerItemDecoration =
+                        new DividerItemDecoration(getContext(), VERTICAL);
+                binding.rvEmployeeList.addItemDecoration(dividerItemDecoration);
+                dividerPresent = true;
+            }
         }
 
         ChooseEmployeeRecyclerAdapter adapter = new ChooseEmployeeRecyclerAdapter(viewModels, presenter);

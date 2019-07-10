@@ -29,6 +29,7 @@ public class NotificationFragment extends BaseFragment implements NotificationCo
     NotificationContract.Presenter presenter;
 
     private FragmentNotificationBinding binding;
+    private boolean dividerPresent = false;
 
     public static Fragment getInstance() {
         return new NotificationFragment();
@@ -70,9 +71,12 @@ public class NotificationFragment extends BaseFragment implements NotificationCo
     @Override
     public void showLoadingSuccess(List<NotificationViewModel> viewModel) {
         hideSwipeContainer();
-        if (getContext() != null) {
-            DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
-            binding.rvNotification.addItemDecoration(decoration);
+        if (!dividerPresent) {
+            if (getContext() != null) {
+                DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
+                binding.rvNotification.addItemDecoration(decoration);
+                dividerPresent = true;
+            }
         }
         NotificationRecyclerAdapter adapter = new NotificationRecyclerAdapter(viewModel, presenter);
         binding.rvNotification.setAdapter(adapter);

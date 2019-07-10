@@ -25,6 +25,8 @@ import static android.widget.LinearLayout.VERTICAL;
 public class StatusFragment extends BaseFragment implements StatusContract.View {
     private static final String STATUS = "status";
     private FragmentStatusBinding binding;
+    private boolean dividerPresent = false;
+
 
     @Inject
     StatusContract.Presenter presenter;
@@ -76,9 +78,12 @@ public class StatusFragment extends BaseFragment implements StatusContract.View 
     @Override
     public void showLoadingSuccess(List<StatusViewModel> viewModel, boolean hasMoreItems) {
         hideSwipeContainer();
-        if (getContext() != null) {
-            DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
-            binding.rvStatus.addItemDecoration(decoration);
+        if (!dividerPresent) {
+            if (getContext() != null) {
+                DividerItemDecoration decoration = new DividerItemDecoration(getContext(), VERTICAL);
+                binding.rvStatus.addItemDecoration(decoration);
+                dividerPresent = true;
+            }
         }
 
 

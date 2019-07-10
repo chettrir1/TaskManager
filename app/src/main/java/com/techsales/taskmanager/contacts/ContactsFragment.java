@@ -24,14 +24,18 @@ import javax.inject.Inject;
 import static androidx.recyclerview.widget.DividerItemDecoration.VERTICAL;
 
 public class ContactsFragment extends BaseFragment implements ContactsContract.View {
+
     private FragmentContactsBinding binding;
 
-    @Inject
-    ContactsContract.Presenter presenter;
+    private boolean dividerPresent = false;
 
     public static ContactsFragment getInstance() {
         return new ContactsFragment();
     }
+
+    @Inject
+    ContactsContract.Presenter presenter;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -70,9 +74,13 @@ public class ContactsFragment extends BaseFragment implements ContactsContract.V
     @Override
     public void showLoadingSuccess(List<ContactsviewModel> viewModel) {
         hideSwipeContainer();
-        if (getContext() != null) {
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), VERTICAL);
-            binding.rvContacts.addItemDecoration(dividerItemDecoration);
+        if (!dividerPresent) {
+            if (getContext() != null) {
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), VERTICAL);
+                binding.rvContacts.removeItemDecoration(dividerItemDecoration);
+                binding.rvContacts.addItemDecoration(dividerItemDecoration);
+                dividerPresent = true;
+            }
         }
         ContactsRecyclerAdapter adapter = new ContactsRecyclerAdapter(viewModel, presenter);
         binding.rvContacts.setAdapter(adapter);

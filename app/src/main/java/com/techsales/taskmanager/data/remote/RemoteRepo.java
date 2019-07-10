@@ -6,6 +6,7 @@ import com.techsales.taskmanager.data.model.api.contacts.BaseContactsResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.api.notification.BaseNotificationResponse;
 import com.techsales.taskmanager.data.model.api.status.BaseStatusResponse;
+import com.techsales.taskmanager.data.model.dashboard.taskcount.TaskCount;
 import com.techsales.taskmanager.data.model.login.UserInfo;
 
 import java.util.Map;
@@ -25,6 +26,10 @@ public interface RemoteRepo {
     @POST("login")
     Single<BaseResponse<UserInfo>> requestLogin(
             @Body Map<String, Object> params);
+
+    @GET("task/count")
+    Single<BaseResponse<TaskCount>> getTaskCount(
+            @Query("user_id") String user_id);
 
     @GET("task")
     Single<BaseResponse<BaseTasksResponse>> getNewTasks(
