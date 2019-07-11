@@ -18,6 +18,7 @@
             android:id="@+id/tvNameLetter"
             android:layout_width="@dimen/button_height_tall"
             android:layout_height="@dimen/button_height_tall"
+            android:src="@drawable/no_image"
             app:civ_border_color="@color/colorLightGrey"
             app:civ_border_width="@dimen/view_height"
             app:imagePath="@{contacts.imagePath}"
