@@ -36,7 +36,7 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
     @Override
     public void onCameraClick() {
         if (!view.checkPermission()) {
-            view.showPermissionDialog();
+            view.showPermissionDialog(false);
             return;
         }
         if (view.availableDisk() <= 5) {
@@ -54,15 +54,10 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
     @Override
     public void onGalleryClick() {
         if (!view.checkPermission()) {
-            view.showPermissionDialog();
+            view.showPermissionDialog(true);
             return;
         }
         view.chooseGallery();
-    }
-
-    @Override
-    public void permissionDenied() {
-        view.showPermissionDialog();
     }
 
     @Override
@@ -72,7 +67,7 @@ class ViewTaskPresenter implements ViewTaskContract.Presenter {
 
     @Override
     public void uploadAndComplete(String taskId, String status, String remarks, MultipartBody.Part part) {
-        view.showProgress();
+       view.showProgress();
         disposable = component.data().uploadCompletedTask(taskId, status, remarks, part)
                 .subscribe(baseResponse -> view.showUploadSuccess(), throwable -> {
                     if (throwable instanceof FailedResponseException)

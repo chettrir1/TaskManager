@@ -90,7 +90,7 @@
     <string name="view_task_success_file_upload">File upload successful</string>
 
     <string name="view_task_text_take_photo">Take photo</string>
-    <string name="view_task_text_gallery">Gallery</string>
+    <string name="view_task_text_gallery">Choose from gallery</string>
     <string name="view_task_text_dialog_dismiss">Dismiss</string>
     <string name="view_task_text_need_permissions">Need Permissions</string>
     <string name="view_task_text_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>

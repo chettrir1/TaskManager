@@ -79,7 +79,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     private static String[] permissions = new String[]{
             Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-    private File image_file;
+    private File imageFile;
 
     @Inject
     ViewTaskContract.Presenter presenter;
@@ -167,13 +167,19 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
     }
 
     @Override
-    public void showPermissionDialog() {
+    public void showPermissionDialog(boolean isGallery) {
         Dexter.withActivity(getActivity()).withPermissions(permissions)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
-                        report.areAllPermissionsGranted();
+                        if (report.areAllPermissionsGranted()) {
+                            if (isGallery) {
+                                presenter.onGalleryClick();
+                            } else {
+                                presenter.onCameraClick();
+                            }
+                        }
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
                             // show alert dialog navigating to Settings
@@ -214,7 +220,7 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
         if (getActivity() != null)
             if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
                 if (file != null) {
-                    image_file = file;
+                    imageFile = file;
                     imageUri = FileProvider.getUriForFile(component.context(),
                             BuildConfig.APPLICATION_ID + ".provider", file);
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
@@ -359,8 +365,8 @@ public class ViewTaskFragment extends BaseFragment implements ViewTaskContract.V
 
     private void uploadAndComplete() {
         File file;
-        if (image_file != null) {
-            file = image_file;
+        if (imageFile != null) {
+            file = imageFile;
         } else {
             file = FileUtils.getFile(component.context(), imageUri);
         }

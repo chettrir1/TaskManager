@@ -17,7 +17,7 @@ public interface ViewTaskContract {
 
         boolean checkPermission();
 
-        void showPermissionDialog();
+        void showPermissionDialog(boolean isGallery);
 
         File getFilePath();
 
@@ -52,8 +52,6 @@ public interface ViewTaskContract {
         void onCameraClick();
 
         void onGalleryClick();
-
-        void permissionDenied();
 
         void showPreview(Uri mFileUri);
 
