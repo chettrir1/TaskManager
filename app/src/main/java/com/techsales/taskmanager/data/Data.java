@@ -22,6 +22,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -171,7 +172,7 @@ public class Data {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<Long> insertNotes(Notes notes) {
+    public Completable insertNotes(Notes notes) {
         return databaseRepo.insertToNotes(notes)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

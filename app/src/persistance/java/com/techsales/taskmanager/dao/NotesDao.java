@@ -10,13 +10,14 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import io.reactivex.Completable;
 import io.reactivex.Single;
 
 @Dao
 public interface NotesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(NotesEntity notesEntity);
+    Completable insert(NotesEntity notesEntity);
 
     @Query("SELECT id," +
             " title," +
