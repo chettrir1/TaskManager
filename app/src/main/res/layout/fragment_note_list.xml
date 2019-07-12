@@ -27,8 +27,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/noteList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,3 +40,4 @@
             android:src="@drawable/ic_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
+

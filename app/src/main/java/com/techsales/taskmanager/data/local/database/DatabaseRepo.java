@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 
 public class DatabaseRepo {
@@ -15,15 +16,17 @@ public class DatabaseRepo {
     DatabaseManager databaseManager;
 
     @Inject
-    DatabaseRepo(){}
+    DatabaseRepo() {
+    }
 
-    public Single<Long> insertToNotes(Notes notes) {
-        return Single.just(databaseManager.getNotesDao()
+    public Completable insertToNotes(Notes notes) {
+        return Completable.fromAction(() -> databaseManager.getNotesDao()
                 .insert(Notes.mapToNotesEntity(notes)));
     }
 
     public Single<List<Notes>> getAllNotes() {
-         return databaseManager.getNotesDao().getNotes();
+        return databaseManager.getNotesDao().getNotes();
 
     }
+
 }

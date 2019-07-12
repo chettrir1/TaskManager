@@ -26,7 +26,7 @@ class AddNotesPresenter implements AddNotesContract.Presenter {
 
     @Override
     public void stop() {
-
+        disposable.dispose();
     }
 
     @Override
@@ -40,9 +40,11 @@ class AddNotesPresenter implements AddNotesContract.Presenter {
             Notes notes = new Notes();
             notes.setTitle(title);
             notes.setDescription(description);
-            component.data().insertNotes(notes);
+            disposable = component.data()
+                    .insertNotes(notes)
+                    .subscribe(() -> view.showNoteAddSuccess(),
+                            Throwable::printStackTrace);
 
-            view.showNoteAddSuccess();
         }
     }
 }

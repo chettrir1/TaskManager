@@ -9,27 +9,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
+import com.techsales.taskmanager.data.model.viewmodel.notes.NotesViewModel;
 import com.techsales.taskmanager.databinding.ViewholderDashboardBottomRecyclerItemBinding;
+import com.techsales.taskmanager.databinding.ViewholderNotesRecyclerItemBinding;
 
 import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder> {
 
-    private List<DashboardBottomRecyclerViewModel> items;
+    private List<NotesViewModel> items;
     private LayoutInflater layoutInflater;
     private NoteListAdapter.NoteListItemClickListener listener;
 
     class NoteListViewHolder extends RecyclerView.ViewHolder {
 
-        private final ViewholderDashboardBottomRecyclerItemBinding binding;
+        private final ViewholderNotesRecyclerItemBinding binding;
 
-        NoteListViewHolder(final ViewholderDashboardBottomRecyclerItemBinding binding) {
+        NoteListViewHolder(final ViewholderNotesRecyclerItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
     }
 
-    NoteListAdapter(List<DashboardBottomRecyclerViewModel> items, NoteListAdapter.NoteListItemClickListener listener) {
+    NoteListAdapter(List<NotesViewModel> items, NoteListAdapter.NoteListItemClickListener listener) {
         this.items = items;
         this.listener = listener;
     }
@@ -40,18 +42,19 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.getContext());
         }
-        ViewholderDashboardBottomRecyclerItemBinding binding =
-                DataBindingUtil.inflate(layoutInflater, R.layout.viewholder_dashboard_bottom_recycler_item, parent, false);
+        ViewholderNotesRecyclerItemBinding binding =
+                DataBindingUtil.inflate(layoutInflater, R.layout.viewholder_notes_recycler_item, parent, false);
         return new NoteListAdapter.NoteListViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NoteListAdapter.NoteListViewHolder holder, final int position) {
-        holder.binding.setDashboardBottom(items.get(position));
+        holder.binding.setNotes(items.get(position));
         holder.binding.getRoot().setOnClickListener(view -> {
             if (items != null)
                 listener.onNoteListItemClicked(items.get(position), position);
         });
+
         holder.binding.executePendingBindings();
     }
 
@@ -62,6 +65,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
 
 
     public interface NoteListItemClickListener {
-        void onNoteListItemClicked(DashboardBottomRecyclerViewModel items, int position);
+        void onNoteListItemClicked(NotesViewModel items, int position);
     }
 }

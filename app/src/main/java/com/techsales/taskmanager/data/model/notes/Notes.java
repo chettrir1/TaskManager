@@ -1,7 +1,13 @@
 package com.techsales.taskmanager.data.model.notes;
 
+import android.content.Context;
+
+import com.techsales.taskmanager.data.model.viewmodel.notes.NotesViewModel;
 import com.techsales.taskmanager.entity.NotesEntity;
 import com.techsales.taskmanager.utils.Commons;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Notes {
 
@@ -52,12 +58,21 @@ public class Notes {
     }
 
 
-    public static NotesEntity mapToNotesEntity(Notes notes){
+    public static NotesEntity mapToNotesEntity(Notes notes) {
         NotesEntity notesEntity = new NotesEntity();
         notesEntity.noteTitle = notes.title;
         notesEntity.noteDescription = notes.description;
         notesEntity.createdAt = String.valueOf(Commons.getCurrentDateTime());
         notesEntity.updatedAt = String.valueOf(Commons.getCurrentDateTime());
         return notesEntity;
+    }
+
+    public static List<NotesViewModel> mapToViewModel(Context context, List<Notes> items) {
+        final int count = items.size();
+        ArrayList<NotesViewModel> viewModels = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            viewModels.add(new NotesViewModel(context, items.get(i)));
+        }
+        return viewModels;
     }
 }

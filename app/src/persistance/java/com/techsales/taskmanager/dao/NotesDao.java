@@ -7,16 +7,19 @@ import java.util.List;
 import java.util.Observer;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import io.reactivex.Completable;
 import io.reactivex.Single;
 
 @Dao
 public interface NotesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(NotesEntity notesEntity);
+    void insert(NotesEntity notesEntity);
 
     @Query("SELECT id," +
             " title," +
@@ -25,8 +28,6 @@ public interface NotesDao {
             " updated_at AS updatedAt FROM notes")
     Single<List<Notes>> getNotes();
 
-//    @Query("Select * from notes where user_id=:userId")
-//    Notes getNotesByUserId();
 }
 
 
