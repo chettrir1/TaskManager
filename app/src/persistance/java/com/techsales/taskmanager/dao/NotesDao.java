@@ -17,7 +17,7 @@ import io.reactivex.Single;
 public interface NotesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insert(NotesEntity notesEntity);
+    void insert(NotesEntity notesEntity);
 
     @Query("SELECT id," +
             " title," +
