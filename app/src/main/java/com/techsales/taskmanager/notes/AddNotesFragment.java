@@ -61,4 +61,9 @@ public class AddNotesFragment extends BaseFragment implements AddNotesContract.V
         Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    public void showNoteAddedError(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
 }

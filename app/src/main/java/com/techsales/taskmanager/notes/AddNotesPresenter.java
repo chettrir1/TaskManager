@@ -6,10 +6,13 @@ import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 
+import io.reactivex.disposables.Disposable;
+
 class AddNotesPresenter implements AddNotesContract.Presenter {
 
     private final TaskManagerComponent component;
     private AddNotesContract.View view;
+    private Disposable disposable;
 
     AddNotesPresenter(TaskManagerComponent component, AddNotesContract.View view) {
         this.component = component;
@@ -38,6 +41,7 @@ class AddNotesPresenter implements AddNotesContract.Presenter {
             notes.setTitle(title);
             notes.setDescription(description);
             component.data().insertNotes(notes);
+
             view.showNoteAddSuccess();
         }
     }

@@ -12,6 +12,8 @@ public interface AddNotesContract {
         void showEmptyFields(String message);
 
         void showNoteAddSuccess();
+
+        void showNoteAddedError(String message);
     }
 
     interface Presenter extends BasePresenter {
