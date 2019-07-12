@@ -1,5 +1,7 @@
 package com.techsales.taskmanager.data;
 
+import android.provider.ContactsContract;
+
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
@@ -172,7 +174,7 @@ public class Data {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Completable insertNotes(Notes notes) {
+    public Single<Long> insertNotes(Notes notes) {
         return databaseRepo.insertToNotes(notes)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -184,4 +186,9 @@ public class Data {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Completable updateNotes(Notes notes) {
+        return databaseRepo.updateNotes(notes)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

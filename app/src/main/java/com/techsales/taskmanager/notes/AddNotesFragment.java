@@ -21,12 +21,19 @@ import com.techsales.taskmanager.utils.Commons;
 import javax.inject.Inject;
 
 public class AddNotesFragment extends BaseFragment implements AddNotesContract.View {
+    private static final String NOTE_ID = "id";
+    private static final String ADD_NOTE_MODE = "mode";
     private static final String TITLE_NAME = "title";
     private static final String TITLE_DESCRIPTION = "description";
+    private static final String MODE_UPDATE = "update";
+    private String mode;
+    private int id;
 
-    public static Fragment getInstance(String title, String description) {
+    public static Fragment getInstance(int id, String mode, String title, String description) {
         AddNotesFragment fragment = new AddNotesFragment();
         Bundle bundle = new Bundle();
+        bundle.putInt(NOTE_ID, id);
+        bundle.putString(ADD_NOTE_MODE, mode);
         bundle.putString(TITLE_NAME, title);
         bundle.putString(TITLE_DESCRIPTION, description);
         fragment.setArguments(bundle);
@@ -45,8 +52,15 @@ public class AddNotesFragment extends BaseFragment implements AddNotesContract.V
         getDataFromBundle();
 
         binding.includeToolbar.ivSave.setOnClickListener(view ->
+        {
+            if (mode.equals(MODE_UPDATE)) {
                 presenter.insertNotes(binding.etTitle.getText().toString(),
-                        binding.etDescription.getText().toString()));
+                        binding.etDescription.getText().toString());
+            } else {
+                presenter.updateNote(id, binding.etTitle.getText().toString(),
+                        binding.etDescription.getText().toString());
+            }
+        });
 
         binding.includeToolbar.ivBack.setOnClickListener(view -> onBackPressed());
 
@@ -74,9 +88,10 @@ public class AddNotesFragment extends BaseFragment implements AddNotesContract.V
     }
 
     private void getDataFromBundle() {
-
         Bundle bundle = this.getArguments();
         if (bundle != null) {
+            id = bundle.getInt(NOTE_ID);
+            mode = bundle.getString(ADD_NOTE_MODE);
             String title = bundle.getString(TITLE_NAME);
             String description = bundle.getString(TITLE_DESCRIPTION);
             if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(description)) {

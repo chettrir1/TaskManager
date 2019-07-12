@@ -17,6 +17,11 @@ public class NotesViewModel extends BaseObservable {
     }
 
     @Bindable
+    public int getId() {
+        return items.getId();
+    }
+
+    @Bindable
     public String getNotesTitle() {
         return items.getTitle();
     }

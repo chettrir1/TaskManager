@@ -12,11 +12,15 @@ import com.techsales.taskmanager.databinding.ActivityAddNotesBinding;
 import com.techsales.taskmanager.notes.AddNotesFragment;
 
 public class AddNotesActivity extends BaseActivity {
+    private static final String NOTE_ID = "id";
+    private static final String ADD_NOTE_MODE = "mode";
     private static final String TITLE_NAME = "title";
     private static final String TITLE_DESCRIPTION = "description";
 
-    public static void start(Activity activity, String title, String description) {
+    public static void start(Activity activity, int id, String mode, String title, String description) {
         Intent intent = new Intent(activity, AddNotesActivity.class);
+        intent.putExtra(NOTE_ID, id);
+        intent.putExtra(TITLE_NAME, mode);
         intent.putExtra(TITLE_NAME, title);
         intent.putExtra(TITLE_DESCRIPTION, description);
         activity.startActivity(intent);
@@ -26,11 +30,13 @@ public class AddNotesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityAddNotesBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_add_notes);
+        String id = getIntent().getStringExtra(NOTE_ID);
+        String mode = getIntent().getStringExtra(ADD_NOTE_MODE);
         String title = getIntent().getStringExtra(TITLE_NAME);
         String description = getIntent().getStringExtra(TITLE_DESCRIPTION);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.addNotesContainer, AddNotesFragment.getInstance(title, description))
+                .replace(R.id.addNotesContainer, AddNotesFragment.getInstance(Integer.parseInt(id), mode, title, description))
                 .commit();
     }
 

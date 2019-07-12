@@ -19,14 +19,17 @@ public class DatabaseRepo {
     DatabaseRepo() {
     }
 
-    public Completable insertToNotes(Notes notes) {
-        return Completable.fromAction(() -> databaseManager.getNotesDao()
-                .insert(Notes.mapToNotesEntity(notes)));
+    public Single<Long> insertToNotes(Notes notes) {
+        return databaseManager.getNotesDao()
+                .insert(Notes.mapToNotesEntity(notes));
     }
 
     public Single<List<Notes>> getAllNotes() {
         return databaseManager.getNotesDao().getNotes();
-
     }
 
+    public Completable updateNotes(Notes notes) {
+        return databaseManager.getNotesDao().updateNotes(notes.getId(),
+                notes.getTitle(), notes.getDescription());
+    }
 }

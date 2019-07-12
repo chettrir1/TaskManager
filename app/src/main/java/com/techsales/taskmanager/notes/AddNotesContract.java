@@ -2,7 +2,6 @@ package com.techsales.taskmanager.notes;
 
 import com.techsales.taskmanager.BasePresenter;
 import com.techsales.taskmanager.BaseView;
-import com.techsales.taskmanager.data.model.notes.Notes;
 
 public interface AddNotesContract {
 
@@ -18,5 +17,7 @@ public interface AddNotesContract {
 
     interface Presenter extends BasePresenter {
         void insertNotes(String title, String description);
+
+        void updateNote(int id, String title, String description);
     }
 }

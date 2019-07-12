@@ -42,9 +42,30 @@ class AddNotesPresenter implements AddNotesContract.Presenter {
             notes.setDescription(description);
             disposable = component.data()
                     .insertNotes(notes)
-                    .subscribe(() -> view.showNoteAddSuccess(),
+                    .subscribe((id) -> {
+                                view.showNoteAddSuccess();
+                            },
                             Throwable::printStackTrace);
 
+        }
+    }
+
+    @Override
+    public void updateNote(int id, String title, String description) {
+        view.showProgress();
+        if (TextUtils.isEmpty(title)) {
+            view.showEmptyFields(component.context().getResources().getString(R.string.notes_error_empty_title));
+        } else if (TextUtils.isEmpty(description)) {
+            view.showEmptyFields(component.context().getResources().getString(R.string.notes_error_empty_description));
+        } else {
+            Notes notes = new Notes();
+            notes.setId(id);
+            notes.setTitle(title);
+            notes.setDescription(description);
+            disposable = component.data()
+                    .updateNotes(notes)
+                    .subscribe(() -> view.showNoteAddSuccess(),
+                            Throwable::printStackTrace);
         }
     }
 }

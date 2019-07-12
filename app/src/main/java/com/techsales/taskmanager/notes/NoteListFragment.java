@@ -32,6 +32,9 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
     private FragmentNoteListBinding binding;
 
     private static final int SPACING_VALUE = 10;
+    private static final String MODE_UPDATE = "update";
+    private static final String MODE_INSERT = "insert";
+
 
     @Inject
     NoteListContract.Presenter presenter;
@@ -49,7 +52,7 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
         initFabView();
         binding.addNotes.setOnClickListener(view -> {
             if (getActivity() != null) {
-                AddNotesActivity.start(getActivity(), "", "");
+                AddNotesActivity.start(getActivity(), 0, MODE_INSERT, "", "");
             }
         });
         return binding.getRoot();
@@ -86,7 +89,7 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
 
     @Override
     public void onNotesItemClick(NotesViewModel items, int position) {
-        AddNotesActivity.start(getActivity(), items.getNotesTitle(), items.getNotesDesc());
+        AddNotesActivity.start(getActivity(), items.getId(), MODE_UPDATE, items.getNotesTitle(), items.getNotesDesc());
     }
 
     private void initRecyclerView() {
