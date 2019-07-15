@@ -17,9 +17,14 @@ public interface NoteListContract {
         void showDataFetchError(String message);
 
         void onNotesItemClick(NotesViewModel items, int position);
+
+        void onNoteDeleteSuccess(String message);
     }
 
     interface Presenter extends BasePresenter, NoteListAdapter.NoteListItemClickListener {
         void getSavedNotes();
+
+        void deleteAllNotes();
     }
+
 }

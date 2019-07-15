@@ -32,4 +32,8 @@ public class DatabaseRepo {
         return databaseManager.getNotesDao().updateNotes(notes.getId(),
                 notes.getTitle(), notes.getDescription());
     }
+
+    public Completable deleteNotes() {
+        return databaseManager.getNotesDao().delteAllNotes();
+    }
 }

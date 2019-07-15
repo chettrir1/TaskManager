@@ -34,6 +34,11 @@
     <string name="notes_error_empty_title">Title field can\'t be empty</string>
     <string name="notes_error_empty_description">Description field can\'t be empty</string>
     <string name="notes_toolbar_title">All notes</string>
+    <string name="fragment_note_list_empty_list">Empty List</string>
+    <string name="add_note_mode_update">update</string>
+    <string name="add_note_mode_insert">insert</string>
+    <string name="add_note_fragment_data_removed">Data removed Successfully</string>
+    <string name="add_note_fragment_error_data_remove">Data remove Error</string>
     <!---->
 
     <!--change status string-->

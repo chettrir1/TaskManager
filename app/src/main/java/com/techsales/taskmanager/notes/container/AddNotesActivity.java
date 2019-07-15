@@ -17,10 +17,10 @@ public class AddNotesActivity extends BaseActivity {
     private static final String TITLE_NAME = "title";
     private static final String TITLE_DESCRIPTION = "description";
 
-    public static void start(Activity activity, int id, String mode, String title, String description) {
+    public static void start(Activity activity, String id, String mode, String title, String description) {
         Intent intent = new Intent(activity, AddNotesActivity.class);
         intent.putExtra(NOTE_ID, id);
-        intent.putExtra(TITLE_NAME, mode);
+        intent.putExtra(ADD_NOTE_MODE, mode);
         intent.putExtra(TITLE_NAME, title);
         intent.putExtra(TITLE_DESCRIPTION, description);
         activity.startActivity(intent);
@@ -36,7 +36,7 @@ public class AddNotesActivity extends BaseActivity {
         String description = getIntent().getStringExtra(TITLE_DESCRIPTION);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.addNotesContainer, AddNotesFragment.getInstance(Integer.parseInt(id), mode, title, description))
+                .replace(R.id.addNotesContainer, AddNotesFragment.getInstance(id, mode, title, description))
                 .commit();
     }
 

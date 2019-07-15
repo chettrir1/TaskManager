@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -32,9 +33,8 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
     private FragmentNoteListBinding binding;
 
     private static final int SPACING_VALUE = 10;
-    private static final String MODE_UPDATE = "update";
-    private static final String MODE_INSERT = "insert";
 
+    private NoteListAdapter adapter;
 
     @Inject
     NoteListContract.Presenter presenter;
@@ -52,9 +52,12 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
         initFabView();
         binding.addNotes.setOnClickListener(view -> {
             if (getActivity() != null) {
-                AddNotesActivity.start(getActivity(), 0, MODE_INSERT, "", "");
+                String insert = getResources().getString(R.string.add_note_mode_update);
+                AddNotesActivity.start(getActivity(), "", insert, "", "");
             }
         });
+
+        binding.clearNotes.setOnClickListener(view -> presenter.deleteAllNotes());
         return binding.getRoot();
     }
 
@@ -77,7 +80,12 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
 
     @Override
     public void showDataLoadingSuccess(List<NotesViewModel> viewModel) {
-        NoteListAdapter adapter = new NoteListAdapter(viewModel, presenter);
+        if (viewModel != null) {
+            binding.clearNotes.setVisibility(View.VISIBLE);
+        } else {
+            binding.clearNotes.setVisibility(View.GONE);
+        }
+        adapter = new NoteListAdapter(viewModel, presenter);
         binding.noteList.setAdapter(adapter);
         binding.contentState.showContent();
     }
@@ -89,7 +97,15 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
 
     @Override
     public void onNotesItemClick(NotesViewModel items, int position) {
-        AddNotesActivity.start(getActivity(), items.getId(), MODE_UPDATE, items.getNotesTitle(), items.getNotesDesc());
+        String update = getResources().getString(R.string.add_note_mode_update);
+        AddNotesActivity.start(getActivity(), String.valueOf(items.getId()), update, items.getNotesTitle(), items.getNotesDesc());
+    }
+
+    @Override
+    public void onNoteDeleteSuccess(String message) {
+        if (getFragmentManager() != null)
+            getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void initRecyclerView() {

@@ -28,6 +28,9 @@ public interface NotesDao {
 
     @Query("UPDATE notes SET title=:title, description =:description WHERE id =:id")
     Completable updateNotes(int id, String title, String description);
+
+    @Query("DELETE FROM notes")
+    Completable delteAllNotes();
 }
 
 
