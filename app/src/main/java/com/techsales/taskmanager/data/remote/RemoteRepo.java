@@ -11,6 +11,7 @@ import com.techsales.taskmanager.data.model.login.UserInfo;
 
 import java.util.Map;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
@@ -63,6 +64,10 @@ public interface RemoteRepo {
 
     @POST("task/store")
     Single<BaseResponse> assignTask(
+            @Body Map<String, Object> params);
+
+    @POST("logout")
+    Single<BaseResponse> requestLogout(
             @Body Map<String, Object> params);
 
 }

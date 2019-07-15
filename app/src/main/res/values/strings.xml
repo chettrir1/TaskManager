@@ -47,7 +47,10 @@
     <string name="change_status_dialog_dismiss">Dismiss</string>
     <!---->
 
-    <!--fragment dashboard strings-->
+    <!-- dashboard strings-->
+    <string name="dashboard_user_type_administrator">Administrator</string>
+    <string name="dashboard_user_type_office_staff">Office staff</string>
+
     <string name="dashboard_title_assigned_task">Assigned Task</string>
     <string name="dashboard_title_task_status">Task Status</string>
     <string name="dashboard_task_text_new">New</string>
@@ -155,6 +158,7 @@
     <!--choose employee strings-->
     <string name="dialog_choose_employee_title">Employee Lists</string>
     <string name="dialog_choose_employee_btn_assign_task">Assign Task</string>
+
     <!---->
 
 </resources>
