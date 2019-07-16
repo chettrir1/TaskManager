@@ -3,7 +3,6 @@ package com.techsales.taskmanager.notes;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class AddNotesFragment extends BaseFragment implements AddNotesContract.V
     private static final String TITLE_NAME = "title";
     private static final String TITLE_DESCRIPTION = "description";
     private static final String MODE_INSERT = "insert";
+
     private String mode;
     private int id;
 
@@ -91,10 +91,9 @@ public class AddNotesFragment extends BaseFragment implements AddNotesContract.V
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             mode = bundle.getString(ADD_NOTE_MODE);
-            if (mode != null)
-                if (!mode.equals(MODE_INSERT)) {
-                    id = Integer.parseInt(bundle.getString(NOTE_ID));
-                }
+
+            id = Integer.parseInt(bundle.getString(NOTE_ID));
+
             String title = bundle.getString(TITLE_NAME);
             String description = bundle.getString(TITLE_DESCRIPTION);
             if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(description)) {

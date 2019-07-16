@@ -24,7 +24,7 @@ public class DataModule {
     @Singleton
     OkHttpClient getHttpClient(ApiInterceptor apiInterceptor) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
                 .readTimeout(2, TimeUnit.MINUTES)
                 .writeTimeout(2, TimeUnit.MINUTES)

@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 
@@ -16,6 +15,8 @@ import androidx.core.content.ContextCompat;
 import com.google.firebase.messaging.RemoteMessage;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.dashboard.container.DashboardActivity;
+
+import java.util.Objects;
 
 class NotificationHelper {
     private static final String NOTIFICATION_CHANNEL_ID = "101";
@@ -42,7 +43,7 @@ class NotificationHelper {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
         mBuilder.setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle(remoteMessage.getNotification().getTitle())
+                .setContentTitle(Objects.requireNonNull(remoteMessage.getNotification()).getTitle())
                 .setContentText(remoteMessage.getNotification().getBody())
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(resultPendingIntent)

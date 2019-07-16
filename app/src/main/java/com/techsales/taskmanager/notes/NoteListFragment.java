@@ -33,8 +33,7 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
     private FragmentNoteListBinding binding;
 
     private static final int SPACING_VALUE = 10;
-
-    private NoteListAdapter adapter;
+    private String ADD_NOTE_ID = "100000";
 
     @Inject
     NoteListContract.Presenter presenter;
@@ -52,8 +51,8 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
         initFabView();
         binding.addNotes.setOnClickListener(view -> {
             if (getActivity() != null) {
-                String insert = getResources().getString(R.string.add_note_mode_update);
-                AddNotesActivity.start(getActivity(), "", insert, "", "");
+                String insert = getResources().getString(R.string.add_note_mode_insert);
+                AddNotesActivity.start(getActivity(), ADD_NOTE_ID, insert, "", "");
             }
         });
 
@@ -85,7 +84,7 @@ public class NoteListFragment extends BaseFragment implements NoteListContract.V
         } else {
             binding.clearNotes.setVisibility(View.GONE);
         }
-        adapter = new NoteListAdapter(viewModel, presenter);
+        NoteListAdapter adapter = new NoteListAdapter(viewModel, presenter);
         binding.noteList.setAdapter(adapter);
         binding.contentState.showContent();
     }
