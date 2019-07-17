@@ -1,5 +1,11 @@
 package com.techsales.taskmanager.auth.login;
 
+import android.app.Activity;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.techsales.taskmanager.R;
 import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
@@ -14,6 +20,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     private LoginContract.View view;
     private Disposable disposable;
     private TaskManagerComponent component;
+    private static final String TAG = LoginPresenter.class.getSimpleName();
 
     LoginPresenter(TaskManagerComponent component, LoginContract.View view) {
         this.view = view;
@@ -46,5 +53,15 @@ public class LoginPresenter implements LoginContract.Presenter {
                         view.showLoginError(component.context().getString(R.string.error_server));
                 });
 
+    }
+
+    @Override
+    public void getFirebaseToken(Activity activity) {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(activity,
+                instanceIdResult -> {
+                    String token = instanceIdResult.getToken();
+                    Log.v("token", token);
+                    view.setFirebaseToken(token);
+                });
     }
 }

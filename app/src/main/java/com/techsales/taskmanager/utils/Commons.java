@@ -24,7 +24,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.reactivex.disposables.Disposable;
 
@@ -155,6 +158,21 @@ public class Commons {
             e.printStackTrace();
         }
         return object;
+    }
+
+    public static String dateParse(String date) {
+        String[] parsedDate =date.split("\\s+");
+        return parsedDate[0];
+    }
+
+    public static String capitalize(String data){
+        StringBuffer capBuffer = new StringBuffer();
+        Matcher capMatcher = Pattern.compile("([a-z])([a-z]*)", Pattern.CASE_INSENSITIVE).matcher(data);
+        while (capMatcher.find()){
+            capMatcher.appendReplacement(capBuffer, Objects.requireNonNull(capMatcher.group(1)).toUpperCase() + Objects.requireNonNull(capMatcher.group(2)).toLowerCase());
+        }
+
+        return capMatcher.appendTail(capBuffer).toString();
     }
 
 }

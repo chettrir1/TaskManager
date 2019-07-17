@@ -9,6 +9,9 @@ public class ContactsResponse {
     private String post;
     private String contact;
 
+    @SerializedName("staff_image")
+    private String staffImage;
+
     @SerializedName("ext_number")
     private String extNumber;
 
@@ -50,6 +53,14 @@ public class ContactsResponse {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getStaffImage() {
+        return staffImage;
+    }
+
+    public void setStaffImage(String staffImage) {
+        this.staffImage = staffImage;
     }
 
     public String getExtNumber() {

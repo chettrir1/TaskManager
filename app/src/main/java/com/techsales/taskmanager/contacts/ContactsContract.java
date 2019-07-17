@@ -18,6 +18,7 @@ public interface ContactsContract {
         void showNoNetworkAvailable();
 
         void onContactsItemClick(ContactsviewModel items, int position);
+
     }
 
     interface Presenter extends BasePresenter, ContactsRecyclerAdapter.ContactsItemClickListener {

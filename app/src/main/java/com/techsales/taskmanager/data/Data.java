@@ -1,17 +1,15 @@
 package com.techsales.taskmanager.data;
 
-import android.util.JsonReader;
-
-import com.google.gson.JsonObject;
 import com.techsales.taskmanager.data.local.LocalRepo;
 import com.techsales.taskmanager.data.local.database.DatabaseRepo;
 import com.techsales.taskmanager.data.model.api.BaseResponse;
 import com.techsales.taskmanager.data.model.api.chooseemployee.ChooseEmployeeResponse;
 import com.techsales.taskmanager.data.model.api.contacts.ContactsResponse;
+import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.api.notification.NotificationResponse;
 import com.techsales.taskmanager.data.model.api.status.BaseStatusResponse;
+import com.techsales.taskmanager.data.model.dashboard.taskcount.TaskCount;
 import com.techsales.taskmanager.data.model.login.UserInfo;
-import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
 import com.techsales.taskmanager.data.model.notes.Notes;
 import com.techsales.taskmanager.data.remote.RemoteRepo;
 import com.techsales.taskmanager.utils.NonNullMapper;
@@ -24,6 +22,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -87,16 +86,11 @@ public class Data {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-
     }
 
-    public Single<BaseResponse> requestChangeStatus(String taskId, String taskStatus, String remarks) {
-        HashMap<String, Object> params = new HashMap<>(3);
-        params.put("task_id", taskId);
-        params.put("status", taskStatus);
-        params.put("remarks", remarks);
-
-        return remoteRepo.requestChangeStatus(params)
+    public Single<TaskCount> getTaskCount(String user_id) {
+        return remoteRepo.getTaskCount(user_id)
+                .flatMap(new NonNullMapper<>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -109,10 +103,18 @@ public class Data {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Single<BaseResponse> requestLogout(String userId) {
+        HashMap<String, Object> params = new HashMap<>(1);
+        params.put("user_id", userId);
+        return remoteRepo.requestLogout(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public Single<List<WhereTask>> getAllTasks(String user_id) {
         return remoteRepo.getNewTasks(user_id)
                 .flatMap(new NonNullMapper<>())
-                .flatMap(baseTasksResponse -> Single.just(baseTasksResponse.getwhereTasks()))
+                .flatMap(baseTasksResponse -> Single.just(baseTasksResponse.getWhereTasks()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -175,6 +177,29 @@ public class Data {
 
     public Single<List<Notes>> getAllNotes() {
         return databaseRepo.getAllNotes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Completable updateNotes(Notes notes) {
+        return databaseRepo.updateNotes(notes)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Completable deleteNotes() {
+        return databaseRepo.deleteNotes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseResponse> requestChangeStatus(String taskId, String taskStatus, String remarks) {
+        HashMap<String, Object> params = new HashMap<>(3);
+        params.put("task_id", taskId);
+        params.put("status", taskStatus);
+        params.put("remarks", remarks);
+
+        return remoteRepo.requestChangeStatus(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

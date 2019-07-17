@@ -34,6 +34,11 @@
     <string name="notes_error_empty_title">Title field can\'t be empty</string>
     <string name="notes_error_empty_description">Description field can\'t be empty</string>
     <string name="notes_toolbar_title">All notes</string>
+    <string name="fragment_note_list_empty_list">Empty List</string>
+    <string name="add_note_mode_update">update</string>
+    <string name="add_note_mode_insert">insert</string>
+    <string name="add_note_fragment_data_removed">Data removed Successfully</string>
+    <string name="add_note_fragment_error_data_remove">Data remove Error</string>
     <!---->
 
     <!--change status string-->
@@ -42,7 +47,10 @@
     <string name="change_status_dialog_dismiss">Dismiss</string>
     <!---->
 
-    <!--fragment dashboard strings-->
+    <!-- dashboard strings-->
+    <string name="dashboard_user_type_administrator">Administrator</string>
+    <string name="dashboard_user_type_office_staff">Office staff</string>
+
     <string name="dashboard_title_assigned_task">Assigned Task</string>
     <string name="dashboard_title_task_status">Task Status</string>
     <string name="dashboard_task_text_new">New</string>
@@ -50,6 +58,7 @@
     <string name="dashboard_task_text_pending">Append</string>
     <string name="dashboard_task_text_complete">Completed</string>
     <string name="dashboard_error_empty_task">No data available to fetch</string>
+    <string name="dashboard_empty_status">Empty</string>
     <!---->
 
     <!--fragment profile strings-->
@@ -89,7 +98,7 @@
     <string name="view_task_success_file_upload">File upload successful</string>
 
     <string name="view_task_text_take_photo">Take photo</string>
-    <string name="view_task_text_gallery">Gallery</string>
+    <string name="view_task_text_gallery">Choose from gallery</string>
     <string name="view_task_text_dialog_dismiss">Dismiss</string>
     <string name="view_task_text_need_permissions">Need Permissions</string>
     <string name="view_task_text_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
@@ -98,6 +107,8 @@
     <string name="view_task_fragment_status_open">Open</string>
     <string name="view_task_fragment_status_pending">Pending</string>
     <string name="view_task_fragment_title_task_information">Task Information</string>
+    <string name="view_task_fragment_task_desc_not_available">Task description not available!</string>
+    <string name="view_task_fragment_client_phone_not_available">Client phone not available!</string>
     <!---->
 
     <!--status view strings-->
@@ -147,6 +158,7 @@
     <!--choose employee strings-->
     <string name="dialog_choose_employee_title">Employee Lists</string>
     <string name="dialog_choose_employee_btn_assign_task">Assign Task</string>
+
     <!---->
 
 </resources>

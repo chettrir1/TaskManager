@@ -23,6 +23,11 @@ public class ContactsviewModel extends BaseObservable {
     }
 
     @Bindable
+    public String getImagePath() {
+        return items.getStaffImage();
+    }
+
+    @Bindable
     public String getNameAndPost() {
         return String.format("%s (%s) ", items.getName(), items.getPost());
     }

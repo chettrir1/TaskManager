@@ -130,7 +130,7 @@ public class DashboardFragment extends BaseFragment implements DashboardContract
 
     @Override
     public void onTopRecyclerItemClicked(DashboardTopRecyclerViewModel items, int position) {
-        StatusActivity.start(getActivity(), items.getTaskCount());
+        StatusActivity.start(getActivity(), items.getStatusNum());
     }
 
     @Override

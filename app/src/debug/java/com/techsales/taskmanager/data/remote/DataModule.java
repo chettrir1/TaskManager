@@ -3,6 +3,8 @@ package com.techsales.taskmanager.data.remote;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -22,8 +24,10 @@ public class DataModule {
     @Singleton
     OkHttpClient getHttpClient(ApiInterceptor apiInterceptor) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
+                .readTimeout(2, TimeUnit.MINUTES)
+                .writeTimeout(2, TimeUnit.MINUTES)
                 .addInterceptor(interceptor)
                 .addInterceptor(apiInterceptor)
                 .addNetworkInterceptor(new StethoInterceptor())

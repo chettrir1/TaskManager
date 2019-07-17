@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="notes"
             type="com.techsales.taskmanager.data.model.viewmodel.notes.NotesViewModel" />
@@ -20,8 +21,11 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:fontFamily="@font/open_sans"
-            android:textColor="@android:color/black"
+            android:singleLine="true"
+            android:text="@{notes.notesTitle}"
+            android:textColor="@color/colorBlack"
             android:textSize="@dimen/h6_headline_medium"
             tools:text="Title here" />
 
@@ -31,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
-            android:textColor="@android:color/black"
+            android:maxLines="2"
+            android:text="@{notes.notesDesc}"
+            android:textColor="@color/colorGrey"
             android:textSize="@dimen/caption_medium"
             tools:text="description here" />
 

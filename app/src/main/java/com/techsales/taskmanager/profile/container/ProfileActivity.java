@@ -14,8 +14,6 @@ import com.techsales.taskmanager.profile.ProfileFragment;
 
 public class ProfileActivity extends BaseActivity {
 
-    private ActivityProfileBinding binding;
-
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, ProfileActivity.class);
         activity.startActivity(intent);
@@ -24,7 +22,7 @@ public class ProfileActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
+        ActivityProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
         setSupportActionBar(binding.customToolbar);
 
         binding.ivToolbarImage.setImageResource(R.drawable.ic_back);

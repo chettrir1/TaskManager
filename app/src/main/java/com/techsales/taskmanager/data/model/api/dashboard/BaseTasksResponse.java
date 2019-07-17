@@ -4,33 +4,22 @@ import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
-import com.techsales.taskmanager.data.model.viewtask.TaskDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseTasksResponse {
 
-    private int itemCount;
     @SerializedName("where_task")
     private List<WhereTask> whereTasks;
 
-    public List<WhereTask> getwhereTasks() {
+    public List<WhereTask> getWhereTasks() {
         return whereTasks;
     }
 
     public void setwhereTasks(List<WhereTask> whereTasks) {
         this.whereTasks = whereTasks;
     }
-
-    public int getItemCount() {
-        return itemCount;
-    }
-
-    public void setItemCount(int itemCount) {
-        this.itemCount = itemCount;
-    }
-
 
     public static List<DashboardBottomRecyclerViewModel> mapToViewModel(Context context, List<WhereTask> items) {
         final int count = items.size();

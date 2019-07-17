@@ -1,6 +1,7 @@
 package com.techsales.taskmanager.dashboard.container;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import com.techsales.taskmanager.databinding.ActivityDashboardBinding;
 import com.techsales.taskmanager.notes.container.NoteListActivity;
 import com.techsales.taskmanager.notification.container.NotificationActivity;
 import com.techsales.taskmanager.profile.container.ProfileActivity;
+import com.techsales.taskmanager.utils.Commons;
 
 import javax.inject.Inject;
 
@@ -27,6 +29,7 @@ public class DashboardActivity extends BaseActivity implements DashboardContract
 
     @Inject
     DashboardContract.Presenter presenter;
+    private ProgressDialog progressDialog;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, DashboardActivity.class);
@@ -63,6 +66,31 @@ public class DashboardActivity extends BaseActivity implements DashboardContract
     }
 
     @Override
+    public void showProgress() {
+        progressDialog = Commons.showLoadingDialog(this);
+    }
+
+    @Override
+    public void onLogoutSelected() {
+        hideProgress();
+        Activity activity = this;
+        startActivity(new Intent(activity, LoginActivity.class));
+        activity.finish();
+    }
+
+    @Override
+    public void showNetworkNotAvailableError(String message) {
+        hideProgress();
+        Commons.showSnackBar(this, binding.llMainView, message);
+    }
+
+    @Override
+    public void showError(String message) {
+        hideProgress();
+        Commons.showSnackBar(this, binding.llMainView, message);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
@@ -84,22 +112,18 @@ public class DashboardActivity extends BaseActivity implements DashboardContract
                 break;
 
             case R.id.note_src:
-/*
                 NoteListActivity.start(this);
-*/
                 break;
 
             case R.id.logout_src:
-                data.logout();
-                onLogoutSelection();
+                presenter.onLogout();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void onLogoutSelection() {
-        Activity activity = this;
-        startActivity(new Intent(activity, LoginActivity.class));
-        activity.finish();
+    private void hideProgress() {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 }

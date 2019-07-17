@@ -3,6 +3,7 @@ package com.techsales.taskmanager.notes.container;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -26,10 +27,16 @@ public class NoteListActivity extends BaseActivity {
 
         setSupportActionBar(binding.includeToolbar.customToolbar);
         binding.includeToolbar.ivToolbarImage.setImageResource(R.drawable.ic_back);
+        binding.includeToolbar.ivToolbarImage.setOnClickListener(view -> onBackPressed());
         binding.includeToolbar.tvToolbarText.setText(getResources().getString(R.string.notes_toolbar_title));
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.noteListContainer, NoteListFragment.getInstance())
                 .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

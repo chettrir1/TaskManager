@@ -3,6 +3,7 @@ package com.techsales.taskmanager.auth.login;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -22,12 +23,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private ProgressDialog progressDialog;
     private ActivityLoginBinding binding;
+    private String fbToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         setRememberStatus();
+        presenter.getFirebaseToken(this);
         binding.btnLogin.setOnClickListener(v -> {
             String username = binding.etUsername.getText().toString();
             String password = binding.etPassword.getText().toString();
@@ -41,7 +44,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 } else {
                     data.rememberUnchecked();
                 }
-                presenter.onLogin(username, password, "sadasd");
+                presenter.onLogin(username, password, fbToken);
             }
         });
 
@@ -61,6 +64,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void showEmptyPassword(String message) {
         binding.etPasswordLayout.setError(message);
+    }
+
+    @Override
+    public void setFirebaseToken(String token) {
+        Log.v("getFbToken", token);
+        fbToken = token;
+
     }
 
     @Override

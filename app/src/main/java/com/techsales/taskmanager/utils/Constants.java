@@ -29,6 +29,7 @@ public class Constants {
 
     public static final String TASK_TYPE_NEW = "New";
     public static final String TASK_TYPE_MANTAIN = "Maintainance";
+    public static final String USER_ADMIN = "1";
 
 
     static final int CAMERA_REQUEST_CODE = 100;

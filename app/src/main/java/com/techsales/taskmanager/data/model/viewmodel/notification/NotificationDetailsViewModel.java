@@ -1,20 +1,17 @@
 package com.techsales.taskmanager.data.model.viewmodel.notification;
 
-import android.content.Context;
-
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.techsales.taskmanager.data.model.notification.NotificationDetails;
+import com.techsales.taskmanager.utils.Commons;
 
 public class NotificationDetailsViewModel extends BaseObservable {
 
     private NotificationDetails notificationDetails;
-    private Context context;
 
-    public NotificationDetailsViewModel(Context context, NotificationDetails notificationDetails) {
+    public NotificationDetailsViewModel(NotificationDetails notificationDetails) {
         this.notificationDetails = notificationDetails;
-        this.context = context;
     }
 
     @Bindable
@@ -29,6 +26,6 @@ public class NotificationDetailsViewModel extends BaseObservable {
 
     @Bindable
     public String getNotificationDate() {
-        return notificationDetails.getTime();
+        return Commons.dateParse(notificationDetails.getTime());
     }
 }

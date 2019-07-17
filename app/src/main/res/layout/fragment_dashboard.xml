@@ -89,6 +89,7 @@
                                     android:id="@+id/dashboardBottomRv"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layoutAnimation="@anim/rv_layout_anim"
                                     android:overScrollMode="never"
                                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 

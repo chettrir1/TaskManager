@@ -1,4 +1,5 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -16,14 +17,17 @@
             android:id="@+id/notificationTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans"
             android:text="@{notificationDetails.notificationTitle}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/rightGuidline"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/leftGuidline"
-            app:layout_constraintTop_toBottomOf="@+id/notificationDate" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/leftGuidline"
@@ -50,15 +54,15 @@
             android:id="@+id/notificationDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/open_sans"
             android:text="@{notificationDetails.notificationDate}"
-            android:textAlignment="textEnd"
+            android:textAlignment="viewEnd"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintEnd_toEndOf="@+id/notificationTitle"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:textColor="@color/colorLightGrey"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuidline"
             app:layout_constraintStart_toStartOf="@+id/leftGuidline"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+            app:layout_constraintTop_toBottomOf="@+id/notificationDetails" />
 
         <TextView
             android:id="@+id/notificationDetails"
@@ -67,7 +71,9 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans"
             android:text="@{notificationDetails.notificationDescription}"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorGrey"
             app:layout_constraintEnd_toStartOf="@+id/rightGuidline"
             app:layout_constraintStart_toStartOf="@+id/leftGuidline"
             app:layout_constraintTop_toBottomOf="@+id/notificationTitle" />

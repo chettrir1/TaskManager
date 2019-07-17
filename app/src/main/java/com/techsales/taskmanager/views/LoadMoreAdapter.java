@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.techsales.taskmanager.R;
 
 /**
- * Created by nawin on 7/12/17.
+ * Created by chettri on 7/12/17.
  */
 
 public abstract class LoadMoreAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

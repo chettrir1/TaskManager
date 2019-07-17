@@ -18,10 +18,8 @@ import com.techsales.taskmanager.utils.Commons;
 
 import javax.inject.Inject;
 
-import dagger.android.support.HasSupportFragmentInjector;
-
-import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
 import static com.techsales.taskmanager.utils.Constants.COUNT_ONE;
+import static com.techsales.taskmanager.utils.Constants.COUNT_TWO;
 import static com.techsales.taskmanager.utils.Constants.STATUS_NAME;
 import static com.techsales.taskmanager.utils.Constants.STATUS_NEW;
 import static com.techsales.taskmanager.utils.Constants.STATUS_OPEN;
@@ -29,7 +27,7 @@ import static com.techsales.taskmanager.utils.Constants.STATUS_PENDING;
 import static com.techsales.taskmanager.utils.Constants.TASK_ID;
 
 
-public class ChangeStatusFragment extends BaseDialogFragment implements ChangeStatusContract.View, HasSupportFragmentInjector {
+public class ChangeStatusFragment extends BaseDialogFragment implements ChangeStatusContract.View {
     @Inject
     ChangeStatusContract.Presenter presenter;
     private FragmentChangeStatusBinding binding;

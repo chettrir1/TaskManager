@@ -7,12 +7,14 @@ import com.techsales.taskmanager.data.error.FailedResponseException;
 import com.techsales.taskmanager.data.error.NetworkNotAvailableException;
 import com.techsales.taskmanager.data.model.api.dashboard.BaseTasksResponse;
 import com.techsales.taskmanager.data.model.api.dashboard.WhereTask;
+import com.techsales.taskmanager.data.model.dashboard.taskcount.TaskCount;
 import com.techsales.taskmanager.data.model.dashboard.top.Status;
 import com.techsales.taskmanager.data.model.dashboard.top.TaskStatus;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardBottomRecyclerViewModel;
 import com.techsales.taskmanager.data.model.viewmodel.dashboard.DashboardTopRecyclerViewModel;
 import com.techsales.taskmanager.di.TaskManagerComponent;
 import com.techsales.taskmanager.utils.Commons;
+import com.techsales.taskmanager.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     @Override
     public void start() {
         checkIfAdminOrNot();
-        prepareDashBoardStatus();
+        getTaskCount();
     }
 
     @Override
@@ -56,7 +58,7 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         view.onTopRecyclerItemClicked(items, position);
     }
 
-    private void prepareDashBoardStatus() {
+    private void prepareDashBoardStatus(TaskCount taskCount) {
         List<TaskStatus> items = new ArrayList<>();
         int[] icons = new int[]{
                 R.drawable.new_task_src,
@@ -72,24 +74,41 @@ public class DashboardPresenter implements DashboardContract.Presenter {
                 R.color.colorGreen
         };
 
-        TaskStatus newTask = new TaskStatus("0", component.context().getString(R.string.dashboard_task_text_new),
+        TaskStatus newTask = new TaskStatus(taskCount.getTaskNew(), component.context().getString(R.string.dashboard_task_text_new),
                 icons[0], color[0]);
         items.add(newTask);
 
-        TaskStatus openTask = new TaskStatus("1", component.context().getString(R.string.dashboard_task_text_open),
+        TaskStatus openTask = new TaskStatus(taskCount.getTaskOpened(), component.context().getString(R.string.dashboard_task_text_open),
                 icons[1], color[1]);
         items.add(openTask);
 
-        TaskStatus pendingTask = new TaskStatus("2", component.context().getString(R.string.dashboard_task_text_pending),
+        TaskStatus pendingTask = new TaskStatus(taskCount.getTaskPending(), component.context().getString(R.string.dashboard_task_text_pending),
                 icons[2], color[2]);
         items.add(pendingTask);
 
-        TaskStatus completedTask = new TaskStatus("3", component.context().getString(R.string.dashboard_task_text_complete),
+        TaskStatus completedTask = new TaskStatus(taskCount.getTaskCompleted(), component.context().getString(R.string.dashboard_task_text_complete),
                 icons[3], color[3]);
         items.add(completedTask);
 
         List<DashboardTopRecyclerViewModel> viewModel = Status.mapToViewModel(component.context(), items);
         view.showTopRecyclerLoadSuccess(viewModel);
+    }
+
+    private void getTaskCount() {
+        disposable = component.data().getTaskCount(component.data().savedUserInfo().getId())
+                .subscribe(taskCount -> {
+                    if (taskCount != null) {
+                        prepareDashBoardStatus(taskCount);
+                    }
+                }, throwable -> {
+                    if (throwable instanceof FailedResponseException) {
+                        view.showTasksLoadError(throwable.getMessage());
+                    } else if (throwable instanceof NetworkNotAvailableException) {
+                        view.showNetworkNotAvailableError();
+                    } else {
+                        view.showTasksLoadError(component.context().getString(R.string.error_server));
+                    }
+                });
     }
 
     private void loadAllTask() {
@@ -116,12 +135,11 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     @Override
     public void onBottomRecyclerItemClicked(DashboardBottomRecyclerViewModel items, int position) {
         view.onBottomRecyclerItemClicked(items, position);
-
     }
 
     private void checkIfAdminOrNot() {
         String ifAdmin = component.data().savedUserInfo().getUserType();
-        if (ifAdmin.equals("1")) {
+        if (ifAdmin.equals(Constants.USER_ADMIN)) {
             view.checkIfAdmin(true);
         } else {
             view.checkIfAdmin(false);

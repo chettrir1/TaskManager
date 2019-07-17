@@ -41,7 +41,6 @@ class StatusPresenter implements StatusContract.Presenter {
 
     }
 
-    @Override
     public void requestStatus() {
         view.showProgress();
         this.page = 1;
@@ -50,7 +49,7 @@ class StatusPresenter implements StatusContract.Presenter {
                 .subscribe(response -> {
                     int itemCount = response.getTotal();
                     List<StatusResponse> items = response.getItems();
-                        boolean isTrue = Commons.isNotEmpty(items);
+                    boolean isTrue = Commons.isNotEmpty(items);
                     if (itemCount > 0 && isTrue) {
                         final int count = items.size();
                         page += count;

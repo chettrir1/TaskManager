@@ -30,7 +30,7 @@ public class Permission implements ActivityCompat.OnRequestPermissionsResultCall
     private final Activity activity;
 
     @Inject
-    public Permission(Activity activity) {
+    Permission(Activity activity) {
         this.activity = activity;
     }
 
@@ -91,7 +91,7 @@ public class Permission implements ActivityCompat.OnRequestPermissionsResultCall
                 .show();
     }
 
-    //Methodsss for checking permission
+    //Method for checking permission
     private boolean checkPermissionForCamera(Context context) {
         int camera = ContextCompat.checkSelfPermission(context, CAMERA);
         return camera == PackageManager.PERMISSION_GRANTED;

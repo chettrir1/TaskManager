@@ -1,7 +1,6 @@
 package com.techsales.taskmanager.contacts;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -36,6 +35,11 @@ public class ContactsRecyclerAdapter extends RecyclerView.Adapter<ContactsRecycl
             if (items != null)
                 listener.onContactsItemClicked(items.get(position), position);
         });
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override

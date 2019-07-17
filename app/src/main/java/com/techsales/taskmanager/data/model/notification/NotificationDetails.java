@@ -1,7 +1,5 @@
 package com.techsales.taskmanager.data.model.notification;
 
-import android.content.Context;
-
 import com.techsales.taskmanager.data.model.viewmodel.notification.NotificationDetailsViewModel;
 
 import java.io.Serializable;
@@ -35,8 +33,8 @@ public class NotificationDetails implements Serializable {
         this.notificationDescription = notificationDescription;
     }
 
-    public static NotificationDetailsViewModel mapToNotificationDetailsViewModel(Context context, NotificationDetails notificationDetails) {
-        return new NotificationDetailsViewModel(context, notificationDetails);
+    public static NotificationDetailsViewModel mapToNotificationDetailsViewModel(NotificationDetails notificationDetails) {
+        return new NotificationDetailsViewModel(notificationDetails);
     }
 
 
